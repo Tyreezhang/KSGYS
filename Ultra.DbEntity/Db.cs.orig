@@ -1,0 +1,1218 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using System.IO;
+using System.Linq;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace PetaPoco
+{
+    public partial class Database
+    {
+        public IDbCommand CreateProcCommand(IDbConnection connection, string sql, params object[] args)
+        {
+            var cmd = CreateCommand(connection, sql, args);
+            cmd.CommandType = CommandType.StoredProcedure;
+            return cmd;
+        }
+
+        public int ExecuteProc(string sql, params object[] args)
+        {
+            try
+            {
+                OpenSharedConnection();
+                try
+                {
+                    using (var cmd = CreateProcCommand(_sharedConnection, sql, args))
+                    {
+                        var retv = cmd.ExecuteNonQuery();
+                        OnExecutedCommand(cmd);
+                        return retv;
+                    }
+                }
+                finally
+                {
+                    CloseSharedConnection();
+                }
+            }
+            catch (Exception x)
+            {
+                if (OnException(x))
+                    throw;
+                return -1;
+            }
+        }
+
+        public IEnumerable<T> QueryNoAutoSelect<T>(string sql, params object[] args)
+        {
+            OpenSharedConnection();
+            try
+            {
+                using (var cmd = CreateCommand(_sharedConnection, sql, args))
+                {
+                    IDataReader r;
+                    var pd = PetaPoco.Internal.PocoData.ForType(typeof(T));
+                    try
+                    {
+                        r = cmd.ExecuteReader();
+                        OnExecutedCommand(cmd);
+                    }
+                    catch (Exception x)
+                    {
+                        if (OnException(x))
+                            throw;
+                        yield break;
+                    }
+                    var factory = pd.GetFactory(cmd.CommandText, _sharedConnection.ConnectionString, 0, r.FieldCount, r) as Func<IDataReader, T>;
+                    using (r)
+                    {
+                        while (true)
+                        {
+                            T poco;
+                            try
+                            {
+                                if (!r.Read())
+                                    yield break;
+                                poco = factory(r);
+                            }
+                            catch (Exception x)
+                            {
+                                if (OnException(x))
+                                    throw;
+                                yield break;
+                            }
+
+                            yield return poco;
+                        }
+                    }
+                }
+            }
+            finally
+            {
+                CloseSharedConnection();
+            }
+        }
+
+        public List<T> FetchNoAutoSelect<T>(string sql, params object[] args)
+        {
+            return QueryNoAutoSelect<T>(sql, args).ToList();
+        }
+
+        /// <summary>
+        /// 序列化对象
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="objs"></param>
+        /// <returns></returns>
+        internal static byte[] Serialize<T>(T objs)
+        {
+            IFormatter ift = new BinaryFormatter();
+            byte[] byts = null;
+            using (MemoryStream ms = new MemoryStream())
+            {
+                ift.Serialize(ms, objs);
+                byts = ms.GetBuffer();
+            }
+            return byts;
+        }
+
+        /// <summary>
+        /// 序列化对象为Json串
+        /// </summary>
+        /// <param name="obj">要被序列化的对象</param>
+        /// <returns></returns>
+        internal static string SerializeJson(object obj)
+        {
+            return Newtonsoft.Json.JsonConvert.SerializeObject(obj);
+        }
+
+        /// <summary>
+        /// 反序列化对象
+        /// </summary>
+        /// <typeparam name="T">泛型类型</typeparam>
+        /// <param name="jsonstr">Json串</param>
+        /// <returns></returns>
+        internal static T DeSerialize<T>(string jsonstr)
+        {
+            return Newtonsoft.Json.JsonConvert.DeserializeObject<T>(jsonstr);
+        }
+
+        /// <summary>
+        /// 反序列化对象
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="byts"></param>
+        /// <returns></returns>
+        internal static T DeSerialize<T>(byte[] byts)
+        {
+            IFormatter ift = new BinaryFormatter();
+            using (MemoryStream ms = new MemoryStream(byts))
+            {
+                return (T)ift.Deserialize(ms);
+            }
+        }
+
+        /// <summary>
+        /// 深表复制对象
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="objsrc"></param>
+        /// <returns></returns>
+        public static T DeepCopy<T>(T objsrc)
+        {
+            if (null == objsrc) return objsrc;
+            return DeSerialize<T>(Serialize<T>(objsrc));
+        }
+    }
+
+}
+
+namespace UltraDbEntity
+{
+    public static class ExtMethod
+    {
+        public static string DefStr(this string str)
+        {
+            return string.IsNullOrEmpty(str) ? string.Empty : str;
+        }
+    }
+
+    public partial class T_ERP_ChkStockAssPurchResult : T_ERP_InStockItem
+    {
+        /// <summary>
+        /// 已分配数量（包含本次分配数量）
+        /// </summary>
+        [System.Xml.Serialization.XmlElement("AlreadyAssignedNum")]
+        [PetaPoco.Column]
+        public int AlreadyAssignedNum { get; set; }
+
+        [System.Xml.Serialization.XmlElement("PurchNum")]
+        [PetaPoco.Column]
+        public int PurchNum { get; set; }
+
+        /// <summary>
+        /// 历史已分配数量
+        /// </summary>
+        public int HistoryAssignedNum
+        {
+            get
+            {
+                return AlreadyAssignedNum - AssignItemNum;
+            }
+        }
+
+        /// <summary>
+        /// 本次最大可分配数量（剩余可分配数量）
+        /// </summary>
+        public int ReservedNum
+        {
+            get { return PurchNum - HistoryAssignedNum; }
+        }
+
+        /// <summary>
+        /// 差异数量 为负表示分配了比剩余可分配数量更多的数量
+        /// </summary>
+        public int DiffNum
+        {
+            get { return ReservedNum - AssignItemNum; }
+        }
+
+        /// <summary>
+        /// 错误原因描述
+        /// </summary>
+        public string ErrDesc
+        {
+            get
+            {
+                var ermsg = string.Empty;
+                if (DiffNum < 0)
+                {
+                    ermsg = string.Format("当前分配的数量超过了采购单最大可分配数量,超出:{0}", Math.Abs(DiffNum));
+                }
+                if (Num > AssignItemNum)
+                {
+                    ermsg += Environment.NewLine +
+                        string.Format("入库单上还有商品未分配关联至采购单,未分配数:{0}", Num - AssignItemNum);
+                }
+                return ermsg;
+            }
+        }
+    }
+
+    public partial class T_ERP_RecvAddr
+    {
+        /// <summary>
+        /// 用于显示的地址编码
+        /// </summary>
+        [PetaPoco.Ignore]
+        [System.Xml.Serialization.XmlElement("AddrShowCode")]
+        public string AddrShowCode
+        {
+            get
+            {
+                return AddrCode == null ? string.Empty : string.Format("{0}{1}", "地址", AddrCode.Value);
+            }
+        }
+
+        [PetaPoco.Ignore]
+        [System.Xml.Serialization.XmlElement("SimpleRecvName")]
+        public string SimpleRecvName
+        {
+            get
+            {
+                return System.Text.RegularExpressions.Regex.Replace(ReceiverName, @"(.+?)\+", string.Empty);
+            }
+        }
+        
+        [PetaPoco.Ignore]
+        [System.Xml.Serialization.XmlElement("DistinctKey")]
+        public string DistinctKey
+        {
+            get {
+                return string.Format("{0}{1}{2}{3}{4}{5}{6}",
+                    ReceiverName,
+                    ReceiverState.DefStr()
+                    , ReceiverCity.DefStr(), ReceiverDistrict.DefStr()
+                    , ReceiverAddress.DefStr(), ReceiverMobile.DefStr(), ReceiverPhone.DefStr());
+            }
+        }
+
+    }
+
+    public partial class T_ERP_LiteRetGoods
+    {
+
+        /// <summary>
+        /// 用于显示的批次合并编码
+        /// </summary>
+        [PetaPoco.Ignore]
+        [System.Xml.Serialization.XmlElement("BatchShowCode")]
+        public string BatchShowCode
+        {
+            get
+            {
+                return BatchOrd == null ? string.Empty : string.Format("{0}{1}", "批次", BatchOrd.Value);
+            }
+        }
+    }
+
+    public partial class T_ERP_Batch
+    {
+        /// <summary>
+        /// 用于显示的地址编码
+        /// </summary>
+        [PetaPoco.Ignore]
+        [System.Xml.Serialization.XmlElement("AddrShowCode")]
+        public string AddrShowCode
+        {
+            get
+            {
+                return AddrOrd == null ? string.Empty : string.Format("{0}{1}", "地址", AddrOrd.Value);
+            }
+        }
+
+        /// <summary>
+        /// 用于显示的批次合并编码
+        /// </summary>
+        [PetaPoco.Ignore]
+        [System.Xml.Serialization.XmlElement("BatchShowCode")]
+        public string BatchShowCode
+        {
+            get
+            {
+                return BatchOrd == null ? string.Empty : string.Format("{0}{1}", "批次", BatchOrd.Value);
+            }
+        }
+
+        /// <summary>
+        /// 业务员批次运费
+        /// </summary>
+        [PetaPoco.Ignore]
+        [System.Xml.Serialization.XmlElement("ShowPostFee")]
+        public decimal? ShowPostFee { get { return PostFeeType == "到付" ? 0 : UserInputPostFee; } }
+
+        /// <summary>
+        /// 业务员批次三包费
+        /// </summary>
+        [PetaPoco.Ignore]
+        [System.Xml.Serialization.XmlElement("ShowThirdPackFee")]
+        public decimal? ShowThirdPackFee { get { return ThirdPackType == "到付" ? 0 : UserInputThirdPackFee; } }
+
+
+        [PetaPoco.Ignore]
+        [System.Xml.Serialization.XmlElement("OutWareColor")]
+        public string OutWareColor
+        {
+            get
+            {
+                //255,24,230,140
+                if (IsExpress)
+                    return "255,24,230,140";
+                else
+                {
+                    return Reserved3 ? "255,135,206,235" : string.Empty;
+                }
+                //return Reserved3 ? "255,135,206,235" : string.Empty; 
+            }//255,220,20,60
+        }
+
+        [PetaPoco.Ignore]
+        [System.Xml.Serialization.XmlElement("ExpiredDesc")]
+        public string ExpiredDesc
+        {
+            get
+            {
+                var hour = Reserved1 / 60;
+                var dy = hour / 24;//天
+                if (Math.Abs(hour) < 24) dy = 0;
+                if (Reserved1 < 0)//已超时
+                {
+                    if (Math.Abs(dy) < 1)//不足一天
+                        return string.Format("已超时 {0} 小时", Math.Abs(hour));
+                    else
+                        return string.Format("已超时 {0} 天", Math.Abs(dy));
+                }
+                else
+                {
+                    if (Math.Abs(dy) < 1)//不足一天
+                        return string.Format("{0} 小时 后超时", Math.Abs(hour));
+                    else
+                        return string.Format("{0} 天 后超时", Math.Abs(dy));
+                }
+            }
+        }
+
+
+        //[System.Xml.Serialization.XmlElement("FHSysNo")]
+        //[PetaPoco.Column]
+        //public string FHSysNo
+        //{
+        //    get;
+        //    set;
+        //}
+    }
+
+    public partial class T_ERP_TopOrder
+    {
+
+        [PetaPoco.Ignore]
+        [System.Xml.Serialization.XmlElement("ItemName")]
+        public string ItemName { get { return Title; } }
+
+        [PetaPoco.Ignore]
+        [System.Xml.Serialization.XmlElement("SkuProperties")]
+        public string SkuProperties { get { return SkuPropertiesName; } }
+
+
+        [PetaPoco.Ignore]
+        [System.Xml.Serialization.XmlElement("SalePrice")]
+        public decimal SalePrice { get { return Price; } }
+
+    }
+
+    public partial class T_ERP_ItemStyleProp
+    {
+        public string Category { get; set; }
+        public string Style { get; set; }
+        public string Func { get; set; }
+        public string Direction { get; set; }
+        public string Color { get; set; }
+        public string Size { get; set; }
+        public string Material { get; set; }
+        public string Seat { get; set; }
+        public string Surface { get; set; }
+        public string SurfaceNums { get; set; }
+        public string Textile { get; set; }
+        public string TextileNums { get; set; }
+        public string Series { get; set; }
+        public string Class { get; set; }
+
+        public static T_ERP_ItemStyleProp GetProps(T_ERP_Item itm)
+        {
+            return new T_ERP_ItemStyleProp
+            {
+                Category = itm.Category,
+                Style = itm.Style,
+                Func = itm.Func,
+                Direction = itm.Direction,
+                Color = itm.Color,
+                Size = itm.Size,
+                Material = itm.Material,
+                Seat = itm.Seat,
+                Surface = itm.Surface,
+                SurfaceNums = itm.SurfaceNums,
+                Textile = itm.Textile,
+                TextileNums = itm.TextileNums,
+                Series = itm.Series,
+                Class = itm.Class
+            };
+        }
+    }
+
+    public partial class T_ERP_Item
+    {
+        /// <summary>
+        /// 获取商品规格名称串
+        /// </summary>
+        /// <returns></returns>
+        public string GetSkuProperties()
+        {
+            //规格+方向+位数+颜色+尺码+材质+功能+皮料+皮号+布料+布号+风格+系列+大类+分类
+            StringBuilder sb = new StringBuilder(30);
+            sb.Append(!string.IsNullOrEmpty(this.SkuName) ? string.Format("规格:{0} ", this.SkuName) : string.Empty)
+                .Append(!string.IsNullOrEmpty(this.Direction) ? string.Format("方向:{0} ", this.Direction) : string.Empty)
+                .Append(!string.IsNullOrEmpty(this.Seat) ? string.Format("位数:{0} ", this.Seat) : string.Empty)
+                .Append(!string.IsNullOrEmpty(this.Color) ? string.Format("颜色:{0} ", this.Color) : string.Empty)
+                .Append(!string.IsNullOrEmpty(this.Size) ? string.Format("尺码:{0} ", this.Size) : string.Empty)
+                .Append(!string.IsNullOrEmpty(this.Material) ? string.Format("材质:{0} ", this.Material) : string.Empty)
+                .Append(!string.IsNullOrEmpty(this.Func) ? string.Format("功能:{0} ", this.Func) : string.Empty)
+                .Append(!string.IsNullOrEmpty(this.Surface) ? string.Format("皮料:{0} ", this.Surface) : string.Empty)
+                .Append(!string.IsNullOrEmpty(this.SurfaceNums) ? string.Format("皮号:{0} ", this.SurfaceNums) : string.Empty)
+                .Append(!string.IsNullOrEmpty(this.Textile) ? string.Format("布料:{0} ", this.Textile) : string.Empty)
+                .Append(!string.IsNullOrEmpty(this.TextileNums) ? string.Format("布号:{0} ", this.TextileNums) : string.Empty)
+                .Append(!string.IsNullOrEmpty(this.Style) ? string.Format("风格:{0} ", this.Style) : string.Empty)
+                .Append(!string.IsNullOrEmpty(this.Series) ? string.Format("系列:{0} ", this.Series) : string.Empty)
+                .Append(!string.IsNullOrEmpty(this.Category) ? string.Format("大类:{0} ", this.Category) : string.Empty)
+                .Append(!string.IsNullOrEmpty(this.Class) ? string.Format("分类:{0}", this.Class) : string.Empty);
+            return sb.ToString();
+        }
+
+        string _colorvalue = string.Empty;
+        //static string _switchcolor1 = "167,116,67";
+        //static string _switchcolor2 = "81,142,209";
+        [PetaPoco.Ignore]
+        [System.Xml.Serialization.XmlElement("ColorValue")]
+        public string ColorValue
+        {
+            get
+            {
+                if (IsCombo)
+                {
+                    //return "255, 128, 128";
+                    return string.IsNullOrEmpty(_colorvalue) ? "81,142,209" :
+                        _colorvalue;
+                }
+                else
+                    return _colorvalue;
+
+            }
+            set { _colorvalue = value; }
+        }
+
+        [PetaPoco.Ignore]
+        [System.Xml.Serialization.XmlElement("ComboGuid")]
+        public Guid ComboGuid { get; set; }
+
+        [PetaPoco.Ignore]
+        [System.Xml.Serialization.XmlElement("BusVolume")]
+        public decimal? BusVolume { get; set; }
+
+        [PetaPoco.Ignore]
+        [System.Xml.Serialization.XmlElement("BusFramePrice")]
+        public decimal? BusFramePrice { get; set; }
+
+        [PetaPoco.Ignore]
+        [System.Xml.Serialization.XmlElement("BusPackagePostFee")]
+        public decimal? BusPackagePostFee { get; set; }
+
+        /// <summary>
+        /// 库存数
+        /// </summary>
+        [PetaPoco.Ignore]
+        [System.Xml.Serialization.XmlElement("Qty")]
+        public long Qty { get; set; }
+
+        /// <summary>
+        /// 是否淘宝在架
+        /// </summary>
+        [PetaPoco.Ignore]
+        [System.Xml.Serialization.XmlElement("IsOnSale")]
+        public bool IsOnSale
+        {
+            get { return ApproveStatus.Equals("onsale", StringComparison.OrdinalIgnoreCase); }
+        }
+    }
+
+    public partial class T_ERP_TopServiceOrder
+    {
+        [System.Xml.Serialization.XmlElement("MergerSysNo")]
+        [PetaPoco.Column]
+        public string MergerSysNo { get; set; }
+
+        [System.Xml.Serialization.XmlElement("TradeNo")]
+        [PetaPoco.Column]
+        public string TradeNo { get; set; }
+    }
+
+    public partial class T_ERP_OrderLocked
+    {
+        /// <summary>
+        /// 用于显示的木架费
+        /// </summary>
+        [PetaPoco.Ignore]
+        [System.Xml.Serialization.XmlElement("ShowFramePrice")]
+        public decimal? ShowFramePrice
+        {
+            get
+            {
+                if (IsFrame)
+                    return FramePrice;
+                return 0;
+            }
+        }
+
+        //[PetaPoco.Ignore]
+        //[System.Xml.Serialization.XmlElement("ColorValue")]
+        //public string ColorValue
+        //{
+        //    get;
+        //    set;
+        //}
+
+        //[PetaPoco.Ignore]
+        //[System.Xml.Serialization.XmlElement("IsCombo")]
+        //public bool IsCombo { get; set; }
+
+        //[PetaPoco.Ignore]
+        //[System.Xml.Serialization.XmlElement("MustFull")]
+        //public bool MustFull { get; set; }
+
+        //[PetaPoco.Ignore]
+        //[System.Xml.Serialization.XmlElement("ComboGuid")]
+        //public Guid ComboGuid { get; set; }
+
+        //[PetaPoco.Ignore]
+        //[System.Xml.Serialization.XmlElement("BusFramePrice")]
+        //public decimal? BusFramePrice { get; set; }
+
+    }
+
+    public partial class T_ERP_TradeLocked
+    {
+        [PetaPoco.Ignore]
+        [System.Xml.Serialization.XmlElement("ColorValue")]
+        public string ColorValue { get; set; }
+    }
+
+    public partial class T_ERP_OrderAudit
+    {
+        [PetaPoco.Ignore]
+        [System.Xml.Serialization.XmlElement("ShowFramePrice")]
+        public decimal? ShowFramePrice
+        {
+            get
+            {
+                if (IsFrame)
+                    return FramePrice;
+                return 0;
+            }
+        }
+    }
+
+    /// <summary>
+    /// 短信模板替换的数据源接口规范
+    /// </summary>
+    public interface ISmsDataObj
+    {
+
+        UltraDbEntity.T_ERP_TradeAudit Trade { get; }
+        UltraDbEntity.T_ERP_User User { get; }
+    }
+
+    public partial class BaseSmsDataObj : ISmsDataObj
+    {
+        public UltraDbEntity.T_ERP_TradeAudit Trade { get; set; }
+        public UltraDbEntity.T_ERP_User User { get; set; }
+    }
+
+
+    /// <summary>
+    /// 对账明细数据实体
+    /// </summary>
+    public partial class T_ERP_FinCheck
+    {
+        /// <summary>
+        /// 客户支付
+        /// </summary>
+        public decimal? Payment { get; set; }
+
+        /// <summary>
+        /// 淘宝优惠
+        /// </summary>
+        public decimal? PromotPay { get; set; }
+
+        /// <summary>
+        /// 三包费用
+        /// </summary>
+        public decimal? CpyFee { get; set; }
+
+        /// <summary>
+        /// 运费
+        /// </summary>
+        public decimal? PostFee { get; set; }
+
+        /// <summary>
+        /// 退款
+        /// </summary>
+        public decimal? RefundFee { get; set; }
+
+        /// <summary>
+        /// 已财审货值
+        /// </summary>
+        public decimal? FinFee { get; set; }
+
+        /// <summary>
+        /// 未财审货值
+        /// </summary>
+        public decimal? UnFinFee { get; set; }
+
+        /// <summary>
+        /// 已财审木架费
+        /// </summary>
+        public decimal? FrameFee { get; set; }
+
+        /// <summary>
+        /// 结余
+        /// </summary>
+        public decimal? Balance { get; set; }
+
+        /// <summary>
+        /// 当前待财审批次货值
+        /// </summary>
+        public decimal? GoodsFee { get; set; }
+    }
+
+    /// <summary>
+    /// 打印可用的库位信息
+    /// </summary>
+    public partial class T_ERP_PrtLoc
+    {
+        //        OuterIid,OuterSkuId,MergerSysNo,BatchOrd,Num,WareName,AreaName,LocName,Distance,OutOrd
+        //,Qty,Remain,IsClean,FrameCount
+        public string OuterIid { get; set; }
+        public string OuterSkuId { get; set; }
+        public string ItemName { get; set; }
+        public string SkuProperties { get; set; }
+        public string MergerSysNo { get; set; }
+        public int BatchOrd { get; set; }
+        public int Num { get; set; }
+        public string WareName { get; set; }
+        public string AreaName { get; set; }
+        public string LocName { get; set; }
+        public decimal? Distance { get; set; }
+        public int? OutOrd { get; set; }
+        public long Qty { get; set; }
+        public long Remain { get; set; }
+
+        public bool IsClean
+        {
+            get
+            {
+                return Qty - GoodsQty - 1 == 0;
+            }
+        }
+
+        public int IsCleanValue
+        {
+            get { return IsClean ? 1 : 0; }
+        }
+
+        public int FrameCount { get; set; }
+        public bool IsUsed { get; set; }
+        public long GoodsQty { get; set; }
+        public bool Out2Month { get; set; }
+
+        public Guid Session
+        {
+            get;
+            set;
+        }
+    }
+
+    /// <summary>
+    /// 打印的批次商品明细
+    /// </summary>
+    public partial class T_ERP_PrtBatchItem
+    {
+        public string OuterIid { get; set; }
+        public string OuterSkuId { get; set; }
+        public string MergerSysNo { get; set; }
+        public int BatchOrd { get; set; }
+        public int Num { get; set; }
+        public bool IsFrame { get; set; }
+        public int? PackageCount { get; set; }
+        public string ItemName { get; set; }
+        public string SkuProperties { get; set; }
+        public decimal? BusVolume { get; set; }
+        public bool Done { get; set; }
+        public string WareName { get; set; }
+        public string LocName { get; set; }
+        public Guid Session { get; set; }
+    }
+
+    public partial class T_ERP_FHItemInfo
+    {
+
+        [PetaPoco.Ignore]
+        [System.Xml.Serialization.XmlElement("IsFrameStr")]
+        public string IsFrameStr
+        {
+            get
+            {
+                return IsFrame != null && IsFrame.Value ? "Y" : string.Empty;
+            }
+        }
+    }
+
+    public partial class T_ERP_TYItemInfo
+    {
+        [PetaPoco.Ignore]
+        [System.Xml.Serialization.XmlElement("IsFrameStr")]
+        public string IsFrameStr
+        {
+            get
+            {
+                return IsFrame != null && IsFrame.Value ? "Y" : string.Empty;
+            }
+        }
+
+        [PetaPoco.Ignore]
+        [System.Xml.Serialization.XmlElement("DateStr")]
+        public string DateStr
+        {
+            get
+            {
+                return CreateDate.ToString("yy-MM-dd");
+            }
+        }
+
+        [PetaPoco.Ignore]
+        [System.Xml.Serialization.XmlElement("TotalPackStr")]
+        public string TotalPackStr
+        {
+            get
+            {
+                return string.Format("{0}-{1}", TotalPackageCount, Ori);
+            }
+        }
+
+        [PetaPoco.Ignore]
+        [System.Xml.Serialization.XmlElement("ItemPackStr")]
+        public string ItemPackStr
+        {
+            get
+            {
+                return string.Format("{0}-{1}", PackageCount, ItemOri);
+            }
+        }
+
+    }
+
+    public partial class T_ERP_Purch
+    {
+        [PetaPoco.Ignore]
+        [System.Xml.Serialization.XmlElement("CorpName")]
+        public string CorpName { get; set; }
+
+        [PetaPoco.Ignore]
+        [System.Xml.Serialization.XmlElement("CorpPhone")]
+        public string CorpPhone { get; set; }
+
+        [PetaPoco.Ignore]
+        [System.Xml.Serialization.XmlElement("Ori")]
+        public int Ori { get; set; }
+
+        [PetaPoco.Ignore]
+        [System.Xml.Serialization.XmlElement("ArriveTime")]
+        public string ArriveTime
+        {
+            get { return PlanArriveTime == null ? string.Empty : PlanArriveTime.Value.ToString("yyyy-MM-dd"); }
+        }
+
+        
+        [PetaPoco.Ignore]
+        [System.Xml.Serialization.XmlElement("ComboPTSuppName")]
+        public string ComboPTSuppName
+        {
+            get { return string.Format("{0}-{1}",SuppName,PurchNo); }
+        }
+    }
+
+    public partial class PrintPurchItemInfo : T_ERP_PurchItem
+    {
+        [PetaPoco.Ignore]
+        [System.Xml.Serialization.XmlElement("CorpName")]
+        public string CorpName { get; set; }
+
+        [PetaPoco.Ignore]
+        [System.Xml.Serialization.XmlElement("CorpPhone")]
+        public string CorpPhone { get; set; }
+
+        [PetaPoco.Ignore]
+        [System.Xml.Serialization.XmlElement("Ori")]
+        public int Ori { get; set; }
+
+        [PetaPoco.Ignore]
+        [System.Xml.Serialization.XmlElement("ArriveTime")]
+        public string ArriveTime
+        {
+            get { return PlanArriveTime == null ? string.Empty : PlanArriveTime.Value.ToString("yyyy-MM-dd"); }
+        }
+
+        /// <summary>
+        /// 单位
+        /// </summary>
+        [PetaPoco.Ignore]
+        [System.Xml.Serialization.XmlElement("Degree")]
+        public string Degree
+        {
+            get { return "件"; }
+        }
+        /// <summary>
+        /// 金额
+        /// </summary>
+        [PetaPoco.Ignore]
+        [System.Xml.Serialization.XmlElement("SumPrice")]
+        public decimal? SumPrice
+        {
+            get { return CostPrice * Num; }
+        }
+    }
+
+    public partial class PrintInStockItemInfo : T_ERP_InStockItem
+    {
+        [PetaPoco.Ignore]
+        [System.Xml.Serialization.XmlElement("Ori")]
+        public int Ori { get; set; }
+
+        [PetaPoco.Ignore]
+        [System.Xml.Serialization.XmlElement("Ori")]
+        public int? SumPack
+        {
+            get
+            {
+                if (PackageCount == null) return null;
+                return ((int)Num) * PackageCount.Value;
+            }
+        }
+
+    }
+    public partial class PrintLiteInStockItemInfo : T_ERP_LiteInStockItem
+    {
+        [PetaPoco.Ignore]
+        [System.Xml.Serialization.XmlElement("Ori")]
+        public int Ori { get; set; }
+
+        [PetaPoco.Ignore]
+        [System.Xml.Serialization.XmlElement("Ori")]
+        public int? SumPack
+        {
+            get
+            {
+                if (PackageCount == null) return null;
+                return ((int)Num) * PackageCount.Value;
+            }
+        }
+
+    }
+
+    public partial class T_ERP_TopRefund
+    {
+        [PetaPoco.Ignore]
+        [System.Xml.Serialization.XmlElement("RefundStatus")]
+        public string RefundStatus
+        {
+            get
+            {
+                switch (Status)
+                {
+                    case "WAIT_SELLER_AGREE":
+                        return "等待卖家同意";
+                    case "WAIT_BUYER_RETURN_GOODS":
+                        return "等待买家退货";
+                    case "WAIT_SELLER_CONFIRM_GOODS":
+                        return "买家已经退货，等待卖家确认收货";
+                    case "SELLER_REFUSE_BUYER":
+                    default:
+                        return Status;
+                }
+            }
+        }
+    }
+
+    public partial class T_ERP_RefundLocked
+    {
+        /*WAIT_SELLER_AGREE(买家已经申请退款，等待卖家同意)   
+         * WAIT_BUYER_RETURN_GOODS(卖家已经同意退款，等待买家退货)   
+         * WAIT_SELLER_CONFIRM_GOODS(买家已经退货，等待卖家确认收货)   
+         * SELLER_REFUSE_BUYER(卖家拒绝退款)   
+         * CLOSED(退款关闭)   
+         * SUCCESS(退款成功) 
+        */
+        [PetaPoco.Ignore]
+        [System.Xml.Serialization.XmlElement("RefundStatus")]
+        public string RefundStatus
+        {
+            get
+            {
+                switch (Status)
+                {
+                    case "WAIT_SELLER_AGREE":
+                        return "等待卖家同意";
+                    case "WAIT_BUYER_RETURN_GOODS":
+                        return "等待买家退货";
+                    case "WAIT_SELLER_CONFIRM_GOODS":
+                        return "买家已经退货，等待卖家确认收货";
+                    case "SELLER_REFUSE_BUYER":
+                        return "卖家拒绝退款";
+                    default:
+                        return Status;
+                }
+            }
+        }
+    }
+
+    public partial class T_ERP_RetGoods
+    {
+
+        [PetaPoco.Ignore]
+        [System.Xml.Serialization.XmlElement("ShowImg")]
+        public string ShowImg { get { return "查看图片"; } }
+    }
+
+    public partial class T_ERP_Image
+    {
+        public override string ToString()
+        {
+            return this.Reserved1.ToString();
+        }
+    }
+
+    public partial class T_ERP_SerNo
+    {
+        public string SerialNo { get; set; }
+        public int MaxNo { get; set; }
+        public int SerNo { get; set; }
+    }
+
+    public partial class T_ERP_BJPrintFH : T_ERP_AddnalPrinted
+    {
+        public int Ori { get; set; }
+        //public string BJNo { get; set; }
+        //public string MTNo { get; set; }
+        //public string FullAddr { get; set; }
+        //public List<T_ERP_RetGoodsItem> Items { get; set; }
+    }
+
+    public partial class T_ERP_AddnalPrinted
+    {
+        [PetaPoco.Ignore]
+        [System.Xml.Serialization.XmlElement("Ori")]
+        public int Ori { get; set; }
+    }
+
+    public partial class T_ERP_RptTemplate
+    {
+        /// <summary>
+        /// 模板名称
+        /// </summary>
+        public string RptName { get; set; }
+
+        /// <summary>
+        /// Repx文件名称,不含扩展名
+        /// </summary>
+        public string RptFileName { get; set; }
+
+        /// <summary>
+        /// Repx文件路径
+        /// </summary>
+        public string RptFilePath { get; set; }
+
+        public override string ToString()
+        {
+            return RptName;
+        }
+    }
+
+    public partial class T_ERP_Inventory
+    {
+        /// <summary>
+        /// 可移动数
+        /// </summary>
+        [PetaPoco.Ignore]
+        [System.Xml.Serialization.XmlElement("CanMoveNum")]
+        public long CanMoveNum
+        {
+            get
+            {
+                return Qty - GoodsQty;
+            }
+        }
+    }
+
+    public partial class T_ERP_InStockItem
+    {
+        [PetaPoco.Ignore]
+        [System.Xml.Serialization.XmlElement("ColorValue")]
+        public string ColorValue { get; set; }
+    }
+
+    public partial class V_ERP_PurchItemSumAssignSum
+    {
+        /// <summary>
+        /// 取消数量
+        /// </summary>
+        [PetaPoco.Ignore]
+        [System.Xml.Serialization.XmlElement("CancelNum")]
+        public long CancelNum { get; set; }
+
+    }
+
+    public partial class T_ERP_PurchAlterItem
+    {
+        /// <summary>
+        /// 审核失败信息
+        /// </summary>
+        [PetaPoco.Ignore]
+        [System.Xml.Serialization.XmlElement("AuditFailMsg")]
+        public string AuditFailMsg
+        {
+            get
+            {
+                if (LeaveNum < 0)
+                    return "采购数-已分配/已入库数-未审核的分配数 < 0";
+                return string.Empty;
+            }
+        }
+    }
+
+    public partial class T_ERP_PurchSend
+    {
+
+        [PetaPoco.Ignore]
+        [System.Xml.Serialization.XmlElement("BatchShowName")]
+        public string BatchShowName
+        {
+            get { return string.Format("批次{0}", BatchOrd); }
+        }
+
+        private string _AddressShowName = string.Empty;
+        [PetaPoco.Ignore]
+        [System.Xml.Serialization.XmlElement("AddressShowName")]
+        public string AddressShowName
+        {
+            get
+            {
+                return _AddressShowName = string.Format("{0} {1} {2} {3}",
+                    ReceiverState, ReceiverCity, ReceiverDistrict, ReceiverAddress);
+            }
+            set { _AddressShowName = value; }
+        }
+    }
+
+    public partial class T_ERP_LiteRefund
+    {
+        [PetaPoco.Ignore]
+        [System.Xml.Serialization.XmlElement("ColorValue")]
+        public string ColorValue { get; set; }
+
+        /*WAIT_SELLER_AGREE(买家已经申请退款，等待卖家同意)   
+        * WAIT_BUYER_RETURN_GOODS(卖家已经同意退款，等待买家退货)   
+        * WAIT_SELLER_CONFIRM_GOODS(买家已经退货，等待卖家确认收货)   
+        * SELLER_REFUSE_BUYER(卖家拒绝退款)   
+        * CLOSED(退款关闭)   
+        * SUCCESS(退款成功) 
+       */
+        [PetaPoco.Ignore]
+        [System.Xml.Serialization.XmlElement("RefundStatus")]
+        public string RefundStatus
+        {
+            get
+            {
+                switch (Status)
+                {
+                    case "WAIT_SELLER_AGREE":
+                        return "等待卖家同意";
+                    case "WAIT_BUYER_RETURN_GOODS":
+                        return "等待买家退货";
+                    case "WAIT_SELLER_CONFIRM_GOODS":
+                        return "买家已经退货，等待卖家确认收货";
+                    case "SELLER_REFUSE_BUYER":
+                        return "卖家拒绝退款";
+                    default:
+                        return Status;
+                }
+            }
+        }
+    }
+
+    public partial class T_ERP_TradeAudit
+    {
+        [PetaPoco.Ignore]
+        [System.Xml.Serialization.XmlElement("ActLogisNo")]
+        public string ActLogisNo { get; set; }
+
+        [PetaPoco.Ignore]
+        [System.Xml.Serialization.XmlElement("ActLogisName")]
+        public string ActLogisName { get; set; }
+    }
+
+    public partial class T_ERP_PurchItemPackSku
+    {
+
+        [PetaPoco.Ignore]
+        [System.Xml.Serialization.XmlElement("CorpName")]
+        public string CorpName { get; set; }
+
+        [PetaPoco.Ignore]
+        [System.Xml.Serialization.XmlElement("CorpPhone")]
+        public string CorpPhone { get; set; }
+
+        [PetaPoco.Ignore]
+        [System.Xml.Serialization.XmlElement("Ori")]
+        public int Ori { get; set; }
+    }
+
+    public partial class T_ERP_PackInStockItem
+    {
+        /// <summary>
+        /// 包件入库数未与采购单采购数一致时显示的颜色
+        /// </summary>
+        [PetaPoco.Ignore]
+        [System.Xml.Serialization.XmlElement("NotFullColor")]
+        public string NotFullColor
+        {
+            get
+            {
+                if (LeaveNum == InStockNum)
+                    return string.Empty;
+                if (InStockNum > LeaveNum)
+                    return "255,240,0,0";//红
+                else
+                    return "255,255,255,0";//黄
+            }
+        }
+    }
+
+<<<<<<< HEAD
+    public partial class T_ERP_ItemImports
+    {
+        [PetaPoco.Ignore]
+        [System.Xml.Serialization.XmlElement("ColorValue")]
+        public string ColorValue
+        {
+            get;
+            set;
+        }
+=======
+    public partial class T_ERP_UserResultOrder
+    {
+        [PetaPoco.Ignore]
+        [System.Xml.Serialization.XmlElement("Sumscore")]
+        public decimal? Sumscore { get; set; }
+>>>>>>> origin/YS_FMZ_GC
+    }
+}
