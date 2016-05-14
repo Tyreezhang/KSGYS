@@ -11,6 +11,7 @@ namespace KyGYS
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            //Session.Abandon();
             HttpCookie login = new HttpCookie("Login");
             login.Expires = DateTime.Now.AddHours(-24);
             Response.Cookies.Add(login);

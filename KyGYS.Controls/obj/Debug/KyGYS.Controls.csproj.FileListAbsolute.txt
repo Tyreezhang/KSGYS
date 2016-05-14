@@ -55,8 +55,3 @@ G:\118Git\GYS_YJ\KyGYS\bin\KyGYS.Controls.pdb
 G:\118Git\GYS_YJ\KyGYS.Controls\obj\Debug\KyGYS.Controls.csprojResolveAssemblyReference.cache
 G:\118Git\GYS_YJ\KyGYS.Controls\obj\Debug\KyGYS.Controls.dll
 G:\118Git\GYS_YJ\KyGYS.Controls\obj\Debug\KyGYS.Controls.pdb
-H:\118Git\GYS_MS\KyGYS\bin\KyGYS.Controls.dll
-H:\118Git\GYS_MS\KyGYS\bin\KyGYS.Controls.pdb
-H:\118Git\GYS_MS\KyGYS.Controls\obj\Debug\KyGYS.Controls.csprojResolveAssemblyReference.cache
-H:\118Git\GYS_MS\KyGYS.Controls\obj\Debug\KyGYS.Controls.dll
-H:\118Git\GYS_MS\KyGYS.Controls\obj\Debug\KyGYS.Controls.pdb

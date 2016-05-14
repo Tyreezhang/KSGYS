@@ -16,42 +16,6 @@ namespace KyGYS.Controls.Caller
             che.Put<bool>("Ultra.SYS.Core.BSMode", false);
             Ultra.Common.Util.SetCache(che);
         }
-
-
-        //CtlV_ERP_PurchItemGetController
-        protected static EFCaller<UltraDbEntity.V_ERP_PurchItemGet> _Calr_V_ERP_PurchItemGet = null;
-        public static EFCaller<UltraDbEntity.V_ERP_PurchItemGet> Calr_V_ERP_PurchItemGet
-        {
-            get
-            {
-                return
-                    _Calr_V_ERP_PurchItemGet = _Calr_V_ERP_PurchItemGet ??
-                   new EFCaller<UltraDbEntity.V_ERP_PurchItemGet>(new CtlV_ERP_PurchItemGetController());
-            }
-        }
-
-        //CtlV_ERP_NprintPurchController
-        protected static EFCaller<UltraDbEntity.V_ERP_NprintPurch> _Calr_V_ERP_NprintPurch = null;
-        public static EFCaller<UltraDbEntity.V_ERP_NprintPurch> Calr_V_ERP_NprintPurch
-        {
-            get
-            {
-                return
-                    _Calr_V_ERP_NprintPurch = _Calr_V_ERP_NprintPurch ??
-                   new EFCaller<UltraDbEntity.V_ERP_NprintPurch>(new CtlV_ERP_NprintPurchController());
-            }
-        }
-        //CtlSuppPurchController
-        protected static EFCaller<UltraDbEntity.T_ERP_SuppPurch> _Calr_SuppPurch = null;
-        public static EFCaller<UltraDbEntity.T_ERP_SuppPurch> Calr_SuppPurch
-        {
-            get
-            {
-                return
-                    _Calr_SuppPurch = _Calr_SuppPurch ??
-                   new EFCaller<UltraDbEntity.T_ERP_SuppPurch>(new CtlSuppPurchController());
-            }
-        }
         //CtlUserController
         protected static EFCaller<UltraDbEntity.T_ERP_User> _Calr_User = null;
         public static EFCaller<UltraDbEntity.T_ERP_User> Calr_User

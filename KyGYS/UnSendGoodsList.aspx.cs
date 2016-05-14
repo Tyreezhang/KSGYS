@@ -20,12 +20,12 @@ namespace KyGYS
         {
 
             string queryStr = string.Empty;
-            //string txtBuyerNick = this.txtBuyerNick.Text.Trim();
-            //queryStr += txtBuyerNick + ",";
+            string txtBuyerNick = this.txtBuyerNick.Text.Trim();
+            queryStr += txtBuyerNick + ",";
             //string txtOrderFrom = this.txtOrderFrom.Text.Trim();
             //queryStr += txtOrderFrom + ",";
-            //string txtSellerNick = this.txtSellerNick.Text.Trim();
-            //queryStr += txtSellerNick + ",";
+            string txtSellerNick = this.txtSellerNick.Text.Trim();
+            queryStr += txtSellerNick + ",";
             string txtReceiverName = this.txtReceiverName.Text.Trim();
             queryStr += txtReceiverName+",";
             string txtReceiverMobile= this.txtReceiverMobile.Text.Trim();

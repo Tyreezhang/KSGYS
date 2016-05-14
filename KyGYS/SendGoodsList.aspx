@@ -20,12 +20,12 @@
     <form runat="server">
         <div id="p" class="easyui-panel" style="width: 100%; height: 40px; padding: 6px;">
             <asp:Button runat="server" CssClass="easyui-linkbutton" ID="btnRef" Text="查  询" OnClick="btnRef_Click" Style="width: 80px; height: 28px;"></asp:Button>
-<%--            买家：<asp:TextBox runat="server" ID="txtBuyerNick"></asp:TextBox>--%>
+            买家：<asp:TextBox runat="server" ID="txtBuyerNick"></asp:TextBox>
             &nbsp;
             <%--            订单来源:
             <asp:TextBox runat="server" ID="txtOrderFrom"></asp:TextBox>&nbsp;--%>
-<%--                                    店铺:
-            <asp:TextBox runat="server" ID="txtSellerNick"></asp:TextBox>&nbsp;--%>
+                                    店铺:
+            <asp:TextBox runat="server" ID="txtSellerNick"></asp:TextBox>&nbsp;
              收货人:
             <asp:TextBox runat="server" ID="txtReceiverName"></asp:TextBox>&nbsp;
              手机号:
@@ -41,28 +41,18 @@
             data-options="singleSelect:true,collapsible:true,url:'/data/getSendList.aspx',onSelect:SelectRow,toolbar:toolbar,method:'get',remoteSort:false,multiSort:true,pageSize:1,pageList:[10,20,50,100,200]">
             <thead>
                 <tr>
-                    <%--                    <th data-options="field:'ck',checkbox:true"></th>
-                    <th data-options="field:'OrderFrom',width:120,sortable:true">订单来源</th>
-                    <th data-options="field:'BuyerNick',width:120,sortable:true">买家</th>
-                    <th data-options="field:'OrderTime',width:100,align:'left',sortable:true">下单时间</th>
-                    <th data-options="field:'ItemCount',width:80,sortable:true">商品总数</th>
-                    <th data-options="field:'ReceiverName',width:120,align:'left',sortable:true">收货人</th>
-                    <th data-options="field:'ReceiverMobile',width:120,align:'left',sortable:true">手机</th>
-                    <th data-options="field:'ReceiverAddress',width:400,align:'left',sortable:true">收货地址</th>--%>
                 </tr>
             </thead>
         </table>
 
         <div style="margin: 6px 0;"></div>
-        <%--        <input type="checkbox" hidden checked onchange="$('#tt').datagrid({selectOnCheck:$(this).is(':checked')})" />
-        <input type="checkbox" hidden checked onchange="$('#tt').datagrid({checkOnSelect:$(this).is(':checked')})" />--%>
 
         <table title="" class="easyui-datagrid" id="orderlist" rownumbers="true" style="width: 100%; height: 150px"
             data-options="singleSelect:true,collapsible:true,remoteSort:false,multiSort:true">
             <thead>
                 <tr>
-<%--                    <th data-options="field:'ItemName',width:200,sortable:true" title="admin">商品名称</th>
-                    <th data-options="field:'SkuProperties',width:190,sortable:true">规格名称</th>--%>
+                    <th data-options="field:'ItemName',width:200,sortable:true" title="admin">商品名称</th>
+                    <th data-options="field:'SkuProperties',width:190,sortable:true">规格名称</th>
                     <th data-options="field:'OuterIid',width:200,align:'left',sortable:true">商品编码</th>
                     <th data-options="field:'OuterSkuId',width:200,align:'left',sortable:true">规格编码</th>
                     <th data-options="field:'Num',width:60,sortable:true">数量</th>
@@ -118,7 +108,7 @@
                             },
                             success: function (data) {
                                 if (data.d == "登录超时") {
-                                    alert("登录失效,请重新登录！");
+                                    alert("登录超时,请重新登录！");
                                     if (window == top) { window.location.href = '../Login.aspx'; } else { top.location.href = '../Login.aspx'; }
                                 } else {
                                     msgShow('系统提示', data.d, 'info');
@@ -151,7 +141,7 @@
                 columns: [[
                 //{ field: 'ck', checkbox: true },
                 //{ field: 'OrderFrom', title: '订单来源', width: '120', sortable: true },
-                //                                { field: 'SellerNick', title: '店铺', width: '120', sortable: true },
+                                                { field: 'SellerNick', title: '店铺', width: '120', sortable: true },
                 //{ field: 'BuyerNick', title: '买家', width: '118', sortable: true },
                    {
                        field: 'OrderTime', width: '143', sortable: true, title: '下单时间',
@@ -165,7 +155,19 @@
                            return unixTimestamp;
                        }
                    },
-                   { field: 'BatchItemCount', title: '商品总数', width: '55', align: 'right', sortable: true },
+                   { field: 'BatchItemCount', title: '商品总数', width: '55', align: 'center', sortable: true },
+                   {
+                       field: 'IsClear', title: '是否补件', width: '55', align: 'center', sortable: true,
+                       formatter: function (value, row, index) {
+                           if (typeof (value) != "undefined") {
+                               if (value == 1) {
+                                   return '<span style="color:red;">' + '是' + '</span>';
+                               } else {
+                                   return '否';
+                               }
+                           }
+                       }
+                   },
                    { field: 'ReceiverName', title: '收货人', width: '120', sortable: true },
                    //{ field: 'ReceiverMobile', title: '手机', width: '120', sortable: true },
                    { field: 'ReceiverAddress', title: '收货地址', width: '200', sortable: true },
@@ -224,24 +226,23 @@
             $.messager.alert(title, msgString, msgType);
         }
         $("div[class='tabs-panels']").attr('overflow', 'hidden');
-        var toolbar = [
-        //    {
-        //    text: '修改物流',
-        //    iconCls: 'icon-redo',
-        //    handler: function () {
-        //        var select = $('#tt').datagrid('getSelected');
-        //        if (!select) {
-        //            // msgShow('系统提示', '请选择数据！', 'warning');
-        //            return false;
-        //        }
-        //        $('#txtbchGuid').val(select.Guid);
-        //        $('#txtLogisNo').val(select.LogisNo);
-        //        $('#txtLogisName').val(select.LogisName);
-        //        $('#txtLogisCost').val(select.LogisCost);
-        //        $('#txtLogisMobile').val(select.LogisMobile);
-        //        $('#logis').window('open');
-        //    }
-        //}, '-',
+        var toolbar = [{
+            text: '修改物流',
+            iconCls: 'icon-redo',
+            handler: function () {
+                var select = $('#tt').datagrid('getSelected');
+                if (!select) {
+                    // msgShow('系统提示', '请选择数据！', 'warning');
+                    return false;
+                }
+                $('#txtbchGuid').val(select.Guid);
+                $('#txtLogisNo').val(select.LogisNo);
+                $('#txtLogisName').val(select.LogisName);
+                $('#txtLogisCost').val(select.LogisCost);
+                $('#txtLogisMobile').val(select.LogisMobile);
+                $('#logis').window('open');
+            }
+        }, '-',
             {
                 text: '导出',
                 iconCls: 'icon-save',
@@ -274,23 +275,58 @@
                                                var str = "";
                                                if (value != "" || value != null) {
                                                    if (typeof (value) != "undefined") {
-                                                       str = " <a class='various fancybox.iframe' style='margin-left:10px;' href='./showImg2.aspx?ImageSession=" + value + "' target='_blank'><img onerror=\"this.style.display='none'\" style=\"height: 33px;width: 33px;\" alt='无' src=\"" + value + "\"/></a>";
+                                                       str = " <a class='various fancybox.iframe' style='margin-left:10px;' href='./showImg2.aspx?ImageSession=" + value + "' target='_blank'><img style=\"height: 33px;width: 33px;\" alt='无' src=\"" + value + "\"/></a>";
                                                    } else {
-                                                       str = " <a class='various fancybox.iframe' style='margin-left:10px;' href='./showImg2.aspx?ImageSession=" + value + "' target='_blank'><img onerror=\"this.style.display='none'\" style=\"height: 33px;width: 33px;\" alt='无' /></a>";
+                                                       str = " <a class='various fancybox.iframe' style='margin-left:10px;' href='./showImg2.aspx?ImageSession=" + value + "' target='_blank'><img style=\"height: 33px;width: 33px;\" alt='无' /></a>";
                                                    }
                                                    return str;
                                                }
                                            }
                                        },
-                                      //{ field: 'ItemName', title: '商品名称', width: '230', sortable: true },
-                                      //{ field: 'SkuProperties', title: '规格名称', width: '190', sortable: true },
+                                 {
+                                     field: 'CtmSavedFileName', title: '客户附图', width: '60', align: 'center', formatter: function (value, row) {
+                                         var str = "";
+                                         if (value != "" || value != null) {
+                                             if (typeof (value) != "undefined") {
+                                                 str = " <a class='various fancybox.iframe' style='margin-left:10px;' href='./showImg2.aspx?ImageSession=" + value + "' target='_blank'><img style=\"height: 33px;width: 33px;\" alt='无' src=\"" + value + "\"/></a>";
+                                             } else {
+                                                 str = " <a class='various fancybox.iframe' style='margin-left:10px;' href='./showImg2.aspx?ImageSession=" + value + "' target='_blank'><img style=\"height: 33px;width: 33px;\" alt='无' /></a>";
+                                             }
+                                             return str;
+                                         }
+                                     }
+                                 },
+                                 {
+                                     field: 'CusSavedFileName', title: '定制图片', width: '60', align: 'center', formatter: function (value, row) {
+                                         var str = "";
+                                         if (value != "" || value != null) {
+                                             if (typeof (value) != "undefined") {
+                                                 str = " <a class='various fancybox.iframe' style='margin-left:10px;' href='./showImg2.aspx?ImageSession=" + value + "' target='_blank'><img style=\"height: 33px;width: 33px;\" alt='无' src=\"" + value + "\"/></a>";
+                                             } else {
+                                                 str = " <a class='various fancybox.iframe' style='margin-left:10px;' href='./showImg2.aspx?ImageSession=" + value + "' target='_blank'><img style=\"height: 33px;width: 33px;\" alt='无' /></a>";
+                                             }
+                                             return str;
+                                         }
+                                     }
+                                 },
+                                      { field: 'ItemName', title: '商品名称', width: '230', sortable: true },
+                                      { field: 'SkuProperties', title: '规格名称', width: '190', sortable: true },
                                       { field: 'OuterIid', title: '商品编码', width: '150', sortable: true, align: 'left' },
                                       { field: 'OuterSkuId', title: '规格编码', width: '150', sortable: true, align: 'left' },
                                       { field: 'Num', title: '数量', width: '40', sortable: true },
                                       { field: 'PackageCount', title: '包件数', width: '40', sortable: true },
                                       { field: 'BusVolume', title: '体积', width: '60', sortable: true, align: 'left' },
                                       { field: 'Size', title: '尺寸', width: '70', sortable: true, align: 'left' },
-                                      { field: 'Color', title: '颜色', width: '110', sortable: true, align: 'left' }
+                                      { field: 'Color', title: '颜色', width: '110', sortable: true, align: 'left' },
+                                        { field: 'Material', title: '浴柜材质', width: '110', sortable: true, align: 'left' },
+                                       { field: 'Mesastone', title: '石材', width: '110', sortable: true, align: 'left' },
+                                        { field: 'EdgeType', title: '边型', width: '110', sortable: true, align: 'left' },
+                                        { field: 'Cupboard', title: '小吊柜', width: '80', sortable: true, align: 'left' },
+                                        { field: 'HoleLocation', title: '孔位', width: '110', sortable: true, align: 'left' },
+                                        { field: 'MainCabinet', title: '主柜', width: '110', sortable: true, align: 'left' },
+                                        { field: 'Mirror', title: '镜子', width: '110', sortable: true, align: 'left' },
+                                        { field: 'MirrorCabinet', title: '镜柜', width: '110', sortable: true, align: 'left' },
+                                        { field: 'Wardrobe', title: '立柜', width: '110', sortable: true, align: 'left' }
                 ]],
             });
             $('#orderlist').datagrid({
@@ -303,7 +339,7 @@
                 },
                 loadFilter: function (data) {
                     if (data.IsError) {
-                        alert("登录失效,请重新登录！");
+                        alert("登录超时,请重新登录！");
                         if (window == top) { window.location.href = '../Login.aspx'; } else { top.location.href = '../Login.aspx'; }
                         return {
                             total: 0,

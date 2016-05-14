@@ -16,9 +16,3 @@ G:\118Git\GYS_YJ\KyGYS\bin\KyGYS.Common.dll
 G:\118Git\GYS_YJ\KyGYS\bin\KyGYS.Common.pdb
 G:\118Git\GYS_YJ\KyGYS.Common\obj\Debug\KyGYS.Common.dll
 G:\118Git\GYS_YJ\KyGYS.Common\obj\Debug\KyGYS.Common.pdb
-G:\118Git\GYS_YJ\KyGYS.Common\obj\Debug\KyGYS.Common.csprojResolveAssemblyReference.cache
-H:\118Git\GYS_MS\KyGYS\bin\KyGYS.Common.dll
-H:\118Git\GYS_MS\KyGYS\bin\KyGYS.Common.pdb
-H:\118Git\GYS_MS\KyGYS.Common\obj\Debug\KyGYS.Common.dll
-H:\118Git\GYS_MS\KyGYS.Common\obj\Debug\KyGYS.Common.pdb
-H:\118Git\GYS_MS\KyGYS.Common\obj\Debug\KyGYS.Common.csprojResolveAssemblyReference.cache

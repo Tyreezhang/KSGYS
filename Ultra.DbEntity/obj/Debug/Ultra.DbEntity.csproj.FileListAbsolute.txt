@@ -25,9 +25,3 @@ G:\118Git\GYS_YJ\KyGYS\bin\Ultra.DbEntity.dll
 G:\118Git\GYS_YJ\KyGYS\bin\Ultra.DbEntity.pdb
 G:\118Git\GYS_YJ\Ultra.DbEntity\obj\Debug\Ultra.DbEntity.dll
 G:\118Git\GYS_YJ\Ultra.DbEntity\obj\Debug\Ultra.DbEntity.pdb
-H:\118Git\GYS_MS\KyGYS\bin\Ultra.DbEntity.dll.config
-H:\118Git\GYS_MS\KyGYS\bin\Ultra.DbEntity.dll
-H:\118Git\GYS_MS\KyGYS\bin\Ultra.DbEntity.pdb
-H:\118Git\GYS_MS\Ultra.DbEntity\obj\Debug\Ultra.DbEntity.dll
-H:\118Git\GYS_MS\Ultra.DbEntity\obj\Debug\Ultra.DbEntity.pdb
-H:\118Git\GYS_MS\Ultra.DbEntity\obj\Debug\Ultra.DbEntity.csprojResolveAssemblyReference.cache

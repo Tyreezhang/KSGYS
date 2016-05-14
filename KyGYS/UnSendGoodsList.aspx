@@ -14,7 +14,6 @@
     <link href="jquery-easyui-1.4.2/themes/metro/easyui.css" rel="stylesheet" />
     <script src="js/tip.js"></script>
     <script src="js/LodopFuncs.js"></script>
-<script src='http://Localhost:8000/CLodopfuncs.js'></script>
 </head>
 <body>
     <object id="LODOP_OB" classid="clsid:2105C259-1E0C-4534-8141-A753534CB4CA" width="0" height="0">
@@ -23,10 +22,10 @@
     <form runat="server">
         <div id="p" class="easyui-panel" style="width: 100%; height: 38px; padding: 4px;">
             <asp:Button runat="server" CssClass="easyui-linkbutton" ID="btnRef" Text="查  询" OnClick="btnRef_Click" Style="width: 80px; height: 28px;"></asp:Button>
-<%--            买家：<asp:TextBox runat="server" ID="txtBuyerNick"></asp:TextBox>
+            买家：<asp:TextBox runat="server" ID="txtBuyerNick"></asp:TextBox>
             &nbsp;
                         店铺:
-            <asp:TextBox runat="server" ID="txtSellerNick"></asp:TextBox>&nbsp;--%>
+            <asp:TextBox runat="server" ID="txtSellerNick"></asp:TextBox>&nbsp;
              收货人:
             <asp:TextBox runat="server" ID="txtReceiverName"></asp:TextBox>&nbsp;
              手机号:
@@ -41,12 +40,13 @@
             data-options="singleSelect:true,collapsible:true,url:'/data/getUnSendList.aspx',onSelect:SelectRow,toolbar:toolbar,method:'get',remoteSort:false,multiSort:true,pageSize:1,pageList:[10,20,50,100,200]">
             <thead>
                 <tr>
-<%--                    <th data-options="field:'SellerNick',width:120,sortable:true">店铺</th>
-                    <th data-options="field:'BuyerNick',width:118,sortable:true">买家</th>--%>
+                    <th data-options="field:'SellerNick',width:120,sortable:true">店铺</th>
+                    <%--                    <th data-options="field:'BuyerNick',width:118,sortable:true">买家</th>--%>
                     <th data-options="field:'OrderTime',width:143,sortable:true" formatter="datestr">下单时间</th>
                     <th data-options="field:'BatchItemCount',width:55, align: 'center', sortable:true">商品总数</th>
+                                        <th data-options="field:'Reserved1',width:100,align: 'center',sortable:true" formatter="formatprint">是否打印</th>
+                    <th data-options="field:'IsClear',width:100,align: 'center',sortable:true" formatter="formatprint">是否补件</th>
                     <th data-options="field:'ReceiverName',width:120,sortable:true">收货人</th>
-                    <th data-options="field:'Reserved1',width:150,align: 'center',sortable:true" formatter="formatprint">是否打印</th>
                     <th data-options="field:'ReceiverAddress',width:400,sortable:true">收货地址</th>
                 </tr>
             </thead>
@@ -91,19 +91,19 @@
                 var logiscost = $('#txtLogisCost').val();
                 var logismobile = $('#txtLogisMobile').val();
 
-                if (logisno == '') {
-                    msgShow('系统提示', '请输入物流单号！', 'warning');
-                    return false;
-                }
-                if (logisname == '') {
-                    msgShow('系统提示', '请输入物流公司！', 'warning');
-                    return false;
-                }
+                //if (logisno == '') {
+                //    msgShow('系统提示', '请输入物流单号！', 'warning');
+                //    return false;
+                //}
+                //if (logisname == '') {
+                //    msgShow('系统提示', '请输入物流公司！', 'warning');
+                //    return false;
+                //}
 
-                if (logiscost == '') {
-                    msgShow('系统提示', '请输入实际运费', 'warning');
-                    return false;
-                }
+                //if (logiscost == '') {
+                //    msgShow('系统提示', '请输入实际运费', 'warning');
+                //    return false;
+                //}
                 var guid = "";
                 close();
                 $.messager.confirm("系统提示", "您确定要发货吗？", function (data) {
@@ -250,20 +250,12 @@
                                 }
                                 return false;
                             }
-                            if(data.d=="未财审")
-                            {
-                                msgShow('系统提示', '订单数据信息需要在ERP里财审才可以打印哦！', 'warning');
-                                return false;
-                            }
                             LODOP = getLodop(document.getElementById('LODOP_OB'), document.getElementById('LODOP_EM'));
-                            //LODOP.SET_PRINT_PAGESIZE(3, "208mm", "139mm", "");
                             LODOP.SET_PRINT_PAGESIZE(3, 0, 0, "A4");
                             LODOP.SET_PRINT_STYLE("FontSize", 18);
                             LODOP.SET_PRINT_STYLE("Bold", 1);
-                            //LODOP.ADD_PRINT_TEXT(20, 320, 260, 39, "发货单");
-                            LODOP.ADD_PRINT_HTM(4, 0, 500, 1200, data.d);
+                            LODOP.ADD_PRINT_HTM(4, 150, 400, 1200, data.d);
                             LODOP.SET_SHOW_MODE("NP_NO_RESULT", true);
-                            LODOP.SET_PRINT_STYLEA(0, "HtmWaitMilSecs", 200);
                             if (LODOP.CVERSION) {  //用CVERSION属性判断是否云打印
                                 LODOP.On_Return = function (TaskID, Value) {
                                     if (Value == "1") {
@@ -285,7 +277,6 @@
                                 LODOP.PREVIEW();
                                 return;
                             };
-
                         }
                     });
                 }
@@ -300,6 +291,33 @@
                         return false;
                     }
                     $('#txtbchGuid').val(select.Guid);
+                    //$.messager.confirm("系统提示", "您确定要发货吗？", function (data) {
+                    //    if (!data) {
+                    //        return false;
+                    //    }
+                    //    else {
+                    //        for (var i = 0; i < rows.length; i++) {
+                    //            list += rows[i].Guid + ",";
+                    //        }
+                    //        $.ajax({
+                    //            url: "/data/getUnSendList.aspx/SendGoods",
+                    //            type: "POST",
+                    //            data: "{'list':'" + list + "'}",
+                    //            dataType: 'json',
+                    //            contentType: "application/json; charset=utf-8",
+                    //            error: function (err) {
+                    //                msgShow('系统提示', '发货失败！', 'error');
+                    //            },
+                    //            success: function (data) {
+                    //                msgShow('系统提示', data.d, 'info');
+                    //                $('#tt').datagrid('reload');
+                    //                $('#orderlist').datagrid('loadData', { total: 0, rows: [] });
+                    //            }
+                    //        });
+                    //        return false;
+                    //    }
+                    //});
+
                     $('#logis').window('open');
                 }
             }, '-', {
@@ -334,23 +352,58 @@
                                          var str = "";
                                          if (value != "" || value != null) {
                                              if (typeof (value) != "undefined") {
-                                                 str = " <a class='various fancybox.iframe' style='margin-left:10px;' href='./showImg2.aspx?ImageSession=" + value + "' target='_blank'><img  onerror=\"this.style.display='none'\" style=\"height: 33px;width: 33px;\" alt='无' src=\"" + value + "\"/></a>";
+                                                 str = " <a class='various fancybox.iframe' style='margin-left:10px;' href='./showImg2.aspx?ImageSession=" + value + "' target='_blank'><img style=\"height: 33px;width: 33px;\" alt='无' src=\"" + value + "\"/></a>";
                                              } else {
-                                                 str = " <a class='various fancybox.iframe' style='margin-left:10px;' href='./showImg2.aspx?ImageSession=" + value + "' target='_blank'><img onerror=\"this.style.display='none'\" style=\"height: 33px;width: 33px;\" alt='无' /></a>";
+                                                 str = " <a class='various fancybox.iframe' style='margin-left:10px;' href='./showImg2.aspx?ImageSession=" + value + "' target='_blank'><img style=\"height: 33px;width: 33px;\" alt='无' /></a>";
                                              }
                                              return str;
                                          }
                                      }
                                  },
-                                //{ field: 'ItemName', title: '商品名称', width: '230', sortable: true },
-                                //{ field: 'SkuProperties', title: '规格名称', width: '190', sortable: true },
+                                 {
+                                     field: 'CtmSavedFileName', title: '客户附图', width: '60', align: 'center', formatter: function (value, row) {
+                                         var str = "";
+                                         if (value != "" || value != null) {
+                                             if (typeof (value) != "undefined") {
+                                                 str = " <a class='various fancybox.iframe' style='margin-left:10px;' href='./showImg2.aspx?ImageSession=" + value + "' target='_blank'><img style=\"height: 33px;width: 33px;\" alt='无' src=\"" + value + "\"/></a>";
+                                             } else {
+                                                 str = " <a class='various fancybox.iframe' style='margin-left:10px;' href='./showImg2.aspx?ImageSession=" + value + "' target='_blank'><img style=\"height: 33px;width: 33px;\" alt='无' /></a>";
+                                             }
+                                             return str;
+                                         }
+                                     }
+                                 },
+                                 {
+                                     field: 'CusSavedFileName', title: '定制图片', width: '60', align: 'center', formatter: function (value, row) {
+                                         var str = "";
+                                         if (value != "" || value != null) {
+                                             if (typeof (value) != "undefined") {
+                                                 str = " <a class='various fancybox.iframe' style='margin-left:10px;' href='./showImg2.aspx?ImageSession=" + value + "' target='_blank'><img style=\"height: 33px;width: 33px;\" alt='无' src=\"" + value + "\"/></a>";
+                                             } else {
+                                                 str = " <a class='various fancybox.iframe' style='margin-left:10px;' href='./showImg2.aspx?ImageSession=" + value + "' target='_blank'><img style=\"height: 33px;width: 33px;\" alt='无' /></a>";
+                                             }
+                                             return str;
+                                         }
+                                     }
+                                 },
+                                { field: 'ItemName', title: '商品名称', width: '230', sortable: true },
+                                { field: 'SkuProperties', title: '规格名称', width: '190', sortable: true },
                                 { field: 'OuterIid', title: '商品编码', width: '150', sortable: true, align: 'left' },
                                 { field: 'OuterSkuId', title: '规格编码', width: '150', sortable: true, align: 'left' },
                                 { field: 'Num', title: '数量', width: '40', sortable: true },
                                 { field: 'PackageCount', title: '包件数', width: '40', sortable: true },
                                 { field: 'BusVolume', title: '体积', width: '60', sortable: true, align: 'left' },
                                 { field: 'Color', title: '颜色', width: '60', sortable: true, align: 'left' },
-                                { field: 'Size', title: '尺寸', width: '70', sortable: true, align: 'left' }
+                                { field: 'Size', title: '尺寸', width: '70', sortable: true, align: 'left' },
+                                { field: 'Material', title: '浴柜材质', width: '110', sortable: true, align: 'left' },
+                                { field: 'Mesastone', title: '石材', width: '110', sortable: true, align: 'left' },
+                                { field: 'EdgeType', title: '边型', width: '110', sortable: true, align: 'left' },
+                                { field: 'Cupboard', title: '小吊柜', width: '80', sortable: true, align: 'left' },
+                                { field: 'HoleLocation', title: '孔位', width: '110', sortable: true, align: 'left' },
+                                { field: 'MainCabinet', title: '主柜', width: '110', sortable: true, align: 'left' },
+                                { field: 'Mirror', title: '镜子', width: '110', sortable: true, align: 'left' },
+                                { field: 'MirrorCabinet', title: '镜柜', width: '110', sortable: true, align: 'left' },
+                                { field: 'Wardrobe', title: '立柜', width: '110', sortable: true, align: 'left' }
                 ]],
             });
             $('#orderlist').datagrid({

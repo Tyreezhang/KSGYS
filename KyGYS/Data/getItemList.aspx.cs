@@ -38,6 +38,8 @@ namespace KyGYS.Data
                 items.ForEach(j =>
                 {
                     j.Reserved2 = KyGYS.Controls.CommonUtil.GetItemImgFileName(j.Reserved2);
+                    j.CusSavedFileName = j.CusSavedFileName!=null?KyGYS.Controls.CommonUtil.GetItemImgFileName(j.CusSavedFileName):null;
+                    j.CtmSavedFileName = j.CtmSavedFileName != null ? KyGYS.Controls.CommonUtil.GetItemImgFileName(j.CtmSavedFileName) : null;
                 });
                 var grd = new EasyGridData<V_ERP_SuppOrder>();
                 grd.total = items.Count().ToString();
@@ -45,7 +47,7 @@ namespace KyGYS.Data
                 string data = Newtonsoft.Json.JsonConvert.SerializeObject(grd);
                 Response.Write(data);
                 Response.End();
-            }
+            }  
         }
     }
 }

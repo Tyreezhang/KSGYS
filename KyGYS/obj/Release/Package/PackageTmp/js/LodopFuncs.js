@@ -2,47 +2,47 @@
 
 //====判断是否需要安装CLodop云打印服务器:====
 function needCLodop(){
-    try {
-        //var ua=navigator.userAgent;
-        //if (ua.match(/Windows\sPhone/i) !=null) return true;
-        //if (ua.match(/iPhone|iPod/i) != null) return true;
-        //if (ua.match(/Android/i) != null) return true;
-        //if (ua.match(/Edge\D?\d+/i) != null) return true;
-        //if (ua.match(/QQBrowser/i) != null) return false;
-        //var verTrident=ua.match(/Trident\D?\d+/i);
-        //var verIE=ua.match(/MSIE\D?\d+/i);
-        //var verOPR=ua.match(/OPR\D?\d+/i);
-        //var verFF=ua.match(/Firefox\D?\d+/i);
-        //var x64=ua.match(/x64/i);
-        //if ((verTrident==null)&&(verIE==null)&&(x64!==null)) 
-        //	return true; else
-        //if ( verFF !== null) {
-        //	verFF = verFF[0].match(/\d+/);
-        //	if ( verFF[0] >= 42 ) return true;
-        //} else 
-        //if ( verOPR !== null) {
-        //	verOPR = verOPR[0].match(/\d+/);
-        //	if ( verOPR[0] >= 32 ) return true;
-        //} else 
-        //if ((verTrident==null)&&(verIE==null)) {
-        //	var verChrome=ua.match(/Chrome\D?\d+/i);		
-        //	if ( verChrome !== null ) {
-        //		verChrome = verChrome[0].match(/\d+/);
-        //		if (verChrome[0]>=42) return true;
-        //	};
-        //};
+    try{
+	//var ua=navigator.userAgent;
+	//if (ua.match(/Windows\sPhone/i) !=null) return true;
+	//if (ua.match(/iPhone|iPod/i) != null) return true;
+	//if (ua.match(/Android/i) != null) return true;
+	//if (ua.match(/Edge\D?\d+/i) != null) return true;
+	//if (ua.match(/QQBrowser/i) != null) return false;
+	//var verTrident=ua.match(/Trident\D?\d+/i);
+	//var verIE=ua.match(/MSIE\D?\d+/i);
+	//var verOPR=ua.match(/OPR\D?\d+/i);
+	//var verFF=ua.match(/Firefox\D?\d+/i);
+	//var x64=ua.match(/x64/i);
+	//if ((verTrident==null)&&(verIE==null)&&(x64!==null)) 
+	//	return true; else
+	//if ( verFF !== null) {
+	//	verFF = verFF[0].match(/\d+/);
+	//	if ( verFF[0] >= 42 ) return true;
+	//} else 
+	//if ( verOPR !== null) {
+	//	verOPR = verOPR[0].match(/\d+/);
+	//	if ( verOPR[0] >= 32 ) return true;
+	//} else 
+	//if ((verTrident==null)&&(verIE==null)) {
+	//	var verChrome=ua.match(/Chrome\D?\d+/i);		
+	//	if ( verChrome !== null ) {
+	//		verChrome = verChrome[0].match(/\d+/);
+	//		if (verChrome[0]>=42) return true;
+	//	};
+	//};
         //    return false;
         return true;
-    } catch (err) { return true; };
+    } catch(err) {return true;};
 };
 
 //====页面引用CLodop云打印必须的JS文件：====
 if (needCLodop()) {
     //让其它电脑的浏览器通过本机打印（适用例子）：
-    //oscript = document.createElement("script");
-    //oscript.src ="/CLodopfuncs.js";
-    //var head = document.head || document.getElementsByTagName("head")[0] || document.documentElement;
-    //head.insertBefore( oscript,head.firstChild );
+    oscript = document.createElement("script");
+    oscript.src ="/CLodopfuncs.js";
+    var head = document.head || document.getElementsByTagName("head")[0] || document.documentElement;
+    head.insertBefore( oscript,head.firstChild );
     //让本机浏览器打印(更优先)：
     var oscript = document.createElement("script");
     oscript.src ="http://localhost:8000/CLodopfuncs.js?priority=1";
@@ -61,7 +61,8 @@ function getLodop(oOBJECT,oEMBED){
     var strCLodopInstall="<br><font color='#FF00FF'>CLodop云打印服务(localhost本地)未安装启动!点击这里<a href='CLodopPrint_Setup_for_Win32NT.exe' target='_self'>执行安装</a>,安装后请刷新页面。</font>";
     var strCLodopUpdate="<br><font color='#FF00FF'>CLodop云打印服务需升级!点击这里<a href='CLodopPrint_Setup_for_Win32NT.exe' target='_self'>执行升级</a>,升级后请刷新页面。</font>";
     var LODOP;
-    try{
+    try {
+        debugger;
         var isIE = (navigator.userAgent.indexOf('MSIE')>=0) || (navigator.userAgent.indexOf('Trident')>=0);
         if (needCLodop()) {
             try{ LODOP=getCLodop();} catch(err) {};
@@ -72,7 +73,7 @@ function getLodop(oOBJECT,oEMBED){
                  return;
             } else {
 
-                if (CLODOP.CVERSION < "2.0.4.7") {
+	         if (CLODOP.CVERSION<"2.0.4.0") { 
 			if (isIE) document.write(strCLodopUpdate); else
 			document.documentElement.innerHTML=strCLodopUpdate+document.documentElement.innerHTML;
 		 };

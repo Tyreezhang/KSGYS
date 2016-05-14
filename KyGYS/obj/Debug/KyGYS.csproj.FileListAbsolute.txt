@@ -42,16 +42,3 @@ G:\118Git\GYS_YJ\KyGYS\bin\MySql.Data.dll
 G:\118Git\GYS_YJ\KyGYS\obj\Debug\KyGYS.csprojResolveAssemblyReference.cache
 G:\118Git\GYS_YJ\KyGYS\obj\Debug\KyGYS.dll
 G:\118Git\GYS_YJ\KyGYS\obj\Debug\KyGYS.pdb
-H:\118Git\GYS_MS\KyGYS\obj\Debug\KyGYS.csprojResolveAssemblyReference.cache
-H:\118Git\GYS_MS\KyGYS\bin\KyGYS.dll
-H:\118Git\GYS_MS\KyGYS\bin\KyGYS.pdb
-H:\118Git\GYS_MS\KyGYS\bin\MoreLinq.dll
-H:\118Git\GYS_MS\KyGYS\bin\Ultra.Common.dll
-H:\118Git\GYS_MS\KyGYS\bin\Ultra.Logic.dll
-H:\118Git\GYS_MS\KyGYS\bin\Ultra.Web.Core.dll
-H:\118Git\GYS_MS\KyGYS\bin\Ultra.Win.Core.dll
-H:\118Git\GYS_MS\KyGYS\bin\Ultra.Surface.dll
-H:\118Git\GYS_MS\KyGYS\bin\Ultra.Cache.dll
-H:\118Git\GYS_MS\KyGYS\bin\MySql.Data.dll
-H:\118Git\GYS_MS\KyGYS\obj\Debug\KyGYS.dll
-H:\118Git\GYS_MS\KyGYS\obj\Debug\KyGYS.pdb

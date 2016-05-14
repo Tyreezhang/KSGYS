@@ -6,20 +6,20 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
-    <_PublishTargetUrl>H:\msgys</_PublishTargetUrl>
+    <_PublishTargetUrl>H:\gys</_PublishTargetUrl>
   </PropertyGroup>
   <ItemGroup>
     <File Include="1.html">
-      <publishTime>02/18/2016 14:33:21</publishTime>
+      <publishTime>09/22/2015 17:18:15</publishTime>
     </File>
     <File Include="bin/KyGYS.Common.dll">
-      <publishTime>05/12/2016 11:55:36</publishTime>
+      <publishTime>04/15/2016 16:09:45</publishTime>
     </File>
     <File Include="bin/KyGYS.Controls.dll">
-      <publishTime>05/12/2016 11:55:37</publishTime>
+      <publishTime>04/15/2016 16:09:46</publishTime>
     </File>
     <File Include="bin/KyGYS.dll">
-      <publishTime>05/13/2016 12:03:58</publishTime>
+      <publishTime>04/15/2016 16:09:46</publishTime>
     </File>
     <File Include="bin/MoreLinq.dll">
       <publishTime>09/16/2015 18:21:33</publishTime>
@@ -40,7 +40,7 @@
       <publishTime>04/22/2015 09:22:31</publishTime>
     </File>
     <File Include="bin/Ultra.DbEntity.dll">
-      <publishTime>05/13/2016 12:03:51</publishTime>
+      <publishTime>04/15/2016 16:09:46</publishTime>
     </File>
     <File Include="bin/Ultra.Logic.dll">
       <publishTime>04/22/2015 09:22:31</publishTime>
@@ -60,26 +60,14 @@
     <File Include="Data/export.aspx">
       <publishTime>04/29/2015 15:21:27</publishTime>
     </File>
-    <File Include="Data/getAuditPurch.aspx">
-      <publishTime>05/10/2016 11:33:30</publishTime>
-    </File>
-    <File Include="Data/getInvalid.aspx">
-      <publishTime>05/10/2016 11:33:43</publishTime>
-    </File>
     <File Include="Data/getItemList.aspx">
       <publishTime>04/27/2015 11:32:53</publishTime>
     </File>
     <File Include="Data/getMapUserList.aspx">
       <publishTime>04/27/2015 11:34:07</publishTime>
     </File>
-    <File Include="Data/getPurchItemList.aspx">
-      <publishTime>05/10/2016 15:01:28</publishTime>
-    </File>
     <File Include="Data/getSendList.aspx">
       <publishTime>04/27/2015 11:32:30</publishTime>
-    </File>
-    <File Include="Data/getUnauditPurch.aspx">
-      <publishTime>05/10/2016 10:39:48</publishTime>
     </File>
     <File Include="Data/getUnSendList.aspx">
       <publishTime>07/22/2015 14:43:28</publishTime>
@@ -95,9 +83,6 @@
     </File>
     <File Include="Data/print.aspx">
       <publishTime>01/15/2016 14:14:51</publishTime>
-    </File>
-    <File Include="head.html">
-      <publishTime>05/12/2016 14:09:08</publishTime>
     </File>
     <File Include="images/blocks.gif">
       <publishTime>04/24/2010 15:12:24</publishTime>
@@ -217,7 +202,7 @@
       <publishTime>05/26/2015 12:20:26</publishTime>
     </File>
     <File Include="Index.aspx">
-      <publishTime>05/10/2016 15:17:10</publishTime>
+      <publishTime>10/20/2015 14:20:53</publishTime>
     </File>
     <File Include="install_lodop32.exe">
       <publishTime>12/14/2015 11:01:26</publishTime>
@@ -2257,10 +2242,7 @@
       <publishTime>05/28/2015 17:48:24</publishTime>
     </File>
     <File Include="js/LodopFuncs.js">
-      <publishTime>05/11/2016 09:36:48</publishTime>
-    </File>
-    <File Include="js/LodopFuncs1.js">
-      <publishTime>01/19/2016 09:50:40</publishTime>
+      <publishTime>02/25/2016 18:31:20</publishTime>
     </File>
     <File Include="js/tip.js">
       <publishTime>10/13/2015 14:40:52</publishTime>
@@ -2274,14 +2256,8 @@
     <File Include="one.html">
       <publishTime>12/16/2015 14:30:16</publishTime>
     </File>
-    <File Include="order.html">
-      <publishTime>05/12/2016 09:28:27</publishTime>
-    </File>
     <File Include="OtherNameList.aspx">
       <publishTime>05/27/2015 18:47:22</publishTime>
-    </File>
-    <File Include="PurchOrderlist.aspx">
-      <publishTime>05/12/2016 18:25:00</publishTime>
     </File>
     <File Include="ref/MoreLinq.dll">
       <publishTime>09/16/2015 18:21:33</publishTime>
@@ -2290,7 +2266,7 @@
       <publishTime>04/25/2015 12:30:10</publishTime>
     </File>
     <File Include="SendGoodsList.aspx">
-      <publishTime>05/13/2016 11:54:38</publishTime>
+      <publishTime>04/15/2016 15:34:38</publishTime>
     </File>
     <File Include="showImg2.aspx">
       <publishTime>10/12/2015 16:59:06</publishTime>
@@ -2314,13 +2290,13 @@
       <publishTime>12/14/2015 18:07:08</publishTime>
     </File>
     <File Include="UnSendGoodsList.aspx">
-      <publishTime>05/12/2016 18:25:31</publishTime>
+      <publishTime>04/15/2016 15:37:17</publishTime>
     </File>
     <File Include="UserList.aspx">
-      <publishTime>11/13/2015 15:24:34</publishTime>
+      <publishTime>02/22/2016 14:38:30</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>02/18/2016 17:44:08</publishTime>
+      <publishTime>03/09/2016 14:04:39</publishTime>
     </File>
   </ItemGroup>
 </Project>

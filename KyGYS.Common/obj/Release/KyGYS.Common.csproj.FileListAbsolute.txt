@@ -14,8 +14,3 @@ G:\118Git\GYS_YJ\KyGYS.Common\bin\Release\KyGYS.Common.pdb
 G:\118Git\GYS_YJ\KyGYS.Common\bin\Release\Ultra.Web.Core.dll
 G:\118Git\GYS_YJ\KyGYS.Common\obj\Release\KyGYS.Common.dll
 G:\118Git\GYS_YJ\KyGYS.Common\obj\Release\KyGYS.Common.pdb
-H:\118Git\GYS_MS\KyGYS.Common\bin\Release\KyGYS.Common.dll
-H:\118Git\GYS_MS\KyGYS.Common\bin\Release\KyGYS.Common.pdb
-H:\118Git\GYS_MS\KyGYS.Common\bin\Release\Ultra.Web.Core.dll
-H:\118Git\GYS_MS\KyGYS.Common\obj\Release\KyGYS.Common.dll
-H:\118Git\GYS_MS\KyGYS.Common\obj\Release\KyGYS.Common.pdb

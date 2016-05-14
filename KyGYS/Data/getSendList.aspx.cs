@@ -61,35 +61,35 @@ namespace KyGYS.Data
 
                 if (list != null && list.Count() > 0)
                 {
-                    //if (!string.IsNullOrEmpty(list[0]))
-                    //{
-                    //    whr += " and BuyerNick=@" + (idx++).ToString();
-                    //    objs.Add(list[0].ToString());
-                    //}
+                    if (!string.IsNullOrEmpty(list[0]))
+                    {
+                        whr += " and BuyerNick=@" + (idx++).ToString();
+                        objs.Add(list[0].ToString());
+                    }
                     //if (!string.IsNullOrEmpty(list[1]))
                     //{
                     //    whr += " and OrderFrom=@" + (idx++).ToString();
                     //    objs.Add(list[1].ToString());
                     //}
-                    //if (!string.IsNullOrEmpty(list[1]))
-                    //{
-                    //    whr += " and SellerNick=@" + (idx++).ToString();
-                    //    objs.Add(list[1].ToString());
-                    //}
-                    if (!string.IsNullOrEmpty(list[0]))
-                    {
-                        whr += " and ReceiverName=@" + (idx++).ToString();
-                        objs.Add(list[0].ToString());
-                    }
                     if (!string.IsNullOrEmpty(list[1]))
                     {
-                        whr += " and ReceiverMobile=@" + (idx++).ToString();
+                        whr += " and SellerNick=@" + (idx++).ToString();
                         objs.Add(list[1].ToString());
                     }
                     if (!string.IsNullOrEmpty(list[2]))
                     {
+                        whr += " and ReceiverName=@" + (idx++).ToString();
+                        objs.Add(list[2].ToString());
+                    }
+                    if (!string.IsNullOrEmpty(list[3]))
+                    {
+                        whr += " and ReceiverMobile=@" + (idx++).ToString();
+                        objs.Add(list[3].ToString());
+                    }
+                    if (!string.IsNullOrEmpty(list[4]))
+                    {
                         whr += " and ReceiverAddress like @" + (idx++).ToString();
-                        objs.Add("%" + list[2].ToString() + "%");
+                        objs.Add("%" + list[4].ToString() + "%");
                     }
                 }
                 using (var db = new Database(SQLCONN.Conn))
@@ -104,7 +104,7 @@ namespace KyGYS.Data
             }
             else
             {
-                string data = "{\"IsError\":\"true\",\"ErrMsg\":\"登录失效,请刷新页面重新登录\"}";
+                string data = "{\"IsError\":\"true\",\"ErrMsg\":\"登录超时,请刷新页面重新登录\"}";
                 Response.Write(data);
             }
         }
@@ -113,6 +113,7 @@ namespace KyGYS.Data
         public static string UpdateLogis(string guid, string logisNo, string logisName, string logisCost, string logisMobile)
         {
             //BasicSecurity basic = new BasicSecurity();
+            string userName =  HttpUtility.UrlDecode(HttpContext.Current.Request.Cookies["Login"]["UserName"].ToString());
             string msg = string.Empty;
             if (string.IsNullOrEmpty(guid) || string.IsNullOrEmpty(logisNo) || string.IsNullOrEmpty(logisName) || string.IsNullOrEmpty(logisCost)) return "操作失败,请刷新页面重新操作!";
             if (HttpContext.Current.Request.Cookies["Login"]["UserName"] == "") return "登陆超时";

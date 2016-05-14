@@ -80,12 +80,15 @@ namespace KyGYS
         {
             if (!Page.IsPostBack)
             {
-                if (UserName == null || string.IsNullOrEmpty(UserName))
+                //if (Session["UserId"] == null)
+                //{
+                if (string.IsNullOrEmpty(UserName))
                 {
                     Response.Write("<script>alert('登录失效,请重新登录!'); if (window == top){window.location.href='../Login.aspx';} else{top.location.href='../Login.aspx';}</script>");
                     Response.End();
                     return;
                 }
+                //Session.Timeout = 1440;
             }
         }
     }

@@ -19,10 +19,10 @@ namespace KyGYS
         protected void btnRef_Click(object sender, EventArgs e)
         {
             string queryStr = string.Empty;
-            //string txtBuyerNick = this.txtBuyerNick.Text.Trim();
-            //queryStr += txtBuyerNick + ",";
-            //string txtSellerNick = this.txtSellerNick.Text.Trim();
-            //queryStr += txtSellerNick + ",";
+            string txtBuyerNick = this.txtBuyerNick.Text.Trim();
+            queryStr += txtBuyerNick + ",";
+            string txtSellerNick = this.txtSellerNick.Text.Trim();
+            queryStr += txtSellerNick + ",";
             string txtReceiverName = this.txtReceiverName.Text.Trim();
             queryStr += txtReceiverName+",";
             string txtReceiverMobile= this.txtReceiverMobile.Text.Trim();
