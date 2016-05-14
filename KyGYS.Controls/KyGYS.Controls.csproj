@@ -74,9 +74,12 @@
     <Compile Include="Controller\CtlMapUserController.cs" />
     <Compile Include="Controller\CtlSuppBatchController.cs" />
     <Compile Include="Controller\CtlSuppOrderController.cs" />
+    <Compile Include="Controller\CtlSuppPurchController.cs" />
     <Compile Include="Controller\CtlUserController.cs" />
     <Compile Include="Controller\CtlV_ERP_NPrintBatchController.cs" />
     <Compile Include="Controller\CtlV_ERP_NPrintItemController.cs" />
+    <Compile Include="Controller\CtlV_ERP_NprintPurchController.cs" />
+    <Compile Include="Controller\CtlV_ERP_PurchItemGetController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SQLCONN.cs" />
   </ItemGroup>

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.IO;
 using System.Linq;
 using System.Web;
 
@@ -27,6 +28,44 @@ namespace KyGYS.Controls
         }
 
         private static string _ConnStr = string.Empty;
+
+        /// <summary>
+        /// 如果名称中包含禁止的字符,则以MD5 为文件新的名称
+        /// </summary>
+        /// <param name="FileName"></param>
+        /// <returns></returns>
+        public static string GetItemImgFileName(string FileName)
+        {
+            FileName = FileName.Replace("\n", string.Empty).Replace("\r", string.Empty);
+            string oriFileName = Path.GetFileNameWithoutExtension(FileName);
+            string[] exc = new string[] { @"/", @"\", @"?", @"*", @":", @"<", @">", @"|", "\"" };
+            bool bexc = false;
+            if (string.IsNullOrEmpty(oriFileName))
+            {
+                oriFileName = Ultra.Web.Core.Common.ByteStringUtil.ByteArrayToHexStr
+            (Ultra.Web.Core.Common.HashDigest.StringDigest(FileName));
+                return oriFileName + ".jpg";
+            }
+            for (int i = 0; i < exc.Length; i++)
+            {
+                if ((bexc = FileName.Contains(exc[i])))
+                    return oriFileName = Ultra.Web.Core.Common.ByteStringUtil.ByteArrayToHexStr
+                (Ultra.Web.Core.Common.HashDigest.StringDigest(FileName)) + ".jpg";
+            }
+
+            string ext = string.Empty;
+            var idx = FileName.LastIndexOf(".");
+            if (idx < 1) ext = string.Empty;
+            ext = FileName.Substring(idx);
+
+            for (int i = 0; i < exc.Length; i++)
+                if ((bexc = oriFileName.Contains(exc[i]))) break;
+            if (bexc)
+                return Ultra.Web.Core.Common.ByteStringUtil.ByteArrayToHexStr
+            (Ultra.Web.Core.Common.HashDigest.StringDigest(oriFileName)) + ext;
+            else
+                return FileName.EndsWith(".jpg", StringComparison.OrdinalIgnoreCase) ? FileName : FileName + ".jpg";
+        }
 
     }
 

@@ -6,17 +6,20 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
-    <_PublishTargetUrl>F:\KyGys</_PublishTargetUrl>
+    <_PublishTargetUrl>F:\BXGys</_PublishTargetUrl>
   </PropertyGroup>
   <ItemGroup>
+    <File Include="1.html">
+      <publishTime>09/22/2015 17:18:15</publishTime>
+    </File>
     <File Include="bin/KyGYS.Common.dll">
-      <publishTime>10/16/2015 18:22:27</publishTime>
+      <publishTime>10/20/2015 15:57:04</publishTime>
     </File>
     <File Include="bin/KyGYS.Controls.dll">
-      <publishTime>10/16/2015 18:22:27</publishTime>
+      <publishTime>10/20/2015 17:04:30</publishTime>
     </File>
     <File Include="bin/KyGYS.dll">
-      <publishTime>10/19/2015 17:29:31</publishTime>
+      <publishTime>10/20/2015 17:04:30</publishTime>
     </File>
     <File Include="bin/MoreLinq.dll">
       <publishTime>09/16/2015 18:21:33</publishTime>
@@ -37,7 +40,7 @@
       <publishTime>04/22/2015 09:22:31</publishTime>
     </File>
     <File Include="bin/Ultra.DbEntity.dll">
-      <publishTime>10/16/2015 18:22:27</publishTime>
+      <publishTime>10/20/2015 17:04:29</publishTime>
     </File>
     <File Include="bin/Ultra.Logic.dll">
       <publishTime>04/22/2015 09:22:31</publishTime>
@@ -199,7 +202,7 @@
       <publishTime>05/26/2015 12:20:26</publishTime>
     </File>
     <File Include="Index.aspx">
-      <publishTime>09/28/2015 12:32:07</publishTime>
+      <publishTime>10/20/2015 14:20:53</publishTime>
     </File>
     <File Include="install_lodop32.exe">
       <publishTime>06/03/2015 11:03:11</publishTime>
@@ -2245,7 +2248,7 @@
       <publishTime>06/03/2015 11:03:11</publishTime>
     </File>
     <File Include="js/tip.js">
-      <publishTime>04/29/2015 16:25:47</publishTime>
+      <publishTime>10/13/2015 14:40:52</publishTime>
     </File>
     <File Include="Login.aspx">
       <publishTime>06/04/2015 15:45:12</publishTime>
@@ -2263,7 +2266,10 @@
       <publishTime>04/25/2015 12:30:10</publishTime>
     </File>
     <File Include="SendGoodsList.aspx">
-      <publishTime>10/19/2015 15:44:55</publishTime>
+      <publishTime>10/20/2015 15:56:36</publishTime>
+    </File>
+    <File Include="showImg2.aspx">
+      <publishTime>10/12/2015 16:59:06</publishTime>
     </File>
     <File Include="style/alogin.css">
       <publishTime>05/09/2015 11:20:15</publishTime>
@@ -2281,16 +2287,16 @@
       <publishTime>06/04/2015 15:49:26</publishTime>
     </File>
     <File Include="test.html">
-      <publishTime>09/19/2015 09:19:01</publishTime>
+      <publishTime>09/22/2015 18:29:40</publishTime>
     </File>
     <File Include="UnSendGoodsList.aspx">
-      <publishTime>10/16/2015 18:19:17</publishTime>
+      <publishTime>10/20/2015 16:59:53</publishTime>
     </File>
     <File Include="Userlist.aspx">
-      <publishTime>09/28/2015 12:29:51</publishTime>
+      <publishTime>10/19/2015 17:02:56</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>09/28/2015 12:34:10</publishTime>
+      <publishTime>05/20/2015 12:23:01</publishTime>
     </File>
   </ItemGroup>
 </Project>

@@ -11,15 +11,22 @@ using UltraDbEntity;
 
 namespace KyGYS
 {
-    public partial class Login : System.Web.UI.Page
+    public partial class Login : BasicSecurity
     {
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
             {
-
-                this.txtusername.Text = string.Empty;
-                this.txtpwd.Text = string.Empty;
+                HttpCookie user = Request.Cookies["Login"];
+                if (user != null)
+                {
+                    Response.Redirect("~/Index.aspx");
+                }
+                else
+                {
+                    this.txtusername.Text = string.Empty;
+                    this.txtpwd.Text = string.Empty;
+                }
             }
         }
 
@@ -39,6 +46,13 @@ namespace KyGYS
                 Session["SuppName"] = userName;
                 Response.Redirect("~/Register.aspx");
             }
+            List<T_ERP_SuppPurch> purchlist = SerNoCaller.Calr_SuppPurch.Get(@" select SuppName from T_ERP_SuppPurch  where SuppName=@0
+                    and not EXISTS(select 1 from T_ERP_User where UserName=@0 and IsDel = 0 )", userName);
+            if (purchlist.Count > 0 && purchlist != null)
+            {
+                Session["SuppName"] = userName;
+                Response.Redirect("~/Register.aspx");
+            }
             string pwdCode = KyGYS.Common.Security.GetMd5(passWord);
             var users = SerNoCaller.Calr_User.Get("where UserName=@0 and LoginPassword=@1 and IsDel = 0"
                 , userName, pwdCode);
@@ -51,9 +65,12 @@ namespace KyGYS
             else
             {
                 T_ERP_User user = users.FirstOrDefault();
-                Session["IsManager"] = user.IsManager;
-                Session["UserId"] = user.Guid;
-                Session["UserName"] = user.UserName;
+                HttpCookie keepCookie = new HttpCookie("Login");
+                keepCookie.Values.Add("UserName", HttpUtility.UrlEncode(user.UserName));
+                keepCookie.Values.Add("isManager", user.IsManager.ToString());
+                keepCookie.Values.Add("UserId", user.Guid.ToString());
+                keepCookie.Expires = DateTime.Now.AddDays(1);
+                Response.Cookies.Add(keepCookie);
                 Response.Redirect("~/Index.aspx");
             }
         }

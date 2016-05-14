@@ -6,7 +6,7 @@
 // 
 //     Connection String Name: `UltraDbEntity`
 //     Provider:               `System.Data.SqlClient`
-//     Connection String:      `Data Source=101.251.96.126,8333;Initial Catalog=Ultra_GYS;Persist Security Info=True;User ID=bxdbo;password=**zapped**;MultipleActiveResultSets=True`
+//     Connection String:      `Data Source=101.251.96.120,8333;Initial Catalog=Dev_GYSMS;Persist Security Info=True;User ID=mstestdbo;password=**zapped**;MultipleActiveResultSets=True`
 //     Schema:                 ``
 //     Include Views:          `True`
 
@@ -136,6 +136,851 @@ namespace UltraDbEntity
 	}
 	
 
+    
+	[TableName("T_ERP_SuppPurchItem")]
+	[PrimaryKey("Id")]
+	[ExplicitColumns]
+	[Serializable]
+    public partial class T_ERP_SuppPurchItem : UltraDbEntityDB.Record<T_ERP_SuppPurchItem>  
+    {
+		public static string Meta_Id{get{return "Id";}}
+
+        [System.Xml.Serialization.XmlElement("Id")]
+        [Column] 
+		public long Id 
+		{ 
+			get
+			{
+				return _Id;
+			}
+			set
+			{
+				_Id = value;
+				MarkColumnModified("Id");
+			}
+		}
+		long _Id;
+
+		public static string Meta_Guid{get{return "Guid";}}
+
+        [System.Xml.Serialization.XmlElement("Guid")]
+        [Column] 
+		public Guid Guid 
+		{ 
+			get
+			{
+				return _Guid;
+			}
+			set
+			{
+				_Guid = value;
+				MarkColumnModified("Guid");
+			}
+		}
+		Guid _Guid;
+
+		public static string Meta_CreateDate{get{return "CreateDate";}}
+
+        [System.Xml.Serialization.XmlElement("CreateDate")]
+        [Column] 
+		public DateTime CreateDate 
+		{ 
+			get
+			{
+				return _CreateDate;
+			}
+			set
+			{
+				_CreateDate = value;
+				MarkColumnModified("CreateDate");
+			}
+		}
+		DateTime _CreateDate;
+
+		public static string Meta_Creator{get{return "Creator";}}
+
+        [System.Xml.Serialization.XmlElement("Creator")]
+        [Column] 
+		public string Creator 
+		{ 
+			get
+			{
+				return _Creator;
+			}
+			set
+			{
+				_Creator = value;
+				MarkColumnModified("Creator");
+			}
+		}
+		string _Creator;
+
+		public static string Meta_UpdateDate{get{return "UpdateDate";}}
+
+        [System.Xml.Serialization.XmlElement("UpdateDate")]
+        [Column] 
+		public DateTime UpdateDate 
+		{ 
+			get
+			{
+				return _UpdateDate;
+			}
+			set
+			{
+				_UpdateDate = value;
+				MarkColumnModified("UpdateDate");
+			}
+		}
+		DateTime _UpdateDate;
+
+		public static string Meta_Updator{get{return "Updator";}}
+
+        [System.Xml.Serialization.XmlElement("Updator")]
+        [Column] 
+		public string Updator 
+		{ 
+			get
+			{
+				return _Updator;
+			}
+			set
+			{
+				_Updator = value;
+				MarkColumnModified("Updator");
+			}
+		}
+		string _Updator;
+
+		public static string Meta_IsDel{get{return "IsDel";}}
+
+        [System.Xml.Serialization.XmlElement("IsDel")]
+        [Column] 
+		public bool IsDel 
+		{ 
+			get
+			{
+				return _IsDel;
+			}
+			set
+			{
+				_IsDel = value;
+				MarkColumnModified("IsDel");
+			}
+		}
+		bool _IsDel;
+
+		public static string Meta_Reserved1{get{return "Reserved1";}}
+
+        [System.Xml.Serialization.XmlElement("Reserved1")]
+        [Column] 
+		public int Reserved1 
+		{ 
+			get
+			{
+				return _Reserved1;
+			}
+			set
+			{
+				_Reserved1 = value;
+				MarkColumnModified("Reserved1");
+			}
+		}
+		int _Reserved1;
+
+		public static string Meta_Reserved2{get{return "Reserved2";}}
+
+        [System.Xml.Serialization.XmlElement("Reserved2")]
+        [Column] 
+		public string Reserved2 
+		{ 
+			get
+			{
+				return _Reserved2;
+			}
+			set
+			{
+				_Reserved2 = value;
+				MarkColumnModified("Reserved2");
+			}
+		}
+		string _Reserved2;
+
+		public static string Meta_Reserved3{get{return "Reserved3";}}
+
+        [System.Xml.Serialization.XmlElement("Reserved3")]
+        [Column] 
+		public bool Reserved3 
+		{ 
+			get
+			{
+				return _Reserved3;
+			}
+			set
+			{
+				_Reserved3 = value;
+				MarkColumnModified("Reserved3");
+			}
+		}
+		bool _Reserved3;
+
+		public static string Meta_Remark{get{return "Remark";}}
+
+        [System.Xml.Serialization.XmlElement("Remark")]
+        [Column] 
+		public string Remark 
+		{ 
+			get
+			{
+				return _Remark;
+			}
+			set
+			{
+				_Remark = value;
+				MarkColumnModified("Remark");
+			}
+		}
+		string _Remark;
+
+		public static string Meta_TimeStamp{get{return "TimeStamp";}}
+
+        [System.Xml.Serialization.XmlElement("TimeStamp")]
+        [Column] 
+		public byte[] TimeStamp 
+		{ 
+			get
+			{
+				return _TimeStamp;
+			}
+			set
+			{
+				_TimeStamp = value;
+				MarkColumnModified("TimeStamp");
+			}
+		}
+		byte[] _TimeStamp;
+
+		public static string Meta_AssignItemNum{get{return "AssignItemNum";}}
+
+        [System.Xml.Serialization.XmlElement("AssignItemNum")]
+        [Column] 
+		public int AssignItemNum 
+		{ 
+			get
+			{
+				return _AssignItemNum;
+			}
+			set
+			{
+				_AssignItemNum = value;
+				MarkColumnModified("AssignItemNum");
+			}
+		}
+		int _AssignItemNum;
+
+		public static string Meta_BuyerNick{get{return "BuyerNick";}}
+
+        [System.Xml.Serialization.XmlElement("BuyerNick")]
+        [Column] 
+		public string BuyerNick 
+		{ 
+			get
+			{
+				return _BuyerNick;
+			}
+			set
+			{
+				_BuyerNick = value;
+				MarkColumnModified("BuyerNick");
+			}
+		}
+		string _BuyerNick;
+
+		public static string Meta_CanAssignNum{get{return "CanAssignNum";}}
+
+        [System.Xml.Serialization.XmlElement("CanAssignNum")]
+        [Column] 
+		public int CanAssignNum 
+		{ 
+			get
+			{
+				return _CanAssignNum;
+			}
+			set
+			{
+				_CanAssignNum = value;
+				MarkColumnModified("CanAssignNum");
+			}
+		}
+		int _CanAssignNum;
+
+		public static string Meta_CancelNum{get{return "CancelNum";}}
+
+        [System.Xml.Serialization.XmlElement("CancelNum")]
+        [Column] 
+		public int? CancelNum 
+		{ 
+			get
+			{
+				return _CancelNum;
+			}
+			set
+			{
+				_CancelNum = value;
+				MarkColumnModified("CancelNum");
+			}
+		}
+		int? _CancelNum;
+
+		public static string Meta_Color{get{return "Color";}}
+
+        [System.Xml.Serialization.XmlElement("Color")]
+        [Column] 
+		public string Color 
+		{ 
+			get
+			{
+				return _Color;
+			}
+			set
+			{
+				_Color = value;
+				MarkColumnModified("Color");
+			}
+		}
+		string _Color;
+
+		public static string Meta_CostPrice{get{return "CostPrice";}}
+
+        [System.Xml.Serialization.XmlElement("CostPrice")]
+        [Column] 
+		public decimal? CostPrice 
+		{ 
+			get
+			{
+				return _CostPrice;
+			}
+			set
+			{
+				_CostPrice = value;
+				MarkColumnModified("CostPrice");
+			}
+		}
+		decimal? _CostPrice;
+
+		public static string Meta_GroupSession{get{return "GroupSession";}}
+
+        [System.Xml.Serialization.XmlElement("GroupSession")]
+        [Column] 
+		public Guid? GroupSession 
+		{ 
+			get
+			{
+				return _GroupSession;
+			}
+			set
+			{
+				_GroupSession = value;
+				MarkColumnModified("GroupSession");
+			}
+		}
+		Guid? _GroupSession;
+
+		public static string Meta_ImgGuid{get{return "ImgGuid";}}
+
+        [System.Xml.Serialization.XmlElement("ImgGuid")]
+        [Column] 
+		public Guid? ImgGuid 
+		{ 
+			get
+			{
+				return _ImgGuid;
+			}
+			set
+			{
+				_ImgGuid = value;
+				MarkColumnModified("ImgGuid");
+			}
+		}
+		Guid? _ImgGuid;
+
+		public static string Meta_ItemName{get{return "ItemName";}}
+
+        [System.Xml.Serialization.XmlElement("ItemName")]
+        [Column] 
+		public string ItemName 
+		{ 
+			get
+			{
+				return _ItemName;
+			}
+			set
+			{
+				_ItemName = value;
+				MarkColumnModified("ItemName");
+			}
+		}
+		string _ItemName;
+
+		public static string Meta_ItemSkuName{get{return "ItemSkuName";}}
+
+        [System.Xml.Serialization.XmlElement("ItemSkuName")]
+        [Column] 
+		public string ItemSkuName 
+		{ 
+			get
+			{
+				return _ItemSkuName;
+			}
+			set
+			{
+				_ItemSkuName = value;
+				MarkColumnModified("ItemSkuName");
+			}
+		}
+		string _ItemSkuName;
+
+		public static string Meta_MergerSysNo{get{return "MergerSysNo";}}
+
+        [System.Xml.Serialization.XmlElement("MergerSysNo")]
+        [Column] 
+		public string MergerSysNo 
+		{ 
+			get
+			{
+				return _MergerSysNo;
+			}
+			set
+			{
+				_MergerSysNo = value;
+				MarkColumnModified("MergerSysNo");
+			}
+		}
+		string _MergerSysNo;
+
+		public static string Meta_Num{get{return "Num";}}
+
+        [System.Xml.Serialization.XmlElement("Num")]
+        [Column] 
+		public long? Num 
+		{ 
+			get
+			{
+				return _Num;
+			}
+			set
+			{
+				_Num = value;
+				MarkColumnModified("Num");
+			}
+		}
+		long? _Num;
+
+		public static string Meta_OldSuppPlanTime{get{return "OldSuppPlanTime";}}
+
+        [System.Xml.Serialization.XmlElement("OldSuppPlanTime")]
+        [Column] 
+		public DateTime? OldSuppPlanTime 
+		{ 
+			get
+			{
+				return _OldSuppPlanTime;
+			}
+			set
+			{
+				_OldSuppPlanTime = value;
+				MarkColumnModified("OldSuppPlanTime");
+			}
+		}
+		DateTime? _OldSuppPlanTime;
+
+		public static string Meta_OuterIid{get{return "OuterIid";}}
+
+        [System.Xml.Serialization.XmlElement("OuterIid")]
+        [Column] 
+		public string OuterIid 
+		{ 
+			get
+			{
+				return _OuterIid;
+			}
+			set
+			{
+				_OuterIid = value;
+				MarkColumnModified("OuterIid");
+			}
+		}
+		string _OuterIid;
+
+		public static string Meta_OuterSkuId{get{return "OuterSkuId";}}
+
+        [System.Xml.Serialization.XmlElement("OuterSkuId")]
+        [Column] 
+		public string OuterSkuId 
+		{ 
+			get
+			{
+				return _OuterSkuId;
+			}
+			set
+			{
+				_OuterSkuId = value;
+				MarkColumnModified("OuterSkuId");
+			}
+		}
+		string _OuterSkuId;
+
+		public static string Meta_PackageCount{get{return "PackageCount";}}
+
+        [System.Xml.Serialization.XmlElement("PackageCount")]
+        [Column] 
+		public int? PackageCount 
+		{ 
+			get
+			{
+				return _PackageCount;
+			}
+			set
+			{
+				_PackageCount = value;
+				MarkColumnModified("PackageCount");
+			}
+		}
+		int? _PackageCount;
+
+		public static string Meta_PlanArriveTime{get{return "PlanArriveTime";}}
+
+        [System.Xml.Serialization.XmlElement("PlanArriveTime")]
+        [Column] 
+		public DateTime? PlanArriveTime 
+		{ 
+			get
+			{
+				return _PlanArriveTime;
+			}
+			set
+			{
+				_PlanArriveTime = value;
+				MarkColumnModified("PlanArriveTime");
+			}
+		}
+		DateTime? _PlanArriveTime;
+
+		public static string Meta_PrintTime{get{return "PrintTime";}}
+
+        [System.Xml.Serialization.XmlElement("PrintTime")]
+        [Column] 
+		public DateTime? PrintTime 
+		{ 
+			get
+			{
+				return _PrintTime;
+			}
+			set
+			{
+				_PrintTime = value;
+				MarkColumnModified("PrintTime");
+			}
+		}
+		DateTime? _PrintTime;
+
+		public static string Meta_PruchSinPrice{get{return "PruchSinPrice";}}
+
+        [System.Xml.Serialization.XmlElement("PruchSinPrice")]
+        [Column] 
+		public decimal? PruchSinPrice 
+		{ 
+			get
+			{
+				return _PruchSinPrice;
+			}
+			set
+			{
+				_PruchSinPrice = value;
+				MarkColumnModified("PruchSinPrice");
+			}
+		}
+		decimal? _PruchSinPrice;
+
+		public static string Meta_PurchNo{get{return "PurchNo";}}
+
+        [System.Xml.Serialization.XmlElement("PurchNo")]
+        [Column] 
+		public string PurchNo 
+		{ 
+			get
+			{
+				return _PurchNo;
+			}
+			set
+			{
+				_PurchNo = value;
+				MarkColumnModified("PurchNo");
+			}
+		}
+		string _PurchNo;
+
+		public static string Meta_PurchTolPrice{get{return "PurchTolPrice";}}
+
+        [System.Xml.Serialization.XmlElement("PurchTolPrice")]
+        [Column] 
+		public decimal? PurchTolPrice 
+		{ 
+			get
+			{
+				return _PurchTolPrice;
+			}
+			set
+			{
+				_PurchTolPrice = value;
+				MarkColumnModified("PurchTolPrice");
+			}
+		}
+		decimal? _PurchTolPrice;
+
+		public static string Meta_RealPrice{get{return "RealPrice";}}
+
+        [System.Xml.Serialization.XmlElement("RealPrice")]
+        [Column] 
+		public decimal? RealPrice 
+		{ 
+			get
+			{
+				return _RealPrice;
+			}
+			set
+			{
+				_RealPrice = value;
+				MarkColumnModified("RealPrice");
+			}
+		}
+		decimal? _RealPrice;
+
+		public static string Meta_RealPurchNum{get{return "RealPurchNum";}}
+
+        [System.Xml.Serialization.XmlElement("RealPurchNum")]
+        [Column] 
+		public int RealPurchNum 
+		{ 
+			get
+			{
+				return _RealPurchNum;
+			}
+			set
+			{
+				_RealPurchNum = value;
+				MarkColumnModified("RealPurchNum");
+			}
+		}
+		int _RealPurchNum;
+
+		public static string Meta_ReceiverName{get{return "ReceiverName";}}
+
+        [System.Xml.Serialization.XmlElement("ReceiverName")]
+        [Column] 
+		public string ReceiverName 
+		{ 
+			get
+			{
+				return _ReceiverName;
+			}
+			set
+			{
+				_ReceiverName = value;
+				MarkColumnModified("ReceiverName");
+			}
+		}
+		string _ReceiverName;
+
+		public static string Meta_Session{get{return "Session";}}
+
+        [System.Xml.Serialization.XmlElement("Session")]
+        [Column] 
+		public Guid? Session 
+		{ 
+			get
+			{
+				return _Session;
+			}
+			set
+			{
+				_Session = value;
+				MarkColumnModified("Session");
+			}
+		}
+		Guid? _Session;
+
+		public static string Meta_SkuProperties{get{return "SkuProperties";}}
+
+        [System.Xml.Serialization.XmlElement("SkuProperties")]
+        [Column] 
+		public string SkuProperties 
+		{ 
+			get
+			{
+				return _SkuProperties;
+			}
+			set
+			{
+				_SkuProperties = value;
+				MarkColumnModified("SkuProperties");
+			}
+		}
+		string _SkuProperties;
+
+		public static string Meta_SumParPrice{get{return "SumParPrice";}}
+
+        [System.Xml.Serialization.XmlElement("SumParPrice")]
+        [Column] 
+		public decimal? SumParPrice 
+		{ 
+			get
+			{
+				return _SumParPrice;
+			}
+			set
+			{
+				_SumParPrice = value;
+				MarkColumnModified("SumParPrice");
+			}
+		}
+		decimal? _SumParPrice;
+
+		public static string Meta_SuppName{get{return "SuppName";}}
+
+        [System.Xml.Serialization.XmlElement("SuppName")]
+        [Column] 
+		public string SuppName 
+		{ 
+			get
+			{
+				return _SuppName;
+			}
+			set
+			{
+				_SuppName = value;
+				MarkColumnModified("SuppName");
+			}
+		}
+		string _SuppName;
+
+		public static string Meta_SuppPlanTime{get{return "SuppPlanTime";}}
+
+        [System.Xml.Serialization.XmlElement("SuppPlanTime")]
+        [Column] 
+		public DateTime? SuppPlanTime 
+		{ 
+			get
+			{
+				return _SuppPlanTime;
+			}
+			set
+			{
+				_SuppPlanTime = value;
+				MarkColumnModified("SuppPlanTime");
+			}
+		}
+		DateTime? _SuppPlanTime;
+
+		public static string Meta_SuppPurchGuid{get{return "SuppPurchGuid";}}
+
+        [System.Xml.Serialization.XmlElement("SuppPurchGuid")]
+        [Column] 
+		public Guid? SuppPurchGuid 
+		{ 
+			get
+			{
+				return _SuppPurchGuid;
+			}
+			set
+			{
+				_SuppPurchGuid = value;
+				MarkColumnModified("SuppPurchGuid");
+			}
+		}
+		Guid? _SuppPurchGuid;
+
+		public static string Meta_TopOuterIid{get{return "TopOuterIid";}}
+
+        [System.Xml.Serialization.XmlElement("TopOuterIid")]
+        [Column] 
+		public string TopOuterIid 
+		{ 
+			get
+			{
+				return _TopOuterIid;
+			}
+			set
+			{
+				_TopOuterIid = value;
+				MarkColumnModified("TopOuterIid");
+			}
+		}
+		string _TopOuterIid;
+
+		public static string Meta_TopOuterSkuId{get{return "TopOuterSkuId";}}
+
+        [System.Xml.Serialization.XmlElement("TopOuterSkuId")]
+        [Column] 
+		public string TopOuterSkuId 
+		{ 
+			get
+			{
+				return _TopOuterSkuId;
+			}
+			set
+			{
+				_TopOuterSkuId = value;
+				MarkColumnModified("TopOuterSkuId");
+			}
+		}
+		string _TopOuterSkuId;
+
+		public static string Meta_Volume{get{return "Volume";}}
+
+        [System.Xml.Serialization.XmlElement("Volume")]
+        [Column] 
+		public decimal? Volume 
+		{ 
+			get
+			{
+				return _Volume;
+			}
+			set
+			{
+				_Volume = value;
+				MarkColumnModified("Volume");
+			}
+		}
+		decimal? _Volume;
+
+		public static string Meta_WareName{get{return "WareName";}}
+
+        [System.Xml.Serialization.XmlElement("WareName")]
+        [Column] 
+		public string WareName 
+		{ 
+			get
+			{
+				return _WareName;
+			}
+			set
+			{
+				_WareName = value;
+				MarkColumnModified("WareName");
+			}
+		}
+		string _WareName;
+
+		[IgnoreAttribute]
+		[System.Xml.Serialization.XmlElement("UISelected")]
+		public bool UISelected{get{return _UISelected;}set{_UISelected=value;}}
+		bool _UISelected=false;
+		
+		[IgnoreAttribute]
+		[System.Xml.Serialization.XmlElement("IsDynamicAdd")]
+		public bool IsDynamicAdd{get{return _IsDynamicAdd;}set{_IsDynamicAdd=value;}}
+		bool _IsDynamicAdd=false;
+	}
     
 	[TableName("T_ERP_MapUser")]
 	[PrimaryKey("Id")]
@@ -376,6 +1221,437 @@ namespace UltraDbEntity
 			}
 		}
 		string _SuppName;
+
+		public static string Meta_UserName{get{return "UserName";}}
+
+        [System.Xml.Serialization.XmlElement("UserName")]
+        [Column] 
+		public string UserName 
+		{ 
+			get
+			{
+				return _UserName;
+			}
+			set
+			{
+				_UserName = value;
+				MarkColumnModified("UserName");
+			}
+		}
+		string _UserName;
+
+		[IgnoreAttribute]
+		[System.Xml.Serialization.XmlElement("UISelected")]
+		public bool UISelected{get{return _UISelected;}set{_UISelected=value;}}
+		bool _UISelected=false;
+		
+		[IgnoreAttribute]
+		[System.Xml.Serialization.XmlElement("IsDynamicAdd")]
+		public bool IsDynamicAdd{get{return _IsDynamicAdd;}set{_IsDynamicAdd=value;}}
+		bool _IsDynamicAdd=false;
+	}
+    
+	[TableName("T_ERP_Log")]
+	[PrimaryKey("Id")]
+	[ExplicitColumns]
+	[Serializable]
+    public partial class T_ERP_Log : UltraDbEntityDB.Record<T_ERP_Log>  
+    {
+		public static string Meta_Id{get{return "Id";}}
+
+        [System.Xml.Serialization.XmlElement("Id")]
+        [Column] 
+		public long Id 
+		{ 
+			get
+			{
+				return _Id;
+			}
+			set
+			{
+				_Id = value;
+				MarkColumnModified("Id");
+			}
+		}
+		long _Id;
+
+		public static string Meta_Guid{get{return "Guid";}}
+
+        [System.Xml.Serialization.XmlElement("Guid")]
+        [Column] 
+		public Guid Guid 
+		{ 
+			get
+			{
+				return _Guid;
+			}
+			set
+			{
+				_Guid = value;
+				MarkColumnModified("Guid");
+			}
+		}
+		Guid _Guid;
+
+		public static string Meta_CreateDate{get{return "CreateDate";}}
+
+        [System.Xml.Serialization.XmlElement("CreateDate")]
+        [Column] 
+		public DateTime CreateDate 
+		{ 
+			get
+			{
+				return _CreateDate;
+			}
+			set
+			{
+				_CreateDate = value;
+				MarkColumnModified("CreateDate");
+			}
+		}
+		DateTime _CreateDate;
+
+		public static string Meta_Creator{get{return "Creator";}}
+
+        [System.Xml.Serialization.XmlElement("Creator")]
+        [Column] 
+		public string Creator 
+		{ 
+			get
+			{
+				return _Creator;
+			}
+			set
+			{
+				_Creator = value;
+				MarkColumnModified("Creator");
+			}
+		}
+		string _Creator;
+
+		public static string Meta_UpdateDate{get{return "UpdateDate";}}
+
+        [System.Xml.Serialization.XmlElement("UpdateDate")]
+        [Column] 
+		public DateTime UpdateDate 
+		{ 
+			get
+			{
+				return _UpdateDate;
+			}
+			set
+			{
+				_UpdateDate = value;
+				MarkColumnModified("UpdateDate");
+			}
+		}
+		DateTime _UpdateDate;
+
+		public static string Meta_Updator{get{return "Updator";}}
+
+        [System.Xml.Serialization.XmlElement("Updator")]
+        [Column] 
+		public string Updator 
+		{ 
+			get
+			{
+				return _Updator;
+			}
+			set
+			{
+				_Updator = value;
+				MarkColumnModified("Updator");
+			}
+		}
+		string _Updator;
+
+		public static string Meta_IsDel{get{return "IsDel";}}
+
+        [System.Xml.Serialization.XmlElement("IsDel")]
+        [Column] 
+		public bool IsDel 
+		{ 
+			get
+			{
+				return _IsDel;
+			}
+			set
+			{
+				_IsDel = value;
+				MarkColumnModified("IsDel");
+			}
+		}
+		bool _IsDel;
+
+		public static string Meta_Reserved1{get{return "Reserved1";}}
+
+        [System.Xml.Serialization.XmlElement("Reserved1")]
+        [Column] 
+		public int Reserved1 
+		{ 
+			get
+			{
+				return _Reserved1;
+			}
+			set
+			{
+				_Reserved1 = value;
+				MarkColumnModified("Reserved1");
+			}
+		}
+		int _Reserved1;
+
+		public static string Meta_Reserved2{get{return "Reserved2";}}
+
+        [System.Xml.Serialization.XmlElement("Reserved2")]
+        [Column] 
+		public string Reserved2 
+		{ 
+			get
+			{
+				return _Reserved2;
+			}
+			set
+			{
+				_Reserved2 = value;
+				MarkColumnModified("Reserved2");
+			}
+		}
+		string _Reserved2;
+
+		public static string Meta_Reserved3{get{return "Reserved3";}}
+
+        [System.Xml.Serialization.XmlElement("Reserved3")]
+        [Column] 
+		public bool Reserved3 
+		{ 
+			get
+			{
+				return _Reserved3;
+			}
+			set
+			{
+				_Reserved3 = value;
+				MarkColumnModified("Reserved3");
+			}
+		}
+		bool _Reserved3;
+
+		public static string Meta_Remark{get{return "Remark";}}
+
+        [System.Xml.Serialization.XmlElement("Remark")]
+        [Column] 
+		public string Remark 
+		{ 
+			get
+			{
+				return _Remark;
+			}
+			set
+			{
+				_Remark = value;
+				MarkColumnModified("Remark");
+			}
+		}
+		string _Remark;
+
+		public static string Meta_TimeStamp{get{return "TimeStamp";}}
+
+        [System.Xml.Serialization.XmlElement("TimeStamp")]
+        [Column] 
+		public byte[] TimeStamp 
+		{ 
+			get
+			{
+				return _TimeStamp;
+			}
+			set
+			{
+				_TimeStamp = value;
+				MarkColumnModified("TimeStamp");
+			}
+		}
+		byte[] _TimeStamp;
+
+		public static string Meta_ActionDesc{get{return "ActionDesc";}}
+
+        [System.Xml.Serialization.XmlElement("ActionDesc")]
+        [Column] 
+		public string ActionDesc 
+		{ 
+			get
+			{
+				return _ActionDesc;
+			}
+			set
+			{
+				_ActionDesc = value;
+				MarkColumnModified("ActionDesc");
+			}
+		}
+		string _ActionDesc;
+
+		public static string Meta_ActionName{get{return "ActionName";}}
+
+        [System.Xml.Serialization.XmlElement("ActionName")]
+        [Column] 
+		public string ActionName 
+		{ 
+			get
+			{
+				return _ActionName;
+			}
+			set
+			{
+				_ActionName = value;
+				MarkColumnModified("ActionName");
+			}
+		}
+		string _ActionName;
+
+		public static string Meta_BatchCode{get{return "BatchCode";}}
+
+        [System.Xml.Serialization.XmlElement("BatchCode")]
+        [Column] 
+		public string BatchCode 
+		{ 
+			get
+			{
+				return _BatchCode;
+			}
+			set
+			{
+				_BatchCode = value;
+				MarkColumnModified("BatchCode");
+			}
+		}
+		string _BatchCode;
+
+		public static string Meta_BatchGuid{get{return "BatchGuid";}}
+
+        [System.Xml.Serialization.XmlElement("BatchGuid")]
+        [Column] 
+		public Guid? BatchGuid 
+		{ 
+			get
+			{
+				return _BatchGuid;
+			}
+			set
+			{
+				_BatchGuid = value;
+				MarkColumnModified("BatchGuid");
+			}
+		}
+		Guid? _BatchGuid;
+
+		public static string Meta_MergerSysNo{get{return "MergerSysNo";}}
+
+        [System.Xml.Serialization.XmlElement("MergerSysNo")]
+        [Column] 
+		public string MergerSysNo 
+		{ 
+			get
+			{
+				return _MergerSysNo;
+			}
+			set
+			{
+				_MergerSysNo = value;
+				MarkColumnModified("MergerSysNo");
+			}
+		}
+		string _MergerSysNo;
+
+		public static string Meta_RefuseReason{get{return "RefuseReason";}}
+
+        [System.Xml.Serialization.XmlElement("RefuseReason")]
+        [Column] 
+		public string RefuseReason 
+		{ 
+			get
+			{
+				return _RefuseReason;
+			}
+			set
+			{
+				_RefuseReason = value;
+				MarkColumnModified("RefuseReason");
+			}
+		}
+		string _RefuseReason;
+
+		public static string Meta_SellerNick{get{return "SellerNick";}}
+
+        [System.Xml.Serialization.XmlElement("SellerNick")]
+        [Column] 
+		public string SellerNick 
+		{ 
+			get
+			{
+				return _SellerNick;
+			}
+			set
+			{
+				_SellerNick = value;
+				MarkColumnModified("SellerNick");
+			}
+		}
+		string _SellerNick;
+
+		public static string Meta_Tid{get{return "Tid";}}
+
+        [System.Xml.Serialization.XmlElement("Tid")]
+        [Column] 
+		public long? Tid 
+		{ 
+			get
+			{
+				return _Tid;
+			}
+			set
+			{
+				_Tid = value;
+				MarkColumnModified("Tid");
+			}
+		}
+		long? _Tid;
+
+		public static string Meta_TradeNo{get{return "TradeNo";}}
+
+        [System.Xml.Serialization.XmlElement("TradeNo")]
+        [Column] 
+		public string TradeNo 
+		{ 
+			get
+			{
+				return _TradeNo;
+			}
+			set
+			{
+				_TradeNo = value;
+				MarkColumnModified("TradeNo");
+			}
+		}
+		string _TradeNo;
+
+		public static string Meta_TrdNumber{get{return "TrdNumber";}}
+
+        [System.Xml.Serialization.XmlElement("TrdNumber")]
+        [Column] 
+		public string TrdNumber 
+		{ 
+			get
+			{
+				return _TrdNumber;
+			}
+			set
+			{
+				_TrdNumber = value;
+				MarkColumnModified("TrdNumber");
+			}
+		}
+		string _TrdNumber;
 
 		public static string Meta_UserName{get{return "UserName";}}
 
@@ -2949,6 +4225,1910 @@ namespace UltraDbEntity
 		}
 		Guid? _SuppBatchGuid;
 
+		public static string Meta_EdgeType{get{return "EdgeType";}}
+
+        [System.Xml.Serialization.XmlElement("EdgeType")]
+        [Column] 
+		public string EdgeType 
+		{ 
+			get
+			{
+				return _EdgeType;
+			}
+			set
+			{
+				_EdgeType = value;
+				MarkColumnModified("EdgeType");
+			}
+		}
+		string _EdgeType;
+
+		public static string Meta_HoleLocation{get{return "HoleLocation";}}
+
+        [System.Xml.Serialization.XmlElement("HoleLocation")]
+        [Column] 
+		public string HoleLocation 
+		{ 
+			get
+			{
+				return _HoleLocation;
+			}
+			set
+			{
+				_HoleLocation = value;
+				MarkColumnModified("HoleLocation");
+			}
+		}
+		string _HoleLocation;
+
+		public static string Meta_MainCabinet{get{return "MainCabinet";}}
+
+        [System.Xml.Serialization.XmlElement("MainCabinet")]
+        [Column] 
+		public string MainCabinet 
+		{ 
+			get
+			{
+				return _MainCabinet;
+			}
+			set
+			{
+				_MainCabinet = value;
+				MarkColumnModified("MainCabinet");
+			}
+		}
+		string _MainCabinet;
+
+		public static string Meta_Mirror{get{return "Mirror";}}
+
+        [System.Xml.Serialization.XmlElement("Mirror")]
+        [Column] 
+		public string Mirror 
+		{ 
+			get
+			{
+				return _Mirror;
+			}
+			set
+			{
+				_Mirror = value;
+				MarkColumnModified("Mirror");
+			}
+		}
+		string _Mirror;
+
+		public static string Meta_Wardrobe{get{return "Wardrobe";}}
+
+        [System.Xml.Serialization.XmlElement("Wardrobe")]
+        [Column] 
+		public string Wardrobe 
+		{ 
+			get
+			{
+				return _Wardrobe;
+			}
+			set
+			{
+				_Wardrobe = value;
+				MarkColumnModified("Wardrobe");
+			}
+		}
+		string _Wardrobe;
+
+		public static string Meta_PersonalSkuId{get{return "PersonalSkuId";}}
+
+        [System.Xml.Serialization.XmlElement("PersonalSkuId")]
+        [Column] 
+		public string PersonalSkuId 
+		{ 
+			get
+			{
+				return _PersonalSkuId;
+			}
+			set
+			{
+				_PersonalSkuId = value;
+				MarkColumnModified("PersonalSkuId");
+			}
+		}
+		string _PersonalSkuId;
+
+		[IgnoreAttribute]
+		[System.Xml.Serialization.XmlElement("UISelected")]
+		public bool UISelected{get{return _UISelected;}set{_UISelected=value;}}
+		bool _UISelected=false;
+		
+		[IgnoreAttribute]
+		[System.Xml.Serialization.XmlElement("IsDynamicAdd")]
+		public bool IsDynamicAdd{get{return _IsDynamicAdd;}set{_IsDynamicAdd=value;}}
+		bool _IsDynamicAdd=false;
+	}
+    
+	[TableName("V_ERP_NprintPurch")]
+	[ExplicitColumns]
+	[Serializable]
+    public partial class V_ERP_NprintPurch : UltraDbEntityDB.Record<V_ERP_NprintPurch>  
+    {
+		public static string Meta_Id{get{return "Id";}}
+
+        [System.Xml.Serialization.XmlElement("Id")]
+        [Column] 
+		public long Id 
+		{ 
+			get
+			{
+				return _Id;
+			}
+			set
+			{
+				_Id = value;
+				MarkColumnModified("Id");
+			}
+		}
+		long _Id;
+
+		public static string Meta_Guid{get{return "Guid";}}
+
+        [System.Xml.Serialization.XmlElement("Guid")]
+        [Column] 
+		public Guid Guid 
+		{ 
+			get
+			{
+				return _Guid;
+			}
+			set
+			{
+				_Guid = value;
+				MarkColumnModified("Guid");
+			}
+		}
+		Guid _Guid;
+
+		public static string Meta_CreateDate{get{return "CreateDate";}}
+
+        [System.Xml.Serialization.XmlElement("CreateDate")]
+        [Column] 
+		public DateTime CreateDate 
+		{ 
+			get
+			{
+				return _CreateDate;
+			}
+			set
+			{
+				_CreateDate = value;
+				MarkColumnModified("CreateDate");
+			}
+		}
+		DateTime _CreateDate;
+
+		public static string Meta_PurchTime{get{return "PurchTime";}}
+
+        [System.Xml.Serialization.XmlElement("PurchTime")]
+        [Column] 
+		public string PurchTime 
+		{ 
+			get
+			{
+				return _PurchTime;
+			}
+			set
+			{
+				_PurchTime = value;
+				MarkColumnModified("PurchTime");
+			}
+		}
+		string _PurchTime;
+
+		public static string Meta_Creator{get{return "Creator";}}
+
+        [System.Xml.Serialization.XmlElement("Creator")]
+        [Column] 
+		public string Creator 
+		{ 
+			get
+			{
+				return _Creator;
+			}
+			set
+			{
+				_Creator = value;
+				MarkColumnModified("Creator");
+			}
+		}
+		string _Creator;
+
+		public static string Meta_UpdateDate{get{return "UpdateDate";}}
+
+        [System.Xml.Serialization.XmlElement("UpdateDate")]
+        [Column] 
+		public DateTime UpdateDate 
+		{ 
+			get
+			{
+				return _UpdateDate;
+			}
+			set
+			{
+				_UpdateDate = value;
+				MarkColumnModified("UpdateDate");
+			}
+		}
+		DateTime _UpdateDate;
+
+		public static string Meta_Updator{get{return "Updator";}}
+
+        [System.Xml.Serialization.XmlElement("Updator")]
+        [Column] 
+		public string Updator 
+		{ 
+			get
+			{
+				return _Updator;
+			}
+			set
+			{
+				_Updator = value;
+				MarkColumnModified("Updator");
+			}
+		}
+		string _Updator;
+
+		public static string Meta_IsDel{get{return "IsDel";}}
+
+        [System.Xml.Serialization.XmlElement("IsDel")]
+        [Column] 
+		public bool IsDel 
+		{ 
+			get
+			{
+				return _IsDel;
+			}
+			set
+			{
+				_IsDel = value;
+				MarkColumnModified("IsDel");
+			}
+		}
+		bool _IsDel;
+
+		public static string Meta_Reserved1{get{return "Reserved1";}}
+
+        [System.Xml.Serialization.XmlElement("Reserved1")]
+        [Column] 
+		public int Reserved1 
+		{ 
+			get
+			{
+				return _Reserved1;
+			}
+			set
+			{
+				_Reserved1 = value;
+				MarkColumnModified("Reserved1");
+			}
+		}
+		int _Reserved1;
+
+		public static string Meta_Reserved2{get{return "Reserved2";}}
+
+        [System.Xml.Serialization.XmlElement("Reserved2")]
+        [Column] 
+		public string Reserved2 
+		{ 
+			get
+			{
+				return _Reserved2;
+			}
+			set
+			{
+				_Reserved2 = value;
+				MarkColumnModified("Reserved2");
+			}
+		}
+		string _Reserved2;
+
+		public static string Meta_Reserved3{get{return "Reserved3";}}
+
+        [System.Xml.Serialization.XmlElement("Reserved3")]
+        [Column] 
+		public bool Reserved3 
+		{ 
+			get
+			{
+				return _Reserved3;
+			}
+			set
+			{
+				_Reserved3 = value;
+				MarkColumnModified("Reserved3");
+			}
+		}
+		bool _Reserved3;
+
+		public static string Meta_Auditor{get{return "Auditor";}}
+
+        [System.Xml.Serialization.XmlElement("Auditor")]
+        [Column] 
+		public string Auditor 
+		{ 
+			get
+			{
+				return _Auditor;
+			}
+			set
+			{
+				_Auditor = value;
+				MarkColumnModified("Auditor");
+			}
+		}
+		string _Auditor;
+
+		public static string Meta_AuditRemark{get{return "AuditRemark";}}
+
+        [System.Xml.Serialization.XmlElement("AuditRemark")]
+        [Column] 
+		public string AuditRemark 
+		{ 
+			get
+			{
+				return _AuditRemark;
+			}
+			set
+			{
+				_AuditRemark = value;
+				MarkColumnModified("AuditRemark");
+			}
+		}
+		string _AuditRemark;
+
+		public static string Meta_AuditTime{get{return "AuditTime";}}
+
+        [System.Xml.Serialization.XmlElement("AuditTime")]
+        [Column] 
+		public DateTime? AuditTime 
+		{ 
+			get
+			{
+				return _AuditTime;
+			}
+			set
+			{
+				_AuditTime = value;
+				MarkColumnModified("AuditTime");
+			}
+		}
+		DateTime? _AuditTime;
+
+		public static string Meta_Canceler{get{return "Canceler";}}
+
+        [System.Xml.Serialization.XmlElement("Canceler")]
+        [Column] 
+		public string Canceler 
+		{ 
+			get
+			{
+				return _Canceler;
+			}
+			set
+			{
+				_Canceler = value;
+				MarkColumnModified("Canceler");
+			}
+		}
+		string _Canceler;
+
+		public static string Meta_CancelRemark{get{return "CancelRemark";}}
+
+        [System.Xml.Serialization.XmlElement("CancelRemark")]
+        [Column] 
+		public string CancelRemark 
+		{ 
+			get
+			{
+				return _CancelRemark;
+			}
+			set
+			{
+				_CancelRemark = value;
+				MarkColumnModified("CancelRemark");
+			}
+		}
+		string _CancelRemark;
+
+		public static string Meta_CancelTime{get{return "CancelTime";}}
+
+        [System.Xml.Serialization.XmlElement("CancelTime")]
+        [Column] 
+		public DateTime? CancelTime 
+		{ 
+			get
+			{
+				return _CancelTime;
+			}
+			set
+			{
+				_CancelTime = value;
+				MarkColumnModified("CancelTime");
+			}
+		}
+		DateTime? _CancelTime;
+
+		public static string Meta_CostPrice{get{return "CostPrice";}}
+
+        [System.Xml.Serialization.XmlElement("CostPrice")]
+        [Column] 
+		public decimal? CostPrice 
+		{ 
+			get
+			{
+				return _CostPrice;
+			}
+			set
+			{
+				_CostPrice = value;
+				MarkColumnModified("CostPrice");
+			}
+		}
+		decimal? _CostPrice;
+
+		public static string Meta_GroupSession{get{return "GroupSession";}}
+
+        [System.Xml.Serialization.XmlElement("GroupSession")]
+        [Column] 
+		public Guid? GroupSession 
+		{ 
+			get
+			{
+				return _GroupSession;
+			}
+			set
+			{
+				_GroupSession = value;
+				MarkColumnModified("GroupSession");
+			}
+		}
+		Guid? _GroupSession;
+
+		public static string Meta_Invalider{get{return "Invalider";}}
+
+        [System.Xml.Serialization.XmlElement("Invalider")]
+        [Column] 
+		public string Invalider 
+		{ 
+			get
+			{
+				return _Invalider;
+			}
+			set
+			{
+				_Invalider = value;
+				MarkColumnModified("Invalider");
+			}
+		}
+		string _Invalider;
+
+		public static string Meta_InvalidRemark{get{return "InvalidRemark";}}
+
+        [System.Xml.Serialization.XmlElement("InvalidRemark")]
+        [Column] 
+		public string InvalidRemark 
+		{ 
+			get
+			{
+				return _InvalidRemark;
+			}
+			set
+			{
+				_InvalidRemark = value;
+				MarkColumnModified("InvalidRemark");
+			}
+		}
+		string _InvalidRemark;
+
+		public static string Meta_InvalidTime{get{return "InvalidTime";}}
+
+        [System.Xml.Serialization.XmlElement("InvalidTime")]
+        [Column] 
+		public DateTime? InvalidTime 
+		{ 
+			get
+			{
+				return _InvalidTime;
+			}
+			set
+			{
+				_InvalidTime = value;
+				MarkColumnModified("InvalidTime");
+			}
+		}
+		DateTime? _InvalidTime;
+
+		public static string Meta_ItemSession{get{return "ItemSession";}}
+
+        [System.Xml.Serialization.XmlElement("ItemSession")]
+        [Column] 
+		public Guid? ItemSession 
+		{ 
+			get
+			{
+				return _ItemSession;
+			}
+			set
+			{
+				_ItemSession = value;
+				MarkColumnModified("ItemSession");
+			}
+		}
+		Guid? _ItemSession;
+
+		public static string Meta_Num{get{return "Num";}}
+
+        [System.Xml.Serialization.XmlElement("Num")]
+        [Column] 
+		public long? Num 
+		{ 
+			get
+			{
+				return _Num;
+			}
+			set
+			{
+				_Num = value;
+				MarkColumnModified("Num");
+			}
+		}
+		long? _Num;
+
+		public static string Meta_PlanArriveTime{get{return "PlanArriveTime";}}
+
+        [System.Xml.Serialization.XmlElement("PlanArriveTime")]
+        [Column] 
+		public DateTime? PlanArriveTime 
+		{ 
+			get
+			{
+				return _PlanArriveTime;
+			}
+			set
+			{
+				_PlanArriveTime = value;
+				MarkColumnModified("PlanArriveTime");
+			}
+		}
+		DateTime? _PlanArriveTime;
+
+		public static string Meta_PrintCounts{get{return "PrintCounts";}}
+
+        [System.Xml.Serialization.XmlElement("PrintCounts")]
+        [Column] 
+		public int PrintCounts 
+		{ 
+			get
+			{
+				return _PrintCounts;
+			}
+			set
+			{
+				_PrintCounts = value;
+				MarkColumnModified("PrintCounts");
+			}
+		}
+		int _PrintCounts;
+
+		public static string Meta_PrintSession{get{return "PrintSession";}}
+
+        [System.Xml.Serialization.XmlElement("PrintSession")]
+        [Column] 
+		public Guid PrintSession 
+		{ 
+			get
+			{
+				return _PrintSession;
+			}
+			set
+			{
+				_PrintSession = value;
+				MarkColumnModified("PrintSession");
+			}
+		}
+		Guid _PrintSession;
+
+		public static string Meta_PrintTime{get{return "PrintTime";}}
+
+        [System.Xml.Serialization.XmlElement("PrintTime")]
+        [Column] 
+		public DateTime PrintTime 
+		{ 
+			get
+			{
+				return _PrintTime;
+			}
+			set
+			{
+				_PrintTime = value;
+				MarkColumnModified("PrintTime");
+			}
+		}
+		DateTime _PrintTime;
+
+		public static string Meta_PrintUser{get{return "PrintUser";}}
+
+        [System.Xml.Serialization.XmlElement("PrintUser")]
+        [Column] 
+		public string PrintUser 
+		{ 
+			get
+			{
+				return _PrintUser;
+			}
+			set
+			{
+				_PrintUser = value;
+				MarkColumnModified("PrintUser");
+			}
+		}
+		string _PrintUser;
+
+		public static string Meta_ProduceDate{get{return "ProduceDate";}}
+
+        [System.Xml.Serialization.XmlElement("ProduceDate")]
+        [Column] 
+		public DateTime? ProduceDate 
+		{ 
+			get
+			{
+				return _ProduceDate;
+			}
+			set
+			{
+				_ProduceDate = value;
+				MarkColumnModified("ProduceDate");
+			}
+		}
+		DateTime? _ProduceDate;
+
+		public static string Meta_ProduceNo{get{return "ProduceNo";}}
+
+        [System.Xml.Serialization.XmlElement("ProduceNo")]
+        [Column] 
+		public string ProduceNo 
+		{ 
+			get
+			{
+				return _ProduceNo;
+			}
+			set
+			{
+				_ProduceNo = value;
+				MarkColumnModified("ProduceNo");
+			}
+		}
+		string _ProduceNo;
+
+		public static string Meta_Promot{get{return "Promot";}}
+
+        [System.Xml.Serialization.XmlElement("Promot")]
+        [Column] 
+		public Guid? Promot 
+		{ 
+			get
+			{
+				return _Promot;
+			}
+			set
+			{
+				_Promot = value;
+				MarkColumnModified("Promot");
+			}
+		}
+		Guid? _Promot;
+
+		public static string Meta_PurchNo{get{return "PurchNo";}}
+
+        [System.Xml.Serialization.XmlElement("PurchNo")]
+        [Column] 
+		public string PurchNo 
+		{ 
+			get
+			{
+				return _PurchNo;
+			}
+			set
+			{
+				_PurchNo = value;
+				MarkColumnModified("PurchNo");
+			}
+		}
+		string _PurchNo;
+
+		public static string Meta_SuppName{get{return "SuppName";}}
+
+        [System.Xml.Serialization.XmlElement("SuppName")]
+        [Column] 
+		public string SuppName 
+		{ 
+			get
+			{
+				return _SuppName;
+			}
+			set
+			{
+				_SuppName = value;
+				MarkColumnModified("SuppName");
+			}
+		}
+		string _SuppName;
+
+		public static string Meta_TagPrintCounts{get{return "TagPrintCounts";}}
+
+        [System.Xml.Serialization.XmlElement("TagPrintCounts")]
+        [Column] 
+		public int TagPrintCounts 
+		{ 
+			get
+			{
+				return _TagPrintCounts;
+			}
+			set
+			{
+				_TagPrintCounts = value;
+				MarkColumnModified("TagPrintCounts");
+			}
+		}
+		int _TagPrintCounts;
+
+		public static string Meta_TagPrintSession{get{return "TagPrintSession";}}
+
+        [System.Xml.Serialization.XmlElement("TagPrintSession")]
+        [Column] 
+		public Guid? TagPrintSession 
+		{ 
+			get
+			{
+				return _TagPrintSession;
+			}
+			set
+			{
+				_TagPrintSession = value;
+				MarkColumnModified("TagPrintSession");
+			}
+		}
+		Guid? _TagPrintSession;
+
+		public static string Meta_TagPrintTime{get{return "TagPrintTime";}}
+
+        [System.Xml.Serialization.XmlElement("TagPrintTime")]
+        [Column] 
+		public DateTime? TagPrintTime 
+		{ 
+			get
+			{
+				return _TagPrintTime;
+			}
+			set
+			{
+				_TagPrintTime = value;
+				MarkColumnModified("TagPrintTime");
+			}
+		}
+		DateTime? _TagPrintTime;
+
+		public static string Meta_TagPrintUser{get{return "TagPrintUser";}}
+
+        [System.Xml.Serialization.XmlElement("TagPrintUser")]
+        [Column] 
+		public string TagPrintUser 
+		{ 
+			get
+			{
+				return _TagPrintUser;
+			}
+			set
+			{
+				_TagPrintUser = value;
+				MarkColumnModified("TagPrintUser");
+			}
+		}
+		string _TagPrintUser;
+
+		public static string Meta_TotalItemCount{get{return "TotalItemCount";}}
+
+        [System.Xml.Serialization.XmlElement("TotalItemCount")]
+        [Column] 
+		public long? TotalItemCount 
+		{ 
+			get
+			{
+				return _TotalItemCount;
+			}
+			set
+			{
+				_TotalItemCount = value;
+				MarkColumnModified("TotalItemCount");
+			}
+		}
+		long? _TotalItemCount;
+
+		public static string Meta_TotalItemPackage{get{return "TotalItemPackage";}}
+
+        [System.Xml.Serialization.XmlElement("TotalItemPackage")]
+        [Column] 
+		public long? TotalItemPackage 
+		{ 
+			get
+			{
+				return _TotalItemPackage;
+			}
+			set
+			{
+				_TotalItemPackage = value;
+				MarkColumnModified("TotalItemPackage");
+			}
+		}
+		long? _TotalItemPackage;
+
+		public static string Meta_TotalItemVolume{get{return "TotalItemVolume";}}
+
+        [System.Xml.Serialization.XmlElement("TotalItemVolume")]
+        [Column] 
+		public decimal? TotalItemVolume 
+		{ 
+			get
+			{
+				return _TotalItemVolume;
+			}
+			set
+			{
+				_TotalItemVolume = value;
+				MarkColumnModified("TotalItemVolume");
+			}
+		}
+		decimal? _TotalItemVolume;
+
+		public static string Meta_UserName{get{return "UserName";}}
+
+        [System.Xml.Serialization.XmlElement("UserName")]
+        [Column] 
+		public string UserName 
+		{ 
+			get
+			{
+				return _UserName;
+			}
+			set
+			{
+				_UserName = value;
+				MarkColumnModified("UserName");
+			}
+		}
+		string _UserName;
+
+		public static string Meta_WareName{get{return "WareName";}}
+
+        [System.Xml.Serialization.XmlElement("WareName")]
+        [Column] 
+		public string WareName 
+		{ 
+			get
+			{
+				return _WareName;
+			}
+			set
+			{
+				_WareName = value;
+				MarkColumnModified("WareName");
+			}
+		}
+		string _WareName;
+
+		public static string Meta_SumAllPrice{get{return "SumAllPrice";}}
+
+        [System.Xml.Serialization.XmlElement("SumAllPrice")]
+        [Column] 
+		public decimal? SumAllPrice 
+		{ 
+			get
+			{
+				return _SumAllPrice;
+			}
+			set
+			{
+				_SumAllPrice = value;
+				MarkColumnModified("SumAllPrice");
+			}
+		}
+		decimal? _SumAllPrice;
+
+		public static string Meta_Phone{get{return "Phone";}}
+
+        [System.Xml.Serialization.XmlElement("Phone")]
+        [Column] 
+		public string Phone 
+		{ 
+			get
+			{
+				return _Phone;
+			}
+			set
+			{
+				_Phone = value;
+				MarkColumnModified("Phone");
+			}
+		}
+		string _Phone;
+
+		public static string Meta_SuppPerson{get{return "SuppPerson";}}
+
+        [System.Xml.Serialization.XmlElement("SuppPerson")]
+        [Column] 
+		public string SuppPerson 
+		{ 
+			get
+			{
+				return _SuppPerson;
+			}
+			set
+			{
+				_SuppPerson = value;
+				MarkColumnModified("SuppPerson");
+			}
+		}
+		string _SuppPerson;
+
+		public static string Meta_SuppQQ{get{return "SuppQQ";}}
+
+        [System.Xml.Serialization.XmlElement("SuppQQ")]
+        [Column] 
+		public string SuppQQ 
+		{ 
+			get
+			{
+				return _SuppQQ;
+			}
+			set
+			{
+				_SuppQQ = value;
+				MarkColumnModified("SuppQQ");
+			}
+		}
+		string _SuppQQ;
+
+		public static string Meta_PurchNum{get{return "PurchNum";}}
+
+        [System.Xml.Serialization.XmlElement("PurchNum")]
+        [Column] 
+		public long? PurchNum 
+		{ 
+			get
+			{
+				return _PurchNum;
+			}
+			set
+			{
+				_PurchNum = value;
+				MarkColumnModified("PurchNum");
+			}
+		}
+		long? _PurchNum;
+
+		public static string Meta_SumPackageCount{get{return "SumPackageCount";}}
+
+        [System.Xml.Serialization.XmlElement("SumPackageCount")]
+        [Column] 
+		public long? SumPackageCount 
+		{ 
+			get
+			{
+				return _SumPackageCount;
+			}
+			set
+			{
+				_SumPackageCount = value;
+				MarkColumnModified("SumPackageCount");
+			}
+		}
+		long? _SumPackageCount;
+
+		[IgnoreAttribute]
+		[System.Xml.Serialization.XmlElement("UISelected")]
+		public bool UISelected{get{return _UISelected;}set{_UISelected=value;}}
+		bool _UISelected=false;
+		
+		[IgnoreAttribute]
+		[System.Xml.Serialization.XmlElement("IsDynamicAdd")]
+		public bool IsDynamicAdd{get{return _IsDynamicAdd;}set{_IsDynamicAdd=value;}}
+		bool _IsDynamicAdd=false;
+	}
+    
+	[TableName("V_ERP_PurchItemGet")]
+	[ExplicitColumns]
+	[Serializable]
+    public partial class V_ERP_PurchItemGet : UltraDbEntityDB.Record<V_ERP_PurchItemGet>  
+    {
+		public static string Meta_RowNum{get{return "RowNum";}}
+
+        [System.Xml.Serialization.XmlElement("RowNum")]
+        [Column] 
+		public long? RowNum 
+		{ 
+			get
+			{
+				return _RowNum;
+			}
+			set
+			{
+				_RowNum = value;
+				MarkColumnModified("RowNum");
+			}
+		}
+		long? _RowNum;
+
+		public static string Meta_CancelNum{get{return "CancelNum";}}
+
+        [System.Xml.Serialization.XmlElement("CancelNum")]
+        [Column] 
+		public long CancelNum 
+		{ 
+			get
+			{
+				return _CancelNum;
+			}
+			set
+			{
+				_CancelNum = value;
+				MarkColumnModified("CancelNum");
+			}
+		}
+		long _CancelNum;
+
+		public static string Meta_Id{get{return "Id";}}
+
+        [System.Xml.Serialization.XmlElement("Id")]
+        [Column] 
+		public long Id 
+		{ 
+			get
+			{
+				return _Id;
+			}
+			set
+			{
+				_Id = value;
+				MarkColumnModified("Id");
+			}
+		}
+		long _Id;
+
+		public static string Meta_Guid{get{return "Guid";}}
+
+        [System.Xml.Serialization.XmlElement("Guid")]
+        [Column] 
+		public Guid Guid 
+		{ 
+			get
+			{
+				return _Guid;
+			}
+			set
+			{
+				_Guid = value;
+				MarkColumnModified("Guid");
+			}
+		}
+		Guid _Guid;
+
+		public static string Meta_CreateDate{get{return "CreateDate";}}
+
+        [System.Xml.Serialization.XmlElement("CreateDate")]
+        [Column] 
+		public DateTime CreateDate 
+		{ 
+			get
+			{
+				return _CreateDate;
+			}
+			set
+			{
+				_CreateDate = value;
+				MarkColumnModified("CreateDate");
+			}
+		}
+		DateTime _CreateDate;
+
+		public static string Meta_Creator{get{return "Creator";}}
+
+        [System.Xml.Serialization.XmlElement("Creator")]
+        [Column] 
+		public string Creator 
+		{ 
+			get
+			{
+				return _Creator;
+			}
+			set
+			{
+				_Creator = value;
+				MarkColumnModified("Creator");
+			}
+		}
+		string _Creator;
+
+		public static string Meta_UpdateDate{get{return "UpdateDate";}}
+
+        [System.Xml.Serialization.XmlElement("UpdateDate")]
+        [Column] 
+		public DateTime UpdateDate 
+		{ 
+			get
+			{
+				return _UpdateDate;
+			}
+			set
+			{
+				_UpdateDate = value;
+				MarkColumnModified("UpdateDate");
+			}
+		}
+		DateTime _UpdateDate;
+
+		public static string Meta_Updator{get{return "Updator";}}
+
+        [System.Xml.Serialization.XmlElement("Updator")]
+        [Column] 
+		public string Updator 
+		{ 
+			get
+			{
+				return _Updator;
+			}
+			set
+			{
+				_Updator = value;
+				MarkColumnModified("Updator");
+			}
+		}
+		string _Updator;
+
+		public static string Meta_IsDel{get{return "IsDel";}}
+
+        [System.Xml.Serialization.XmlElement("IsDel")]
+        [Column] 
+		public bool IsDel 
+		{ 
+			get
+			{
+				return _IsDel;
+			}
+			set
+			{
+				_IsDel = value;
+				MarkColumnModified("IsDel");
+			}
+		}
+		bool _IsDel;
+
+		public static string Meta_Reserved2{get{return "Reserved2";}}
+
+        [System.Xml.Serialization.XmlElement("Reserved2")]
+        [Column] 
+		public string Reserved2 
+		{ 
+			get
+			{
+				return _Reserved2;
+			}
+			set
+			{
+				_Reserved2 = value;
+				MarkColumnModified("Reserved2");
+			}
+		}
+		string _Reserved2;
+
+		public static string Meta_Reserved3{get{return "Reserved3";}}
+
+        [System.Xml.Serialization.XmlElement("Reserved3")]
+        [Column] 
+		public bool Reserved3 
+		{ 
+			get
+			{
+				return _Reserved3;
+			}
+			set
+			{
+				_Reserved3 = value;
+				MarkColumnModified("Reserved3");
+			}
+		}
+		bool _Reserved3;
+
+		public static string Meta_Remark{get{return "Remark";}}
+
+        [System.Xml.Serialization.XmlElement("Remark")]
+        [Column] 
+		public string Remark 
+		{ 
+			get
+			{
+				return _Remark;
+			}
+			set
+			{
+				_Remark = value;
+				MarkColumnModified("Remark");
+			}
+		}
+		string _Remark;
+
+		public static string Meta_AssignItemNum{get{return "AssignItemNum";}}
+
+        [System.Xml.Serialization.XmlElement("AssignItemNum")]
+        [Column] 
+		public int AssignItemNum 
+		{ 
+			get
+			{
+				return _AssignItemNum;
+			}
+			set
+			{
+				_AssignItemNum = value;
+				MarkColumnModified("AssignItemNum");
+			}
+		}
+		int _AssignItemNum;
+
+		public static string Meta_BatchOrd{get{return "BatchOrd";}}
+
+        [System.Xml.Serialization.XmlElement("BatchOrd")]
+        [Column] 
+		public int? BatchOrd 
+		{ 
+			get
+			{
+				return _BatchOrd;
+			}
+			set
+			{
+				_BatchOrd = value;
+				MarkColumnModified("BatchOrd");
+			}
+		}
+		int? _BatchOrd;
+
+		public static string Meta_BuyerNick{get{return "BuyerNick";}}
+
+        [System.Xml.Serialization.XmlElement("BuyerNick")]
+        [Column] 
+		public string BuyerNick 
+		{ 
+			get
+			{
+				return _BuyerNick;
+			}
+			set
+			{
+				_BuyerNick = value;
+				MarkColumnModified("BuyerNick");
+			}
+		}
+		string _BuyerNick;
+
+		public static string Meta_CanAssignNum{get{return "CanAssignNum";}}
+
+        [System.Xml.Serialization.XmlElement("CanAssignNum")]
+        [Column] 
+		public int CanAssignNum 
+		{ 
+			get
+			{
+				return _CanAssignNum;
+			}
+			set
+			{
+				_CanAssignNum = value;
+				MarkColumnModified("CanAssignNum");
+			}
+		}
+		int _CanAssignNum;
+
+		public static string Meta_Color{get{return "Color";}}
+
+        [System.Xml.Serialization.XmlElement("Color")]
+        [Column] 
+		public string Color 
+		{ 
+			get
+			{
+				return _Color;
+			}
+			set
+			{
+				_Color = value;
+				MarkColumnModified("Color");
+			}
+		}
+		string _Color;
+
+		public static string Meta_CostPrice{get{return "CostPrice";}}
+
+        [System.Xml.Serialization.XmlElement("CostPrice")]
+        [Column] 
+		public decimal CostPrice 
+		{ 
+			get
+			{
+				return _CostPrice;
+			}
+			set
+			{
+				_CostPrice = value;
+				MarkColumnModified("CostPrice");
+			}
+		}
+		decimal _CostPrice;
+
+		public static string Meta_GroupSession{get{return "GroupSession";}}
+
+        [System.Xml.Serialization.XmlElement("GroupSession")]
+        [Column] 
+		public Guid? GroupSession 
+		{ 
+			get
+			{
+				return _GroupSession;
+			}
+			set
+			{
+				_GroupSession = value;
+				MarkColumnModified("GroupSession");
+			}
+		}
+		Guid? _GroupSession;
+
+		public static string Meta_ItemName{get{return "ItemName";}}
+
+        [System.Xml.Serialization.XmlElement("ItemName")]
+        [Column] 
+		public string ItemName 
+		{ 
+			get
+			{
+				return _ItemName;
+			}
+			set
+			{
+				_ItemName = value;
+				MarkColumnModified("ItemName");
+			}
+		}
+		string _ItemName;
+
+		public static string Meta_ItemSkuName{get{return "ItemSkuName";}}
+
+        [System.Xml.Serialization.XmlElement("ItemSkuName")]
+        [Column] 
+		public string ItemSkuName 
+		{ 
+			get
+			{
+				return _ItemSkuName;
+			}
+			set
+			{
+				_ItemSkuName = value;
+				MarkColumnModified("ItemSkuName");
+			}
+		}
+		string _ItemSkuName;
+
+		public static string Meta_MergerSysNo{get{return "MergerSysNo";}}
+
+        [System.Xml.Serialization.XmlElement("MergerSysNo")]
+        [Column] 
+		public string MergerSysNo 
+		{ 
+			get
+			{
+				return _MergerSysNo;
+			}
+			set
+			{
+				_MergerSysNo = value;
+				MarkColumnModified("MergerSysNo");
+			}
+		}
+		string _MergerSysNo;
+
+		public static string Meta_RealNum{get{return "RealNum";}}
+
+        [System.Xml.Serialization.XmlElement("RealNum")]
+        [Column] 
+		public long? RealNum 
+		{ 
+			get
+			{
+				return _RealNum;
+			}
+			set
+			{
+				_RealNum = value;
+				MarkColumnModified("RealNum");
+			}
+		}
+		long? _RealNum;
+
+		public static string Meta_RealPurchNum{get{return "RealPurchNum";}}
+
+        [System.Xml.Serialization.XmlElement("RealPurchNum")]
+        [Column] 
+		public long? RealPurchNum 
+		{ 
+			get
+			{
+				return _RealPurchNum;
+			}
+			set
+			{
+				_RealPurchNum = value;
+				MarkColumnModified("RealPurchNum");
+			}
+		}
+		long? _RealPurchNum;
+
+		public static string Meta_Num{get{return "Num";}}
+
+        [System.Xml.Serialization.XmlElement("Num")]
+        [Column] 
+		public long? Num 
+		{ 
+			get
+			{
+				return _Num;
+			}
+			set
+			{
+				_Num = value;
+				MarkColumnModified("Num");
+			}
+		}
+		long? _Num;
+
+		public static string Meta_OuterIid{get{return "OuterIid";}}
+
+        [System.Xml.Serialization.XmlElement("OuterIid")]
+        [Column] 
+		public string OuterIid 
+		{ 
+			get
+			{
+				return _OuterIid;
+			}
+			set
+			{
+				_OuterIid = value;
+				MarkColumnModified("OuterIid");
+			}
+		}
+		string _OuterIid;
+
+		public static string Meta_OuterSkuId{get{return "OuterSkuId";}}
+
+        [System.Xml.Serialization.XmlElement("OuterSkuId")]
+        [Column] 
+		public string OuterSkuId 
+		{ 
+			get
+			{
+				return _OuterSkuId;
+			}
+			set
+			{
+				_OuterSkuId = value;
+				MarkColumnModified("OuterSkuId");
+			}
+		}
+		string _OuterSkuId;
+
+		public static string Meta_PackageCount{get{return "PackageCount";}}
+
+        [System.Xml.Serialization.XmlElement("PackageCount")]
+        [Column] 
+		public int? PackageCount 
+		{ 
+			get
+			{
+				return _PackageCount;
+			}
+			set
+			{
+				_PackageCount = value;
+				MarkColumnModified("PackageCount");
+			}
+		}
+		int? _PackageCount;
+
+		public static string Meta_SumPackCount{get{return "SumPackCount";}}
+
+        [System.Xml.Serialization.XmlElement("SumPackCount")]
+        [Column] 
+		public long? SumPackCount 
+		{ 
+			get
+			{
+				return _SumPackCount;
+			}
+			set
+			{
+				_SumPackCount = value;
+				MarkColumnModified("SumPackCount");
+			}
+		}
+		long? _SumPackCount;
+
+		public static string Meta_PlanArriveTime{get{return "PlanArriveTime";}}
+
+        [System.Xml.Serialization.XmlElement("PlanArriveTime")]
+        [Column] 
+		public DateTime? PlanArriveTime 
+		{ 
+			get
+			{
+				return _PlanArriveTime;
+			}
+			set
+			{
+				_PlanArriveTime = value;
+				MarkColumnModified("PlanArriveTime");
+			}
+		}
+		DateTime? _PlanArriveTime;
+
+		public static string Meta_PrintTime{get{return "PrintTime";}}
+
+        [System.Xml.Serialization.XmlElement("PrintTime")]
+        [Column] 
+		public DateTime? PrintTime 
+		{ 
+			get
+			{
+				return _PrintTime;
+			}
+			set
+			{
+				_PrintTime = value;
+				MarkColumnModified("PrintTime");
+			}
+		}
+		DateTime? _PrintTime;
+
+		public static string Meta_PurchNo{get{return "PurchNo";}}
+
+        [System.Xml.Serialization.XmlElement("PurchNo")]
+        [Column] 
+		public string PurchNo 
+		{ 
+			get
+			{
+				return _PurchNo;
+			}
+			set
+			{
+				_PurchNo = value;
+				MarkColumnModified("PurchNo");
+			}
+		}
+		string _PurchNo;
+
+		public static string Meta_RealPrice{get{return "RealPrice";}}
+
+        [System.Xml.Serialization.XmlElement("RealPrice")]
+        [Column] 
+		public decimal RealPrice 
+		{ 
+			get
+			{
+				return _RealPrice;
+			}
+			set
+			{
+				_RealPrice = value;
+				MarkColumnModified("RealPrice");
+			}
+		}
+		decimal _RealPrice;
+
+		public static string Meta_ReceiverName{get{return "ReceiverName";}}
+
+        [System.Xml.Serialization.XmlElement("ReceiverName")]
+        [Column] 
+		public string ReceiverName 
+		{ 
+			get
+			{
+				return _ReceiverName;
+			}
+			set
+			{
+				_ReceiverName = value;
+				MarkColumnModified("ReceiverName");
+			}
+		}
+		string _ReceiverName;
+
+		public static string Meta_Session{get{return "Session";}}
+
+        [System.Xml.Serialization.XmlElement("Session")]
+        [Column] 
+		public Guid? Session 
+		{ 
+			get
+			{
+				return _Session;
+			}
+			set
+			{
+				_Session = value;
+				MarkColumnModified("Session");
+			}
+		}
+		Guid? _Session;
+
+		public static string Meta_SkuProperties{get{return "SkuProperties";}}
+
+        [System.Xml.Serialization.XmlElement("SkuProperties")]
+        [Column] 
+		public string SkuProperties 
+		{ 
+			get
+			{
+				return _SkuProperties;
+			}
+			set
+			{
+				_SkuProperties = value;
+				MarkColumnModified("SkuProperties");
+			}
+		}
+		string _SkuProperties;
+
+		public static string Meta_SuppName{get{return "SuppName";}}
+
+        [System.Xml.Serialization.XmlElement("SuppName")]
+        [Column] 
+		public string SuppName 
+		{ 
+			get
+			{
+				return _SuppName;
+			}
+			set
+			{
+				_SuppName = value;
+				MarkColumnModified("SuppName");
+			}
+		}
+		string _SuppName;
+
+		public static string Meta_TopOuterIid{get{return "TopOuterIid";}}
+
+        [System.Xml.Serialization.XmlElement("TopOuterIid")]
+        [Column] 
+		public string TopOuterIid 
+		{ 
+			get
+			{
+				return _TopOuterIid;
+			}
+			set
+			{
+				_TopOuterIid = value;
+				MarkColumnModified("TopOuterIid");
+			}
+		}
+		string _TopOuterIid;
+
+		public static string Meta_TopOuterSkuId{get{return "TopOuterSkuId";}}
+
+        [System.Xml.Serialization.XmlElement("TopOuterSkuId")]
+        [Column] 
+		public string TopOuterSkuId 
+		{ 
+			get
+			{
+				return _TopOuterSkuId;
+			}
+			set
+			{
+				_TopOuterSkuId = value;
+				MarkColumnModified("TopOuterSkuId");
+			}
+		}
+		string _TopOuterSkuId;
+
+		public static string Meta_Volume{get{return "Volume";}}
+
+        [System.Xml.Serialization.XmlElement("Volume")]
+        [Column] 
+		public decimal Volume 
+		{ 
+			get
+			{
+				return _Volume;
+			}
+			set
+			{
+				_Volume = value;
+				MarkColumnModified("Volume");
+			}
+		}
+		decimal _Volume;
+
+		public static string Meta_WareName{get{return "WareName";}}
+
+        [System.Xml.Serialization.XmlElement("WareName")]
+        [Column] 
+		public string WareName 
+		{ 
+			get
+			{
+				return _WareName;
+			}
+			set
+			{
+				_WareName = value;
+				MarkColumnModified("WareName");
+			}
+		}
+		string _WareName;
+
+		public static string Meta_SumCostPrice{get{return "SumCostPrice";}}
+
+        [System.Xml.Serialization.XmlElement("SumCostPrice")]
+        [Column] 
+		public decimal? SumCostPrice 
+		{ 
+			get
+			{
+				return _SumCostPrice;
+			}
+			set
+			{
+				_SumCostPrice = value;
+				MarkColumnModified("SumCostPrice");
+			}
+		}
+		decimal? _SumCostPrice;
+
+		public static string Meta_SumAllPrice{get{return "SumAllPrice";}}
+
+        [System.Xml.Serialization.XmlElement("SumAllPrice")]
+        [Column] 
+		public decimal? SumAllPrice 
+		{ 
+			get
+			{
+				return _SumAllPrice;
+			}
+			set
+			{
+				_SumAllPrice = value;
+				MarkColumnModified("SumAllPrice");
+			}
+		}
+		decimal? _SumAllPrice;
+
+		public static string Meta_ImageUrl{get{return "ImageUrl";}}
+
+        [System.Xml.Serialization.XmlElement("ImageUrl")]
+        [Column] 
+		public string ImageUrl 
+		{ 
+			get
+			{
+				return _ImageUrl;
+			}
+			set
+			{
+				_ImageUrl = value;
+				MarkColumnModified("ImageUrl");
+			}
+		}
+		string _ImageUrl;
+
+		public static string Meta_ImgGuid{get{return "ImgGuid";}}
+
+        [System.Xml.Serialization.XmlElement("ImgGuid")]
+        [Column] 
+		public Guid? ImgGuid 
+		{ 
+			get
+			{
+				return _ImgGuid;
+			}
+			set
+			{
+				_ImgGuid = value;
+				MarkColumnModified("ImgGuid");
+			}
+		}
+		Guid? _ImgGuid;
+
+		public static string Meta_SKImageUrl{get{return "SKImageUrl";}}
+
+        [System.Xml.Serialization.XmlElement("SKImageUrl")]
+        [Column] 
+		public string SKImageUrl 
+		{ 
+			get
+			{
+				return _SKImageUrl;
+			}
+			set
+			{
+				_SKImageUrl = value;
+				MarkColumnModified("SKImageUrl");
+			}
+		}
+		string _SKImageUrl;
+
+		public static string Meta_ImageName{get{return "ImageName";}}
+
+        [System.Xml.Serialization.XmlElement("ImageName")]
+        [Column] 
+		public string ImageName 
+		{ 
+			get
+			{
+				return _ImageName;
+			}
+			set
+			{
+				_ImageName = value;
+				MarkColumnModified("ImageName");
+			}
+		}
+		string _ImageName;
+
+		public static string Meta_Reserved1{get{return "Reserved1";}}
+
+        [System.Xml.Serialization.XmlElement("Reserved1")]
+        [Column] 
+		public int? Reserved1 
+		{ 
+			get
+			{
+				return _Reserved1;
+			}
+			set
+			{
+				_Reserved1 = value;
+				MarkColumnModified("Reserved1");
+			}
+		}
+		int? _Reserved1;
+
+		public static string Meta_IsCard{get{return "IsCard";}}
+
+        [System.Xml.Serialization.XmlElement("IsCard")]
+        [Column] 
+		public bool IsCard 
+		{ 
+			get
+			{
+				return _IsCard;
+			}
+			set
+			{
+				_IsCard = value;
+				MarkColumnModified("IsCard");
+			}
+		}
+		bool _IsCard;
+
 		[IgnoreAttribute]
 		[System.Xml.Serialization.XmlElement("UISelected")]
 		public bool UISelected{get{return _UISelected;}set{_UISelected=value;}}
@@ -3197,24 +6377,6 @@ namespace UltraDbEntity
 		}
 		string _LogisName;
 
-		public static string Meta_LogisMobile{get{return "LogisMobile";}}
-
-        [System.Xml.Serialization.XmlElement("LogisMobile")]
-        [Column] 
-		public string LogisMobile 
-		{ 
-			get
-			{
-				return _LogisMobile;
-			}
-			set
-			{
-				_LogisMobile = value;
-				MarkColumnModified("LogisMobile");
-			}
-		}
-		string _LogisMobile;
-
 		public static string Meta_GetPoint{get{return "GetPoint";}}
 
         [System.Xml.Serialization.XmlElement("GetPoint")]
@@ -3395,6 +6557,24 @@ namespace UltraDbEntity
 		}
 		decimal? _ThirdPackFee;
 
+		public static string Meta_UnGoodsTagName{get{return "UnGoodsTagName";}}
+
+        [System.Xml.Serialization.XmlElement("UnGoodsTagName")]
+        [Column] 
+		public string UnGoodsTagName 
+		{ 
+			get
+			{
+				return _UnGoodsTagName;
+			}
+			set
+			{
+				_UnGoodsTagName = value;
+				MarkColumnModified("UnGoodsTagName");
+			}
+		}
+		string _UnGoodsTagName;
+
 		public static string Meta_UserName{get{return "UserName";}}
 
         [System.Xml.Serialization.XmlElement("UserName")]
@@ -3448,60 +6628,6 @@ namespace UltraDbEntity
 			}
 		}
 		string _WareName;
-
-		public static string Meta_ReceiverName{get{return "ReceiverName";}}
-
-        [System.Xml.Serialization.XmlElement("ReceiverName")]
-        [Column] 
-		public string ReceiverName 
-		{ 
-			get
-			{
-				return _ReceiverName;
-			}
-			set
-			{
-				_ReceiverName = value;
-				MarkColumnModified("ReceiverName");
-			}
-		}
-		string _ReceiverName;
-
-		public static string Meta_ReceiverMobile{get{return "ReceiverMobile";}}
-
-        [System.Xml.Serialization.XmlElement("ReceiverMobile")]
-        [Column] 
-		public string ReceiverMobile 
-		{ 
-			get
-			{
-				return _ReceiverMobile;
-			}
-			set
-			{
-				_ReceiverMobile = value;
-				MarkColumnModified("ReceiverMobile");
-			}
-		}
-		string _ReceiverMobile;
-
-		public static string Meta_StdReceiverMobile{get{return "StdReceiverMobile";}}
-
-        [System.Xml.Serialization.XmlElement("StdReceiverMobile")]
-        [Column] 
-		public string StdReceiverMobile 
-		{ 
-			get
-			{
-				return _StdReceiverMobile;
-			}
-			set
-			{
-				_StdReceiverMobile = value;
-				MarkColumnModified("StdReceiverMobile");
-			}
-		}
-		string _StdReceiverMobile;
 
 		public static string Meta_StdReceiverName{get{return "StdReceiverName";}}
 
@@ -3593,24 +6719,6 @@ namespace UltraDbEntity
 		}
 		string _ReceiverDistrict;
 
-		public static string Meta_ReceiverAddress{get{return "ReceiverAddress";}}
-
-        [System.Xml.Serialization.XmlElement("ReceiverAddress")]
-        [Column] 
-		public string ReceiverAddress 
-		{ 
-			get
-			{
-				return _ReceiverAddress;
-			}
-			set
-			{
-				_ReceiverAddress = value;
-				MarkColumnModified("ReceiverAddress");
-			}
-		}
-		string _ReceiverAddress;
-
 		public static string Meta_Reserved1{get{return "Reserved1";}}
 
         [System.Xml.Serialization.XmlElement("Reserved1")]
@@ -3646,42 +6754,6 @@ namespace UltraDbEntity
 			}
 		}
 		bool _Reserved3;
-
-		public static string Meta_Remark{get{return "Remark";}}
-
-        [System.Xml.Serialization.XmlElement("Remark")]
-        [Column] 
-		public string Remark 
-		{ 
-			get
-			{
-				return _Remark;
-			}
-			set
-			{
-				_Remark = value;
-				MarkColumnModified("Remark");
-			}
-		}
-		string _Remark;
-
-		public static string Meta_SellerNick{get{return "SellerNick";}}
-
-        [System.Xml.Serialization.XmlElement("SellerNick")]
-        [Column] 
-		public string SellerNick 
-		{ 
-			get
-			{
-				return _SellerNick;
-			}
-			set
-			{
-				_SellerNick = value;
-				MarkColumnModified("SellerNick");
-			}
-		}
-		string _SellerNick;
 
 		public static string Meta_Reserved2{get{return "Reserved2";}}
 
@@ -3719,6 +6791,24 @@ namespace UltraDbEntity
 		}
 		DateTime _PrintTime;
 
+		public static string Meta_HCPrintTime{get{return "HCPrintTime";}}
+
+        [System.Xml.Serialization.XmlElement("HCPrintTime")]
+        [Column] 
+		public string HCPrintTime 
+		{ 
+			get
+			{
+				return _HCPrintTime;
+			}
+			set
+			{
+				_HCPrintTime = value;
+				MarkColumnModified("HCPrintTime");
+			}
+		}
+		string _HCPrintTime;
+
 		public static string Meta_ProDelTime{get{return "ProDelTime";}}
 
         [System.Xml.Serialization.XmlElement("ProDelTime")]
@@ -3736,78 +6826,6 @@ namespace UltraDbEntity
 			}
 		}
 		DateTime? _ProDelTime;
-
-		public static string Meta_PrintTradeNo{get{return "PrintTradeNo";}}
-
-        [System.Xml.Serialization.XmlElement("PrintTradeNo")]
-        [Column] 
-		public string PrintTradeNo 
-		{ 
-			get
-			{
-				return _PrintTradeNo;
-			}
-			set
-			{
-				_PrintTradeNo = value;
-				MarkColumnModified("PrintTradeNo");
-			}
-		}
-		string _PrintTradeNo;
-
-		public static string Meta_PostPay{get{return "PostPay";}}
-
-        [System.Xml.Serialization.XmlElement("PostPay")]
-        [Column] 
-		public string PostPay 
-		{ 
-			get
-			{
-				return _PostPay;
-			}
-			set
-			{
-				_PostPay = value;
-				MarkColumnModified("PostPay");
-			}
-		}
-		string _PostPay;
-
-		public static string Meta_SellerMemo{get{return "SellerMemo";}}
-
-        [System.Xml.Serialization.XmlElement("SellerMemo")]
-        [Column] 
-		public string SellerMemo 
-		{ 
-			get
-			{
-				return _SellerMemo;
-			}
-			set
-			{
-				_SellerMemo = value;
-				MarkColumnModified("SellerMemo");
-			}
-		}
-		string _SellerMemo;
-
-		public static string Meta_Tids{get{return "Tids";}}
-
-        [System.Xml.Serialization.XmlElement("Tids")]
-        [Column] 
-		public string Tids 
-		{ 
-			get
-			{
-				return _Tids;
-			}
-			set
-			{
-				_Tids = value;
-				MarkColumnModified("Tids");
-			}
-		}
-		string _Tids;
 
 		public static string Meta_PackVolume{get{return "PackVolume";}}
 
@@ -3899,6 +6917,168 @@ namespace UltraDbEntity
 		}
 		decimal? _ItemSalePrice;
 
+		public static string Meta_GoodsFinReViewer{get{return "GoodsFinReViewer";}}
+
+        [System.Xml.Serialization.XmlElement("GoodsFinReViewer")]
+        [Column] 
+		public string GoodsFinReViewer 
+		{ 
+			get
+			{
+				return _GoodsFinReViewer;
+			}
+			set
+			{
+				_GoodsFinReViewer = value;
+				MarkColumnModified("GoodsFinReViewer");
+			}
+		}
+		string _GoodsFinReViewer;
+
+		public static string Meta_BatchPrintMemo{get{return "BatchPrintMemo";}}
+
+        [System.Xml.Serialization.XmlElement("BatchPrintMemo")]
+        [Column] 
+		public string BatchPrintMemo 
+		{ 
+			get
+			{
+				return _BatchPrintMemo;
+			}
+			set
+			{
+				_BatchPrintMemo = value;
+				MarkColumnModified("BatchPrintMemo");
+			}
+		}
+		string _BatchPrintMemo;
+
+		public static string Meta_GetPointPrice{get{return "GetPointPrice";}}
+
+        [System.Xml.Serialization.XmlElement("GetPointPrice")]
+        [Column] 
+		public decimal? GetPointPrice 
+		{ 
+			get
+			{
+				return _GetPointPrice;
+			}
+			set
+			{
+				_GetPointPrice = value;
+				MarkColumnModified("GetPointPrice");
+			}
+		}
+		decimal? _GetPointPrice;
+
+		public static string Meta_PrintViewer{get{return "PrintViewer";}}
+
+        [System.Xml.Serialization.XmlElement("PrintViewer")]
+        [Column] 
+		public string PrintViewer 
+		{ 
+			get
+			{
+				return _PrintViewer;
+			}
+			set
+			{
+				_PrintViewer = value;
+				MarkColumnModified("PrintViewer");
+			}
+		}
+		string _PrintViewer;
+
+		public static string Meta_KSLogisName{get{return "KSLogisName";}}
+
+        [System.Xml.Serialization.XmlElement("KSLogisName")]
+        [Column] 
+		public string KSLogisName 
+		{ 
+			get
+			{
+				return _KSLogisName;
+			}
+			set
+			{
+				_KSLogisName = value;
+				MarkColumnModified("KSLogisName");
+			}
+		}
+		string _KSLogisName;
+
+		public static string Meta_ReceiverTim{get{return "ReceiverTim";}}
+
+        [System.Xml.Serialization.XmlElement("ReceiverTim")]
+        [Column] 
+		public string ReceiverTim 
+		{ 
+			get
+			{
+				return _ReceiverTim;
+			}
+			set
+			{
+				_ReceiverTim = value;
+				MarkColumnModified("ReceiverTim");
+			}
+		}
+		string _ReceiverTim;
+
+		public static string Meta_ProArriveTime{get{return "ProArriveTime";}}
+
+        [System.Xml.Serialization.XmlElement("ProArriveTime")]
+        [Column] 
+		public string ProArriveTime 
+		{ 
+			get
+			{
+				return _ProArriveTime;
+			}
+			set
+			{
+				_ProArriveTime = value;
+				MarkColumnModified("ProArriveTime");
+			}
+		}
+		string _ProArriveTime;
+
+		public static string Meta_StdReceiverMobile{get{return "StdReceiverMobile";}}
+
+        [System.Xml.Serialization.XmlElement("StdReceiverMobile")]
+        [Column] 
+		public string StdReceiverMobile 
+		{ 
+			get
+			{
+				return _StdReceiverMobile;
+			}
+			set
+			{
+				_StdReceiverMobile = value;
+				MarkColumnModified("StdReceiverMobile");
+			}
+		}
+		string _StdReceiverMobile;
+
+		public static string Meta_LogisMobile{get{return "LogisMobile";}}
+
+        [System.Xml.Serialization.XmlElement("LogisMobile")]
+        [Column] 
+		public string LogisMobile 
+		{ 
+			get
+			{
+				return _LogisMobile;
+			}
+			set
+			{
+				_LogisMobile = value;
+				MarkColumnModified("LogisMobile");
+			}
+		}
+		string _LogisMobile;
+
 		public static string Meta_GoodsToHome{get{return "GoodsToHome";}}
 
         [System.Xml.Serialization.XmlElement("GoodsToHome")]
@@ -3953,59 +7133,131 @@ namespace UltraDbEntity
 		}
 		string _PointMobile;
 
-		public static string Meta_PayTime{get{return "PayTime";}}
+		public static string Meta_Tids{get{return "Tids";}}
 
-        [System.Xml.Serialization.XmlElement("PayTime")]
+        [System.Xml.Serialization.XmlElement("Tids")]
         [Column] 
-		public DateTime? PayTime 
+		public string Tids 
 		{ 
 			get
 			{
-				return _PayTime;
+				return _Tids;
 			}
 			set
 			{
-				_PayTime = value;
-				MarkColumnModified("PayTime");
+				_Tids = value;
+				MarkColumnModified("Tids");
 			}
 		}
-		DateTime? _PayTime;
+		string _Tids;
 
-		public static string Meta_PointAddress{get{return "PointAddress";}}
+		public static string Meta_RecvStateCity{get{return "RecvStateCity";}}
 
-        [System.Xml.Serialization.XmlElement("PointAddress")]
+        [System.Xml.Serialization.XmlElement("RecvStateCity")]
         [Column] 
-		public string PointAddress 
+		public string RecvStateCity 
 		{ 
 			get
 			{
-				return _PointAddress;
+				return _RecvStateCity;
 			}
 			set
 			{
-				_PointAddress = value;
-				MarkColumnModified("PointAddress");
+				_RecvStateCity = value;
+				MarkColumnModified("RecvStateCity");
 			}
 		}
-		string _PointAddress;
+		string _RecvStateCity;
 
-		public static string Meta_SellerMobile{get{return "SellerMobile";}}
+		public static string Meta_YFYReceiverAddress{get{return "YFYReceiverAddress";}}
 
-        [System.Xml.Serialization.XmlElement("SellerMobile")]
+        [System.Xml.Serialization.XmlElement("YFYReceiverAddress")]
         [Column] 
-		public string SellerMobile 
+		public string YFYReceiverAddress 
 		{ 
 			get
 			{
-				return _SellerMobile;
+				return _YFYReceiverAddress;
 			}
 			set
 			{
-				_SellerMobile = value;
-				MarkColumnModified("SellerMobile");
+				_YFYReceiverAddress = value;
+				MarkColumnModified("YFYReceiverAddress");
 			}
 		}
-		string _SellerMobile;
+		string _YFYReceiverAddress;
+
+		public static string Meta_Remark{get{return "Remark";}}
+
+        [System.Xml.Serialization.XmlElement("Remark")]
+        [Column] 
+		public string Remark 
+		{ 
+			get
+			{
+				return _Remark;
+			}
+			set
+			{
+				_Remark = value;
+				MarkColumnModified("Remark");
+			}
+		}
+		string _Remark;
+
+		public static string Meta_WW{get{return "WW";}}
+
+        [System.Xml.Serialization.XmlElement("WW")]
+        [Column] 
+		public string WW 
+		{ 
+			get
+			{
+				return _WW;
+			}
+			set
+			{
+				_WW = value;
+				MarkColumnModified("WW");
+			}
+		}
+		string _WW;
+
+		public static string Meta_PrintTradeNo{get{return "PrintTradeNo";}}
+
+        [System.Xml.Serialization.XmlElement("PrintTradeNo")]
+        [Column] 
+		public string PrintTradeNo 
+		{ 
+			get
+			{
+				return _PrintTradeNo;
+			}
+			set
+			{
+				_PrintTradeNo = value;
+				MarkColumnModified("PrintTradeNo");
+			}
+		}
+		string _PrintTradeNo;
+
+		public static string Meta_PostPay{get{return "PostPay";}}
+
+        [System.Xml.Serialization.XmlElement("PostPay")]
+        [Column] 
+		public string PostPay 
+		{ 
+			get
+			{
+				return _PostPay;
+			}
+			set
+			{
+				_PostPay = value;
+				MarkColumnModified("PostPay");
+			}
+		}
+		string _PostPay;
 
 		public static string Meta_LogisAddress{get{return "LogisAddress";}}
 
@@ -4025,6 +7277,114 @@ namespace UltraDbEntity
 		}
 		string _LogisAddress;
 
+		public static string Meta_PointAddress{get{return "PointAddress";}}
+
+        [System.Xml.Serialization.XmlElement("PointAddress")]
+        [Column] 
+		public string PointAddress 
+		{ 
+			get
+			{
+				return _PointAddress;
+			}
+			set
+			{
+				_PointAddress = value;
+				MarkColumnModified("PointAddress");
+			}
+		}
+		string _PointAddress;
+
+		public static string Meta_ZALogisMobile{get{return "ZALogisMobile";}}
+
+        [System.Xml.Serialization.XmlElement("ZALogisMobile")]
+        [Column] 
+		public string ZALogisMobile 
+		{ 
+			get
+			{
+				return _ZALogisMobile;
+			}
+			set
+			{
+				_ZALogisMobile = value;
+				MarkColumnModified("ZALogisMobile");
+			}
+		}
+		string _ZALogisMobile;
+
+		public static string Meta_SXCpyPoint{get{return "SXCpyPoint";}}
+
+        [System.Xml.Serialization.XmlElement("SXCpyPoint")]
+        [Column] 
+		public string SXCpyPoint 
+		{ 
+			get
+			{
+				return _SXCpyPoint;
+			}
+			set
+			{
+				_SXCpyPoint = value;
+				MarkColumnModified("SXCpyPoint");
+			}
+		}
+		string _SXCpyPoint;
+
+		public static string Meta_ReceiverAddress{get{return "ReceiverAddress";}}
+
+        [System.Xml.Serialization.XmlElement("ReceiverAddress")]
+        [Column] 
+		public string ReceiverAddress 
+		{ 
+			get
+			{
+				return _ReceiverAddress;
+			}
+			set
+			{
+				_ReceiverAddress = value;
+				MarkColumnModified("ReceiverAddress");
+			}
+		}
+		string _ReceiverAddress;
+
+		public static string Meta_ReceiverName{get{return "ReceiverName";}}
+
+        [System.Xml.Serialization.XmlElement("ReceiverName")]
+        [Column] 
+		public string ReceiverName 
+		{ 
+			get
+			{
+				return _ReceiverName;
+			}
+			set
+			{
+				_ReceiverName = value;
+				MarkColumnModified("ReceiverName");
+			}
+		}
+		string _ReceiverName;
+
+		public static string Meta_ReceiverMobile{get{return "ReceiverMobile";}}
+
+        [System.Xml.Serialization.XmlElement("ReceiverMobile")]
+        [Column] 
+		public string ReceiverMobile 
+		{ 
+			get
+			{
+				return _ReceiverMobile;
+			}
+			set
+			{
+				_ReceiverMobile = value;
+				MarkColumnModified("ReceiverMobile");
+			}
+		}
+		string _ReceiverMobile;
+
 		public static string Meta_CpyPerson{get{return "CpyPerson";}}
 
         [System.Xml.Serialization.XmlElement("CpyPerson")]
@@ -4042,6 +7402,42 @@ namespace UltraDbEntity
 			}
 		}
 		string _CpyPerson;
+
+		public static string Meta_SellerURL{get{return "SellerURL";}}
+
+        [System.Xml.Serialization.XmlElement("SellerURL")]
+        [Column] 
+		public string SellerURL 
+		{ 
+			get
+			{
+				return _SellerURL;
+			}
+			set
+			{
+				_SellerURL = value;
+				MarkColumnModified("SellerURL");
+			}
+		}
+		string _SellerURL;
+
+		public static string Meta_SellerMobile{get{return "SellerMobile";}}
+
+        [System.Xml.Serialization.XmlElement("SellerMobile")]
+        [Column] 
+		public string SellerMobile 
+		{ 
+			get
+			{
+				return _SellerMobile;
+			}
+			set
+			{
+				_SellerMobile = value;
+				MarkColumnModified("SellerMobile");
+			}
+		}
+		string _SellerMobile;
 
 		public static string Meta_YCAIFHName{get{return "YCAIFHName";}}
 
@@ -4079,59 +7475,203 @@ namespace UltraDbEntity
 		}
 		string _ZPFHName;
 
-		public static string Meta_PrintMemo{get{return "PrintMemo";}}
+		public static string Meta_BXFHName{get{return "BXFHName";}}
 
-        [System.Xml.Serialization.XmlElement("PrintMemo")]
+        [System.Xml.Serialization.XmlElement("BXFHName")]
         [Column] 
-		public string PrintMemo 
+		public string BXFHName 
 		{ 
 			get
 			{
-				return _PrintMemo;
+				return _BXFHName;
 			}
 			set
 			{
-				_PrintMemo = value;
-				MarkColumnModified("PrintMemo");
+				_BXFHName = value;
+				MarkColumnModified("BXFHName");
 			}
 		}
-		string _PrintMemo;
+		string _BXFHName;
 
-		public static string Meta_GoodsFinReViewer{get{return "GoodsFinReViewer";}}
+		public static string Meta_SellerNickAlias{get{return "SellerNickAlias";}}
 
-        [System.Xml.Serialization.XmlElement("GoodsFinReViewer")]
+        [System.Xml.Serialization.XmlElement("SellerNickAlias")]
         [Column] 
-		public string GoodsFinReViewer 
+		public string SellerNickAlias 
 		{ 
 			get
 			{
-				return _GoodsFinReViewer;
+				return _SellerNickAlias;
 			}
 			set
 			{
-				_GoodsFinReViewer = value;
-				MarkColumnModified("GoodsFinReViewer");
+				_SellerNickAlias = value;
+				MarkColumnModified("SellerNickAlias");
 			}
 		}
-		string _GoodsFinReViewer;
+		string _SellerNickAlias;
 
-		public static string Meta_BatchPrintMemo{get{return "BatchPrintMemo";}}
+		public static string Meta_GoodViewer{get{return "GoodViewer";}}
 
-        [System.Xml.Serialization.XmlElement("BatchPrintMemo")]
+        [System.Xml.Serialization.XmlElement("GoodViewer")]
         [Column] 
-		public string BatchPrintMemo 
+		public string GoodViewer 
 		{ 
 			get
 			{
-				return _BatchPrintMemo;
+				return _GoodViewer;
 			}
 			set
 			{
-				_BatchPrintMemo = value;
-				MarkColumnModified("BatchPrintMemo");
+				_GoodViewer = value;
+				MarkColumnModified("GoodViewer");
 			}
 		}
-		string _BatchPrintMemo;
+		string _GoodViewer;
+
+		public static string Meta_GoodViewerMoblie{get{return "GoodViewerMoblie";}}
+
+        [System.Xml.Serialization.XmlElement("GoodViewerMoblie")]
+        [Column] 
+		public string GoodViewerMoblie 
+		{ 
+			get
+			{
+				return _GoodViewerMoblie;
+			}
+			set
+			{
+				_GoodViewerMoblie = value;
+				MarkColumnModified("GoodViewerMoblie");
+			}
+		}
+		string _GoodViewerMoblie;
+
+		public static string Meta_CpyAddress{get{return "CpyAddress";}}
+
+        [System.Xml.Serialization.XmlElement("CpyAddress")]
+        [Column] 
+		public string CpyAddress 
+		{ 
+			get
+			{
+				return _CpyAddress;
+			}
+			set
+			{
+				_CpyAddress = value;
+				MarkColumnModified("CpyAddress");
+			}
+		}
+		string _CpyAddress;
+
+		public static string Meta_SrvTime{get{return "SrvTime";}}
+
+        [System.Xml.Serialization.XmlElement("SrvTime")]
+        [Column] 
+		public int? SrvTime 
+		{ 
+			get
+			{
+				return _SrvTime;
+			}
+			set
+			{
+				_SrvTime = value;
+				MarkColumnModified("SrvTime");
+			}
+		}
+		int? _SrvTime;
+
+		public static string Meta_ProArriveSrvTime{get{return "ProArriveSrvTime";}}
+
+        [System.Xml.Serialization.XmlElement("ProArriveSrvTime")]
+        [Column] 
+		public string ProArriveSrvTime 
+		{ 
+			get
+			{
+				return _ProArriveSrvTime;
+			}
+			set
+			{
+				_ProArriveSrvTime = value;
+				MarkColumnModified("ProArriveSrvTime");
+			}
+		}
+		string _ProArriveSrvTime;
+
+		public static string Meta_SellerNick{get{return "SellerNick";}}
+
+        [System.Xml.Serialization.XmlElement("SellerNick")]
+        [Column] 
+		public string SellerNick 
+		{ 
+			get
+			{
+				return _SellerNick;
+			}
+			set
+			{
+				_SellerNick = value;
+				MarkColumnModified("SellerNick");
+			}
+		}
+		string _SellerNick;
+
+		public static string Meta_PayTime{get{return "PayTime";}}
+
+        [System.Xml.Serialization.XmlElement("PayTime")]
+        [Column] 
+		public string PayTime 
+		{ 
+			get
+			{
+				return _PayTime;
+			}
+			set
+			{
+				_PayTime = value;
+				MarkColumnModified("PayTime");
+			}
+		}
+		string _PayTime;
+
+		public static string Meta_SumBatchPrice{get{return "SumBatchPrice";}}
+
+        [System.Xml.Serialization.XmlElement("SumBatchPrice")]
+        [Column] 
+		public decimal? SumBatchPrice 
+		{ 
+			get
+			{
+				return _SumBatchPrice;
+			}
+			set
+			{
+				_SumBatchPrice = value;
+				MarkColumnModified("SumBatchPrice");
+			}
+		}
+		decimal? _SumBatchPrice;
+
+		public static string Meta_LockTime{get{return "LockTime";}}
+
+        [System.Xml.Serialization.XmlElement("LockTime")]
+        [Column] 
+		public DateTime? LockTime 
+		{ 
+			get
+			{
+				return _LockTime;
+			}
+			set
+			{
+				_LockTime = value;
+				MarkColumnModified("LockTime");
+			}
+		}
+		DateTime? _LockTime;
 
 		public static string Meta_Payment{get{return "Payment";}}
 
@@ -4151,77 +7691,185 @@ namespace UltraDbEntity
 		}
 		decimal? _Payment;
 
-		public static string Meta_BXFHName{get{return "BXFHName";}}
+		public static string Meta_UnSendPayMent{get{return "UnSendPayMent";}}
 
-        [System.Xml.Serialization.XmlElement("BXFHName")]
+        [System.Xml.Serialization.XmlElement("UnSendPayMent")]
         [Column] 
-		public string BXFHName 
+		public decimal? UnSendPayMent 
 		{ 
 			get
 			{
-				return _BXFHName;
+				return _UnSendPayMent;
 			}
 			set
 			{
-				_BXFHName = value;
-				MarkColumnModified("BXFHName");
+				_UnSendPayMent = value;
+				MarkColumnModified("UnSendPayMent");
 			}
 		}
-		string _BXFHName;
+		decimal? _UnSendPayMent;
 
-		public static string Meta_GetPointPrice{get{return "GetPointPrice";}}
+		public static string Meta_AuditSellerMemo{get{return "AuditSellerMemo";}}
 
-        [System.Xml.Serialization.XmlElement("GetPointPrice")]
+        [System.Xml.Serialization.XmlElement("AuditSellerMemo")]
         [Column] 
-		public decimal? GetPointPrice 
+		public string AuditSellerMemo 
 		{ 
 			get
 			{
-				return _GetPointPrice;
+				return _AuditSellerMemo;
 			}
 			set
 			{
-				_GetPointPrice = value;
-				MarkColumnModified("GetPointPrice");
+				_AuditSellerMemo = value;
+				MarkColumnModified("AuditSellerMemo");
 			}
 		}
-		decimal? _GetPointPrice;
+		string _AuditSellerMemo;
 
-		public static string Meta_RecvStateCity{get{return "RecvStateCity";}}
+		public static string Meta_IsPrinted{get{return "IsPrinted";}}
 
-        [System.Xml.Serialization.XmlElement("RecvStateCity")]
+        [System.Xml.Serialization.XmlElement("IsPrinted")]
         [Column] 
-		public string RecvStateCity 
+		public bool IsPrinted 
 		{ 
 			get
 			{
-				return _RecvStateCity;
+				return _IsPrinted;
 			}
 			set
 			{
-				_RecvStateCity = value;
-				MarkColumnModified("RecvStateCity");
+				_IsPrinted = value;
+				MarkColumnModified("IsPrinted");
 			}
 		}
-		string _RecvStateCity;
+		bool _IsPrinted;
 
-		public static string Meta_SellerNickAlias{get{return "SellerNickAlias";}}
+		public static string Meta_BuyerMemo{get{return "BuyerMemo";}}
 
-        [System.Xml.Serialization.XmlElement("SellerNickAlias")]
+        [System.Xml.Serialization.XmlElement("BuyerMemo")]
         [Column] 
-		public string SellerNickAlias 
+		public string BuyerMemo 
 		{ 
 			get
 			{
-				return _SellerNickAlias;
+				return _BuyerMemo;
 			}
 			set
 			{
-				_SellerNickAlias = value;
-				MarkColumnModified("SellerNickAlias");
+				_BuyerMemo = value;
+				MarkColumnModified("BuyerMemo");
 			}
 		}
-		string _SellerNickAlias;
+		string _BuyerMemo;
+
+		public static string Meta_SellerMemo{get{return "SellerMemo";}}
+
+        [System.Xml.Serialization.XmlElement("SellerMemo")]
+        [Column] 
+		public string SellerMemo 
+		{ 
+			get
+			{
+				return _SellerMemo;
+			}
+			set
+			{
+				_SellerMemo = value;
+				MarkColumnModified("SellerMemo");
+			}
+		}
+		string _SellerMemo;
+
+		public static string Meta_PrintMemo{get{return "PrintMemo";}}
+
+        [System.Xml.Serialization.XmlElement("PrintMemo")]
+        [Column] 
+		public string PrintMemo 
+		{ 
+			get
+			{
+				return _PrintMemo;
+			}
+			set
+			{
+				_PrintMemo = value;
+				MarkColumnModified("PrintMemo");
+			}
+		}
+		string _PrintMemo;
+
+		public static string Meta_AddrPrintMemo{get{return "AddrPrintMemo";}}
+
+        [System.Xml.Serialization.XmlElement("AddrPrintMemo")]
+        [Column] 
+		public string AddrPrintMemo 
+		{ 
+			get
+			{
+				return _AddrPrintMemo;
+			}
+			set
+			{
+				_AddrPrintMemo = value;
+				MarkColumnModified("AddrPrintMemo");
+			}
+		}
+		string _AddrPrintMemo;
+
+		public static string Meta_PrintCount{get{return "PrintCount";}}
+
+        [System.Xml.Serialization.XmlElement("PrintCount")]
+        [Column] 
+		public int? PrintCount 
+		{ 
+			get
+			{
+				return _PrintCount;
+			}
+			set
+			{
+				_PrintCount = value;
+				MarkColumnModified("PrintCount");
+			}
+		}
+		int? _PrintCount;
+
+		public static string Meta_Title{get{return "Title";}}
+
+        [System.Xml.Serialization.XmlElement("Title")]
+        [Column] 
+		public string Title 
+		{ 
+			get
+			{
+				return _Title;
+			}
+			set
+			{
+				_Title = value;
+				MarkColumnModified("Title");
+			}
+		}
+		string _Title;
+
+		public static string Meta_FinViewer{get{return "FinViewer";}}
+
+        [System.Xml.Serialization.XmlElement("FinViewer")]
+        [Column] 
+		public string FinViewer 
+		{ 
+			get
+			{
+				return _FinViewer;
+			}
+			set
+			{
+				_FinViewer = value;
+				MarkColumnModified("FinViewer");
+			}
+		}
+		string _FinViewer;
 
 		[IgnoreAttribute]
 		[System.Xml.Serialization.XmlElement("UISelected")]
@@ -9060,6 +12708,96 @@ namespace UltraDbEntity
 		}
 		decimal? _Width;
 
+		public static string Meta_EdgeType{get{return "EdgeType";}}
+
+        [System.Xml.Serialization.XmlElement("EdgeType")]
+        [Column] 
+		public string EdgeType 
+		{ 
+			get
+			{
+				return _EdgeType;
+			}
+			set
+			{
+				_EdgeType = value;
+				MarkColumnModified("EdgeType");
+			}
+		}
+		string _EdgeType;
+
+		public static string Meta_HoleLocation{get{return "HoleLocation";}}
+
+        [System.Xml.Serialization.XmlElement("HoleLocation")]
+        [Column] 
+		public string HoleLocation 
+		{ 
+			get
+			{
+				return _HoleLocation;
+			}
+			set
+			{
+				_HoleLocation = value;
+				MarkColumnModified("HoleLocation");
+			}
+		}
+		string _HoleLocation;
+
+		public static string Meta_MainCabinet{get{return "MainCabinet";}}
+
+        [System.Xml.Serialization.XmlElement("MainCabinet")]
+        [Column] 
+		public string MainCabinet 
+		{ 
+			get
+			{
+				return _MainCabinet;
+			}
+			set
+			{
+				_MainCabinet = value;
+				MarkColumnModified("MainCabinet");
+			}
+		}
+		string _MainCabinet;
+
+		public static string Meta_Mirror{get{return "Mirror";}}
+
+        [System.Xml.Serialization.XmlElement("Mirror")]
+        [Column] 
+		public string Mirror 
+		{ 
+			get
+			{
+				return _Mirror;
+			}
+			set
+			{
+				_Mirror = value;
+				MarkColumnModified("Mirror");
+			}
+		}
+		string _Mirror;
+
+		public static string Meta_Wardrobe{get{return "Wardrobe";}}
+
+        [System.Xml.Serialization.XmlElement("Wardrobe")]
+        [Column] 
+		public string Wardrobe 
+		{ 
+			get
+			{
+				return _Wardrobe;
+			}
+			set
+			{
+				_Wardrobe = value;
+				MarkColumnModified("Wardrobe");
+			}
+		}
+		string _Wardrobe;
+
 		[IgnoreAttribute]
 		[System.Xml.Serialization.XmlElement("UISelected")]
 		public bool UISelected{get{return _UISelected;}set{_UISelected=value;}}
@@ -9683,6 +13421,24 @@ namespace UltraDbEntity
 			}
 		}
 		long? _RowNum;
+
+		public static string Meta_SuppName{get{return "SuppName";}}
+
+        [System.Xml.Serialization.XmlElement("SuppName")]
+        [Column] 
+		public string SuppName 
+		{ 
+			get
+			{
+				return _SuppName;
+			}
+			set
+			{
+				_SuppName = value;
+				MarkColumnModified("SuppName");
+			}
+		}
+		string _SuppName;
 
 		public static string Meta_ItemName{get{return "ItemName";}}
 
@@ -10332,6 +14088,24 @@ namespace UltraDbEntity
 		}
 		string _Remark;
 
+		public static string Meta_ImageName{get{return "ImageName";}}
+
+        [System.Xml.Serialization.XmlElement("ImageName")]
+        [Column] 
+		public string ImageName 
+		{ 
+			get
+			{
+				return _ImageName;
+			}
+			set
+			{
+				_ImageName = value;
+				MarkColumnModified("ImageName");
+			}
+		}
+		string _ImageName;
+
 		public static string Meta_Direction{get{return "Direction";}}
 
         [System.Xml.Serialization.XmlElement("Direction")]
@@ -10385,6 +14159,96 @@ namespace UltraDbEntity
 			}
 		}
 		string _Structs;
+
+		public static string Meta_ItemSkuName{get{return "ItemSkuName";}}
+
+        [System.Xml.Serialization.XmlElement("ItemSkuName")]
+        [Column] 
+		public string ItemSkuName 
+		{ 
+			get
+			{
+				return _ItemSkuName;
+			}
+			set
+			{
+				_ItemSkuName = value;
+				MarkColumnModified("ItemSkuName");
+			}
+		}
+		string _ItemSkuName;
+
+		public static string Meta_SupCode{get{return "SupCode";}}
+
+        [System.Xml.Serialization.XmlElement("SupCode")]
+        [Column] 
+		public string SupCode 
+		{ 
+			get
+			{
+				return _SupCode;
+			}
+			set
+			{
+				_SupCode = value;
+				MarkColumnModified("SupCode");
+			}
+		}
+		string _SupCode;
+
+		public static string Meta_SFColor{get{return "SFColor";}}
+
+        [System.Xml.Serialization.XmlElement("SFColor")]
+        [Column] 
+		public string SFColor 
+		{ 
+			get
+			{
+				return _SFColor;
+			}
+			set
+			{
+				_SFColor = value;
+				MarkColumnModified("SFColor");
+			}
+		}
+		string _SFColor;
+
+		public static string Meta_JXDirection{get{return "JXDirection";}}
+
+        [System.Xml.Serialization.XmlElement("JXDirection")]
+        [Column] 
+		public string JXDirection 
+		{ 
+			get
+			{
+				return _JXDirection;
+			}
+			set
+			{
+				_JXDirection = value;
+				MarkColumnModified("JXDirection");
+			}
+		}
+		string _JXDirection;
+
+		public static string Meta_PersonalSkuId{get{return "PersonalSkuId";}}
+
+        [System.Xml.Serialization.XmlElement("PersonalSkuId")]
+        [Column] 
+		public string PersonalSkuId 
+		{ 
+			get
+			{
+				return _PersonalSkuId;
+			}
+			set
+			{
+				_PersonalSkuId = value;
+				MarkColumnModified("PersonalSkuId");
+			}
+		}
+		string _PersonalSkuId;
 
 		[IgnoreAttribute]
 		[System.Xml.Serialization.XmlElement("UISelected")]
@@ -12986,11 +16850,10 @@ namespace UltraDbEntity
 		bool _IsDynamicAdd=false;
 	}
     
-	[TableName("T_ERP_User")]
-	[PrimaryKey("Id")]
+	[TableName("V_ERP_SuppXBatch")]
 	[ExplicitColumns]
 	[Serializable]
-    public partial class T_ERP_User : UltraDbEntityDB.Record<T_ERP_User>  
+    public partial class V_ERP_SuppXBatch : UltraDbEntityDB.Record<V_ERP_SuppXBatch>  
     {
 		public static string Meta_Id{get{return "Id";}}
 
@@ -13190,131 +17053,2003 @@ namespace UltraDbEntity
 		}
 		string _Remark;
 
-		public static string Meta_TimeStamp{get{return "TimeStamp";}}
+		public static string Meta_AddrCode{get{return "AddrCode";}}
 
-        [System.Xml.Serialization.XmlElement("TimeStamp")]
+        [System.Xml.Serialization.XmlElement("AddrCode")]
         [Column] 
-		public byte[] TimeStamp 
+		public string AddrCode 
 		{ 
 			get
 			{
-				return _TimeStamp;
+				return _AddrCode;
 			}
 			set
 			{
-				_TimeStamp = value;
-				MarkColumnModified("TimeStamp");
+				_AddrCode = value;
+				MarkColumnModified("AddrCode");
 			}
 		}
-		byte[] _TimeStamp;
+		string _AddrCode;
 
-		public static string Meta_Address{get{return "Address";}}
+		public static string Meta_AddrGuid{get{return "AddrGuid";}}
 
-        [System.Xml.Serialization.XmlElement("Address")]
+        [System.Xml.Serialization.XmlElement("AddrGuid")]
         [Column] 
-		public string Address 
+		public Guid? AddrGuid 
 		{ 
 			get
 			{
-				return _Address;
+				return _AddrGuid;
 			}
 			set
 			{
-				_Address = value;
-				MarkColumnModified("Address");
+				_AddrGuid = value;
+				MarkColumnModified("AddrGuid");
 			}
 		}
-		string _Address;
+		Guid? _AddrGuid;
 
-		public static string Meta_CompanyName{get{return "CompanyName";}}
+		public static string Meta_AddrOrd{get{return "AddrOrd";}}
 
-        [System.Xml.Serialization.XmlElement("CompanyName")]
+        [System.Xml.Serialization.XmlElement("AddrOrd")]
         [Column] 
-		public string CompanyName 
+		public int? AddrOrd 
 		{ 
 			get
 			{
-				return _CompanyName;
+				return _AddrOrd;
 			}
 			set
 			{
-				_CompanyName = value;
-				MarkColumnModified("CompanyName");
+				_AddrOrd = value;
+				MarkColumnModified("AddrOrd");
 			}
 		}
-		string _CompanyName;
+		int? _AddrOrd;
 
-		public static string Meta_Contacts{get{return "Contacts";}}
+		public static string Meta_BatchCode{get{return "BatchCode";}}
 
-        [System.Xml.Serialization.XmlElement("Contacts")]
+        [System.Xml.Serialization.XmlElement("BatchCode")]
         [Column] 
-		public string Contacts 
+		public string BatchCode 
 		{ 
 			get
 			{
-				return _Contacts;
+				return _BatchCode;
 			}
 			set
 			{
-				_Contacts = value;
-				MarkColumnModified("Contacts");
+				_BatchCode = value;
+				MarkColumnModified("BatchCode");
 			}
 		}
-		string _Contacts;
+		string _BatchCode;
 
-		public static string Meta_IsValid{get{return "IsValid";}}
+		public static string Meta_BatchGuid{get{return "BatchGuid";}}
 
-        [System.Xml.Serialization.XmlElement("IsValid")]
+        [System.Xml.Serialization.XmlElement("BatchGuid")]
         [Column] 
-		public bool IsValid 
+		public Guid? BatchGuid 
 		{ 
 			get
 			{
-				return _IsValid;
+				return _BatchGuid;
 			}
 			set
 			{
-				_IsValid = value;
-				MarkColumnModified("IsValid");
+				_BatchGuid = value;
+				MarkColumnModified("BatchGuid");
 			}
 		}
-		bool _IsValid;
+		Guid? _BatchGuid;
 
-		public static string Meta_LoginPassword{get{return "LoginPassword";}}
+		public static string Meta_BatchItemCount{get{return "BatchItemCount";}}
 
-        [System.Xml.Serialization.XmlElement("LoginPassword")]
+        [System.Xml.Serialization.XmlElement("BatchItemCount")]
         [Column] 
-		public string LoginPassword 
+		public int BatchItemCount 
 		{ 
 			get
 			{
-				return _LoginPassword;
+				return _BatchItemCount;
 			}
 			set
 			{
-				_LoginPassword = value;
-				MarkColumnModified("LoginPassword");
+				_BatchItemCount = value;
+				MarkColumnModified("BatchItemCount");
 			}
 		}
-		string _LoginPassword;
+		int _BatchItemCount;
 
-		public static string Meta_Tel{get{return "Tel";}}
+		public static string Meta_BatchOrd{get{return "BatchOrd";}}
 
-        [System.Xml.Serialization.XmlElement("Tel")]
+        [System.Xml.Serialization.XmlElement("BatchOrd")]
         [Column] 
-		public string Tel 
+		public int? BatchOrd 
 		{ 
 			get
 			{
-				return _Tel;
+				return _BatchOrd;
 			}
 			set
 			{
-				_Tel = value;
-				MarkColumnModified("Tel");
+				_BatchOrd = value;
+				MarkColumnModified("BatchOrd");
 			}
 		}
-		string _Tel;
+		int? _BatchOrd;
+
+		public static string Meta_BatchPostFee{get{return "BatchPostFee";}}
+
+        [System.Xml.Serialization.XmlElement("BatchPostFee")]
+        [Column] 
+		public decimal? BatchPostFee 
+		{ 
+			get
+			{
+				return _BatchPostFee;
+			}
+			set
+			{
+				_BatchPostFee = value;
+				MarkColumnModified("BatchPostFee");
+			}
+		}
+		decimal? _BatchPostFee;
+
+		public static string Meta_BatchVolume{get{return "BatchVolume";}}
+
+        [System.Xml.Serialization.XmlElement("BatchVolume")]
+        [Column] 
+		public decimal? BatchVolume 
+		{ 
+			get
+			{
+				return _BatchVolume;
+			}
+			set
+			{
+				_BatchVolume = value;
+				MarkColumnModified("BatchVolume");
+			}
+		}
+		decimal? _BatchVolume;
+
+		public static string Meta_BusPostFee{get{return "BusPostFee";}}
+
+        [System.Xml.Serialization.XmlElement("BusPostFee")]
+        [Column] 
+		public decimal? BusPostFee 
+		{ 
+			get
+			{
+				return _BusPostFee;
+			}
+			set
+			{
+				_BusPostFee = value;
+				MarkColumnModified("BusPostFee");
+			}
+		}
+		decimal? _BusPostFee;
+
+		public static string Meta_BusVolume{get{return "BusVolume";}}
+
+        [System.Xml.Serialization.XmlElement("BusVolume")]
+        [Column] 
+		public decimal? BusVolume 
+		{ 
+			get
+			{
+				return _BusVolume;
+			}
+			set
+			{
+				_BusVolume = value;
+				MarkColumnModified("BusVolume");
+			}
+		}
+		decimal? _BusVolume;
+
+		public static string Meta_BuyerNick{get{return "BuyerNick";}}
+
+        [System.Xml.Serialization.XmlElement("BuyerNick")]
+        [Column] 
+		public string BuyerNick 
+		{ 
+			get
+			{
+				return _BuyerNick;
+			}
+			set
+			{
+				_BuyerNick = value;
+				MarkColumnModified("BuyerNick");
+			}
+		}
+		string _BuyerNick;
+
+		public static string Meta_CanGoodsView{get{return "CanGoodsView";}}
+
+        [System.Xml.Serialization.XmlElement("CanGoodsView")]
+        [Column] 
+		public bool? CanGoodsView 
+		{ 
+			get
+			{
+				return _CanGoodsView;
+			}
+			set
+			{
+				_CanGoodsView = value;
+				MarkColumnModified("CanGoodsView");
+			}
+		}
+		bool? _CanGoodsView;
+
+		public static string Meta_Cleaner{get{return "Cleaner";}}
+
+        [System.Xml.Serialization.XmlElement("Cleaner")]
+        [Column] 
+		public string Cleaner 
+		{ 
+			get
+			{
+				return _Cleaner;
+			}
+			set
+			{
+				_Cleaner = value;
+				MarkColumnModified("Cleaner");
+			}
+		}
+		string _Cleaner;
+
+		public static string Meta_CleanTime{get{return "CleanTime";}}
+
+        [System.Xml.Serialization.XmlElement("CleanTime")]
+        [Column] 
+		public DateTime? CleanTime 
+		{ 
+			get
+			{
+				return _CleanTime;
+			}
+			set
+			{
+				_CleanTime = value;
+				MarkColumnModified("CleanTime");
+			}
+		}
+		DateTime? _CleanTime;
+
+		public static string Meta_ComboUserName{get{return "ComboUserName";}}
+
+        [System.Xml.Serialization.XmlElement("ComboUserName")]
+        [Column] 
+		public string ComboUserName 
+		{ 
+			get
+			{
+				return _ComboUserName;
+			}
+			set
+			{
+				_ComboUserName = value;
+				MarkColumnModified("ComboUserName");
+			}
+		}
+		string _ComboUserName;
+
+		public static string Meta_CpyBasePrice{get{return "CpyBasePrice";}}
+
+        [System.Xml.Serialization.XmlElement("CpyBasePrice")]
+        [Column] 
+		public decimal? CpyBasePrice 
+		{ 
+			get
+			{
+				return _CpyBasePrice;
+			}
+			set
+			{
+				_CpyBasePrice = value;
+				MarkColumnModified("CpyBasePrice");
+			}
+		}
+		decimal? _CpyBasePrice;
+
+		public static string Meta_CpyMobile{get{return "CpyMobile";}}
+
+        [System.Xml.Serialization.XmlElement("CpyMobile")]
+        [Column] 
+		public string CpyMobile 
+		{ 
+			get
+			{
+				return _CpyMobile;
+			}
+			set
+			{
+				_CpyMobile = value;
+				MarkColumnModified("CpyMobile");
+			}
+		}
+		string _CpyMobile;
+
+		public static string Meta_CpyName{get{return "CpyName";}}
+
+        [System.Xml.Serialization.XmlElement("CpyName")]
+        [Column] 
+		public string CpyName 
+		{ 
+			get
+			{
+				return _CpyName;
+			}
+			set
+			{
+				_CpyName = value;
+				MarkColumnModified("CpyName");
+			}
+		}
+		string _CpyName;
+
+		public static string Meta_CpySrvGuid{get{return "CpySrvGuid";}}
+
+        [System.Xml.Serialization.XmlElement("CpySrvGuid")]
+        [Column] 
+		public Guid? CpySrvGuid 
+		{ 
+			get
+			{
+				return _CpySrvGuid;
+			}
+			set
+			{
+				_CpySrvGuid = value;
+				MarkColumnModified("CpySrvGuid");
+			}
+		}
+		Guid? _CpySrvGuid;
+
+		public static string Meta_ExpRatio{get{return "ExpRatio";}}
+
+        [System.Xml.Serialization.XmlElement("ExpRatio")]
+        [Column] 
+		public decimal? ExpRatio 
+		{ 
+			get
+			{
+				return _ExpRatio;
+			}
+			set
+			{
+				_ExpRatio = value;
+				MarkColumnModified("ExpRatio");
+			}
+		}
+		decimal? _ExpRatio;
+
+		public static string Meta_ExpressNo{get{return "ExpressNo";}}
+
+        [System.Xml.Serialization.XmlElement("ExpressNo")]
+        [Column] 
+		public string ExpressNo 
+		{ 
+			get
+			{
+				return _ExpressNo;
+			}
+			set
+			{
+				_ExpressNo = value;
+				MarkColumnModified("ExpressNo");
+			}
+		}
+		string _ExpressNo;
+
+		public static string Meta_ExpressPrintTplName{get{return "ExpressPrintTplName";}}
+
+        [System.Xml.Serialization.XmlElement("ExpressPrintTplName")]
+        [Column] 
+		public string ExpressPrintTplName 
+		{ 
+			get
+			{
+				return _ExpressPrintTplName;
+			}
+			set
+			{
+				_ExpressPrintTplName = value;
+				MarkColumnModified("ExpressPrintTplName");
+			}
+		}
+		string _ExpressPrintTplName;
+
+		public static string Meta_FHSysNo{get{return "FHSysNo";}}
+
+        [System.Xml.Serialization.XmlElement("FHSysNo")]
+        [Column] 
+		public string FHSysNo 
+		{ 
+			get
+			{
+				return _FHSysNo;
+			}
+			set
+			{
+				_FHSysNo = value;
+				MarkColumnModified("FHSysNo");
+			}
+		}
+		string _FHSysNo;
+
+		public static string Meta_FinTagColor{get{return "FinTagColor";}}
+
+        [System.Xml.Serialization.XmlElement("FinTagColor")]
+        [Column] 
+		public string FinTagColor 
+		{ 
+			get
+			{
+				return _FinTagColor;
+			}
+			set
+			{
+				_FinTagColor = value;
+				MarkColumnModified("FinTagColor");
+			}
+		}
+		string _FinTagColor;
+
+		public static string Meta_FinTagName{get{return "FinTagName";}}
+
+        [System.Xml.Serialization.XmlElement("FinTagName")]
+        [Column] 
+		public string FinTagName 
+		{ 
+			get
+			{
+				return _FinTagName;
+			}
+			set
+			{
+				_FinTagName = value;
+				MarkColumnModified("FinTagName");
+			}
+		}
+		string _FinTagName;
+
+		public static string Meta_FinTagUser{get{return "FinTagUser";}}
+
+        [System.Xml.Serialization.XmlElement("FinTagUser")]
+        [Column] 
+		public string FinTagUser 
+		{ 
+			get
+			{
+				return _FinTagUser;
+			}
+			set
+			{
+				_FinTagUser = value;
+				MarkColumnModified("FinTagUser");
+			}
+		}
+		string _FinTagUser;
+
+		public static string Meta_FinViewer{get{return "FinViewer";}}
+
+        [System.Xml.Serialization.XmlElement("FinViewer")]
+        [Column] 
+		public string FinViewer 
+		{ 
+			get
+			{
+				return _FinViewer;
+			}
+			set
+			{
+				_FinViewer = value;
+				MarkColumnModified("FinViewer");
+			}
+		}
+		string _FinViewer;
+
+		public static string Meta_FinViewTime{get{return "FinViewTime";}}
+
+        [System.Xml.Serialization.XmlElement("FinViewTime")]
+        [Column] 
+		public DateTime? FinViewTime 
+		{ 
+			get
+			{
+				return _FinViewTime;
+			}
+			set
+			{
+				_FinViewTime = value;
+				MarkColumnModified("FinViewTime");
+			}
+		}
+		DateTime? _FinViewTime;
+
+		public static string Meta_FixType{get{return "FixType";}}
+
+        [System.Xml.Serialization.XmlElement("FixType")]
+        [Column] 
+		public string FixType 
+		{ 
+			get
+			{
+				return _FixType;
+			}
+			set
+			{
+				_FixType = value;
+				MarkColumnModified("FixType");
+			}
+		}
+		string _FixType;
+
+		public static string Meta_GetPoint{get{return "GetPoint";}}
+
+        [System.Xml.Serialization.XmlElement("GetPoint")]
+        [Column] 
+		public string GetPoint 
+		{ 
+			get
+			{
+				return _GetPoint;
+			}
+			set
+			{
+				_GetPoint = value;
+				MarkColumnModified("GetPoint");
+			}
+		}
+		string _GetPoint;
+
+		public static string Meta_GetPointLowestPrice{get{return "GetPointLowestPrice";}}
+
+        [System.Xml.Serialization.XmlElement("GetPointLowestPrice")]
+        [Column] 
+		public decimal? GetPointLowestPrice 
+		{ 
+			get
+			{
+				return _GetPointLowestPrice;
+			}
+			set
+			{
+				_GetPointLowestPrice = value;
+				MarkColumnModified("GetPointLowestPrice");
+			}
+		}
+		decimal? _GetPointLowestPrice;
+
+		public static string Meta_GetPointPrice{get{return "GetPointPrice";}}
+
+        [System.Xml.Serialization.XmlElement("GetPointPrice")]
+        [Column] 
+		public decimal? GetPointPrice 
+		{ 
+			get
+			{
+				return _GetPointPrice;
+			}
+			set
+			{
+				_GetPointPrice = value;
+				MarkColumnModified("GetPointPrice");
+			}
+		}
+		decimal? _GetPointPrice;
+
+		public static string Meta_GoodViewer{get{return "GoodViewer";}}
+
+        [System.Xml.Serialization.XmlElement("GoodViewer")]
+        [Column] 
+		public string GoodViewer 
+		{ 
+			get
+			{
+				return _GoodViewer;
+			}
+			set
+			{
+				_GoodViewer = value;
+				MarkColumnModified("GoodViewer");
+			}
+		}
+		string _GoodViewer;
+
+		public static string Meta_GoodViewTime{get{return "GoodViewTime";}}
+
+        [System.Xml.Serialization.XmlElement("GoodViewTime")]
+        [Column] 
+		public DateTime? GoodViewTime 
+		{ 
+			get
+			{
+				return _GoodViewTime;
+			}
+			set
+			{
+				_GoodViewTime = value;
+				MarkColumnModified("GoodViewTime");
+			}
+		}
+		DateTime? _GoodViewTime;
+
+		public static string Meta_IsAssSupp{get{return "IsAssSupp";}}
+
+        [System.Xml.Serialization.XmlElement("IsAssSupp")]
+        [Column] 
+		public bool? IsAssSupp 
+		{ 
+			get
+			{
+				return _IsAssSupp;
+			}
+			set
+			{
+				_IsAssSupp = value;
+				MarkColumnModified("IsAssSupp");
+			}
+		}
+		bool? _IsAssSupp;
+
+		public static string Meta_IsClear{get{return "IsClear";}}
+
+        [System.Xml.Serialization.XmlElement("IsClear")]
+        [Column] 
+		public bool IsClear 
+		{ 
+			get
+			{
+				return _IsClear;
+			}
+			set
+			{
+				_IsClear = value;
+				MarkColumnModified("IsClear");
+			}
+		}
+		bool _IsClear;
+
+		public static string Meta_IsExp{get{return "IsExp";}}
+
+        [System.Xml.Serialization.XmlElement("IsExp")]
+        [Column] 
+		public bool? IsExp 
+		{ 
+			get
+			{
+				return _IsExp;
+			}
+			set
+			{
+				_IsExp = value;
+				MarkColumnModified("IsExp");
+			}
+		}
+		bool? _IsExp;
+
+		public static string Meta_IsExpress{get{return "IsExpress";}}
+
+        [System.Xml.Serialization.XmlElement("IsExpress")]
+        [Column] 
+		public bool IsExpress 
+		{ 
+			get
+			{
+				return _IsExpress;
+			}
+			set
+			{
+				_IsExpress = value;
+				MarkColumnModified("IsExpress");
+			}
+		}
+		bool _IsExpress;
+
+		public static string Meta_IsFinReView{get{return "IsFinReView";}}
+
+        [System.Xml.Serialization.XmlElement("IsFinReView")]
+        [Column] 
+		public bool IsFinReView 
+		{ 
+			get
+			{
+				return _IsFinReView;
+			}
+			set
+			{
+				_IsFinReView = value;
+				MarkColumnModified("IsFinReView");
+			}
+		}
+		bool _IsFinReView;
+
+		public static string Meta_IsForceGoodsReview{get{return "IsForceGoodsReview";}}
+
+        [System.Xml.Serialization.XmlElement("IsForceGoodsReview")]
+        [Column] 
+		public bool IsForceGoodsReview 
+		{ 
+			get
+			{
+				return _IsForceGoodsReview;
+			}
+			set
+			{
+				_IsForceGoodsReview = value;
+				MarkColumnModified("IsForceGoodsReview");
+			}
+		}
+		bool _IsForceGoodsReview;
+
+		public static string Meta_IsGetPointPost{get{return "IsGetPointPost";}}
+
+        [System.Xml.Serialization.XmlElement("IsGetPointPost")]
+        [Column] 
+		public bool IsGetPointPost 
+		{ 
+			get
+			{
+				return _IsGetPointPost;
+			}
+			set
+			{
+				_IsGetPointPost = value;
+				MarkColumnModified("IsGetPointPost");
+			}
+		}
+		bool _IsGetPointPost;
+
+		public static string Meta_IsGoodsReview{get{return "IsGoodsReview";}}
+
+        [System.Xml.Serialization.XmlElement("IsGoodsReview")]
+        [Column] 
+		public bool IsGoodsReview 
+		{ 
+			get
+			{
+				return _IsGoodsReview;
+			}
+			set
+			{
+				_IsGoodsReview = value;
+				MarkColumnModified("IsGoodsReview");
+			}
+		}
+		bool _IsGoodsReview;
+
+		public static string Meta_IsGoodStandBy{get{return "IsGoodStandBy";}}
+
+        [System.Xml.Serialization.XmlElement("IsGoodStandBy")]
+        [Column] 
+		public int? IsGoodStandBy 
+		{ 
+			get
+			{
+				return _IsGoodStandBy;
+			}
+			set
+			{
+				_IsGoodStandBy = value;
+				MarkColumnModified("IsGoodStandBy");
+			}
+		}
+		int? _IsGoodStandBy;
+
+		public static string Meta_IsIvtErr{get{return "IsIvtErr";}}
+
+        [System.Xml.Serialization.XmlElement("IsIvtErr")]
+        [Column] 
+		public bool? IsIvtErr 
+		{ 
+			get
+			{
+				return _IsIvtErr;
+			}
+			set
+			{
+				_IsIvtErr = value;
+				MarkColumnModified("IsIvtErr");
+			}
+		}
+		bool? _IsIvtErr;
+
+		public static string Meta_IsLablePrt{get{return "IsLablePrt";}}
+
+        [System.Xml.Serialization.XmlElement("IsLablePrt")]
+        [Column] 
+		public bool? IsLablePrt 
+		{ 
+			get
+			{
+				return _IsLablePrt;
+			}
+			set
+			{
+				_IsLablePrt = value;
+				MarkColumnModified("IsLablePrt");
+			}
+		}
+		bool? _IsLablePrt;
+
+		public static string Meta_IsOutSide{get{return "IsOutSide";}}
+
+        [System.Xml.Serialization.XmlElement("IsOutSide")]
+        [Column] 
+		public bool IsOutSide 
+		{ 
+			get
+			{
+				return _IsOutSide;
+			}
+			set
+			{
+				_IsOutSide = value;
+				MarkColumnModified("IsOutSide");
+			}
+		}
+		bool _IsOutSide;
+
+		public static string Meta_IsPrinted{get{return "IsPrinted";}}
+
+        [System.Xml.Serialization.XmlElement("IsPrinted")]
+        [Column] 
+		public bool IsPrinted 
+		{ 
+			get
+			{
+				return _IsPrinted;
+			}
+			set
+			{
+				_IsPrinted = value;
+				MarkColumnModified("IsPrinted");
+			}
+		}
+		bool _IsPrinted;
+
+		public static string Meta_IsSendGoods{get{return "IsSendGoods";}}
+
+        [System.Xml.Serialization.XmlElement("IsSendGoods")]
+        [Column] 
+		public bool IsSendGoods 
+		{ 
+			get
+			{
+				return _IsSendGoods;
+			}
+			set
+			{
+				_IsSendGoods = value;
+				MarkColumnModified("IsSendGoods");
+			}
+		}
+		bool _IsSendGoods;
+
+		public static string Meta_IsSurplus{get{return "IsSurplus";}}
+
+        [System.Xml.Serialization.XmlElement("IsSurplus")]
+        [Column] 
+		public bool? IsSurplus 
+		{ 
+			get
+			{
+				return _IsSurplus;
+			}
+			set
+			{
+				_IsSurplus = value;
+				MarkColumnModified("IsSurplus");
+			}
+		}
+		bool? _IsSurplus;
+
+		public static string Meta_IsTotalPrt{get{return "IsTotalPrt";}}
+
+        [System.Xml.Serialization.XmlElement("IsTotalPrt")]
+        [Column] 
+		public bool? IsTotalPrt 
+		{ 
+			get
+			{
+				return _IsTotalPrt;
+			}
+			set
+			{
+				_IsTotalPrt = value;
+				MarkColumnModified("IsTotalPrt");
+			}
+		}
+		bool? _IsTotalPrt;
+
+		public static string Meta_IsUltraZone{get{return "IsUltraZone";}}
+
+        [System.Xml.Serialization.XmlElement("IsUltraZone")]
+        [Column] 
+		public bool IsUltraZone 
+		{ 
+			get
+			{
+				return _IsUltraZone;
+			}
+			set
+			{
+				_IsUltraZone = value;
+				MarkColumnModified("IsUltraZone");
+			}
+		}
+		bool _IsUltraZone;
+
+		public static string Meta_ItemCount{get{return "ItemCount";}}
+
+        [System.Xml.Serialization.XmlElement("ItemCount")]
+        [Column] 
+		public int? ItemCount 
+		{ 
+			get
+			{
+				return _ItemCount;
+			}
+			set
+			{
+				_ItemCount = value;
+				MarkColumnModified("ItemCount");
+			}
+		}
+		int? _ItemCount;
+
+		public static string Meta_ItemSalePrice{get{return "ItemSalePrice";}}
+
+        [System.Xml.Serialization.XmlElement("ItemSalePrice")]
+        [Column] 
+		public decimal? ItemSalePrice 
+		{ 
+			get
+			{
+				return _ItemSalePrice;
+			}
+			set
+			{
+				_ItemSalePrice = value;
+				MarkColumnModified("ItemSalePrice");
+			}
+		}
+		decimal? _ItemSalePrice;
+
+		public static string Meta_ItemTopSalePrice{get{return "ItemTopSalePrice";}}
+
+        [System.Xml.Serialization.XmlElement("ItemTopSalePrice")]
+        [Column] 
+		public decimal? ItemTopSalePrice 
+		{ 
+			get
+			{
+				return _ItemTopSalePrice;
+			}
+			set
+			{
+				_ItemTopSalePrice = value;
+				MarkColumnModified("ItemTopSalePrice");
+			}
+		}
+		decimal? _ItemTopSalePrice;
+
+		public static string Meta_LogisCost{get{return "LogisCost";}}
+
+        [System.Xml.Serialization.XmlElement("LogisCost")]
+        [Column] 
+		public string LogisCost 
+		{ 
+			get
+			{
+				return _LogisCost;
+			}
+			set
+			{
+				_LogisCost = value;
+				MarkColumnModified("LogisCost");
+			}
+		}
+		string _LogisCost;
+
+		public static string Meta_LogisMobile{get{return "LogisMobile";}}
+
+        [System.Xml.Serialization.XmlElement("LogisMobile")]
+        [Column] 
+		public string LogisMobile 
+		{ 
+			get
+			{
+				return _LogisMobile;
+			}
+			set
+			{
+				_LogisMobile = value;
+				MarkColumnModified("LogisMobile");
+			}
+		}
+		string _LogisMobile;
+
+		public static string Meta_LogisName{get{return "LogisName";}}
+
+        [System.Xml.Serialization.XmlElement("LogisName")]
+        [Column] 
+		public string LogisName 
+		{ 
+			get
+			{
+				return _LogisName;
+			}
+			set
+			{
+				_LogisName = value;
+				MarkColumnModified("LogisName");
+			}
+		}
+		string _LogisName;
+
+		public static string Meta_LogisNo{get{return "LogisNo";}}
+
+        [System.Xml.Serialization.XmlElement("LogisNo")]
+        [Column] 
+		public string LogisNo 
+		{ 
+			get
+			{
+				return _LogisNo;
+			}
+			set
+			{
+				_LogisNo = value;
+				MarkColumnModified("LogisNo");
+			}
+		}
+		string _LogisNo;
+
+		public static string Meta_LogisPointGuid{get{return "LogisPointGuid";}}
+
+        [System.Xml.Serialization.XmlElement("LogisPointGuid")]
+        [Column] 
+		public Guid? LogisPointGuid 
+		{ 
+			get
+			{
+				return _LogisPointGuid;
+			}
+			set
+			{
+				_LogisPointGuid = value;
+				MarkColumnModified("LogisPointGuid");
+			}
+		}
+		Guid? _LogisPointGuid;
+
+		public static string Meta_MaxCusReViewTime{get{return "MaxCusReViewTime";}}
+
+        [System.Xml.Serialization.XmlElement("MaxCusReViewTime")]
+        [Column] 
+		public DateTime? MaxCusReViewTime 
+		{ 
+			get
+			{
+				return _MaxCusReViewTime;
+			}
+			set
+			{
+				_MaxCusReViewTime = value;
+				MarkColumnModified("MaxCusReViewTime");
+			}
+		}
+		DateTime? _MaxCusReViewTime;
+
+		public static string Meta_MergerSysNo{get{return "MergerSysNo";}}
+
+        [System.Xml.Serialization.XmlElement("MergerSysNo")]
+        [Column] 
+		public string MergerSysNo 
+		{ 
+			get
+			{
+				return _MergerSysNo;
+			}
+			set
+			{
+				_MergerSysNo = value;
+				MarkColumnModified("MergerSysNo");
+			}
+		}
+		string _MergerSysNo;
+
+		public static string Meta_MinCusReViewTime{get{return "MinCusReViewTime";}}
+
+        [System.Xml.Serialization.XmlElement("MinCusReViewTime")]
+        [Column] 
+		public DateTime? MinCusReViewTime 
+		{ 
+			get
+			{
+				return _MinCusReViewTime;
+			}
+			set
+			{
+				_MinCusReViewTime = value;
+				MarkColumnModified("MinCusReViewTime");
+			}
+		}
+		DateTime? _MinCusReViewTime;
+
+		public static string Meta_OrderFrom{get{return "OrderFrom";}}
+
+        [System.Xml.Serialization.XmlElement("OrderFrom")]
+        [Column] 
+		public string OrderFrom 
+		{ 
+			get
+			{
+				return _OrderFrom;
+			}
+			set
+			{
+				_OrderFrom = value;
+				MarkColumnModified("OrderFrom");
+			}
+		}
+		string _OrderFrom;
+
+		public static string Meta_OrderTime{get{return "OrderTime";}}
+
+        [System.Xml.Serialization.XmlElement("OrderTime")]
+        [Column] 
+		public DateTime? OrderTime 
+		{ 
+			get
+			{
+				return _OrderTime;
+			}
+			set
+			{
+				_OrderTime = value;
+				MarkColumnModified("OrderTime");
+			}
+		}
+		DateTime? _OrderTime;
+
+		public static string Meta_PackageCount{get{return "PackageCount";}}
+
+        [System.Xml.Serialization.XmlElement("PackageCount")]
+        [Column] 
+		public int? PackageCount 
+		{ 
+			get
+			{
+				return _PackageCount;
+			}
+			set
+			{
+				_PackageCount = value;
+				MarkColumnModified("PackageCount");
+			}
+		}
+		int? _PackageCount;
+
+		public static string Meta_PlanSendDate{get{return "PlanSendDate";}}
+
+        [System.Xml.Serialization.XmlElement("PlanSendDate")]
+        [Column] 
+		public DateTime? PlanSendDate 
+		{ 
+			get
+			{
+				return _PlanSendDate;
+			}
+			set
+			{
+				_PlanSendDate = value;
+				MarkColumnModified("PlanSendDate");
+			}
+		}
+		DateTime? _PlanSendDate;
+
+		public static string Meta_PostFee{get{return "PostFee";}}
+
+        [System.Xml.Serialization.XmlElement("PostFee")]
+        [Column] 
+		public decimal? PostFee 
+		{ 
+			get
+			{
+				return _PostFee;
+			}
+			set
+			{
+				_PostFee = value;
+				MarkColumnModified("PostFee");
+			}
+		}
+		decimal? _PostFee;
+
+		public static string Meta_PostFeeType{get{return "PostFeeType";}}
+
+        [System.Xml.Serialization.XmlElement("PostFeeType")]
+        [Column] 
+		public string PostFeeType 
+		{ 
+			get
+			{
+				return _PostFeeType;
+			}
+			set
+			{
+				_PostFeeType = value;
+				MarkColumnModified("PostFeeType");
+			}
+		}
+		string _PostFeeType;
+
+		public static string Meta_PredictLogistFee{get{return "PredictLogistFee";}}
+
+        [System.Xml.Serialization.XmlElement("PredictLogistFee")]
+        [Column] 
+		public decimal? PredictLogistFee 
+		{ 
+			get
+			{
+				return _PredictLogistFee;
+			}
+			set
+			{
+				_PredictLogistFee = value;
+				MarkColumnModified("PredictLogistFee");
+			}
+		}
+		decimal? _PredictLogistFee;
+
+		public static string Meta_PrintCount{get{return "PrintCount";}}
+
+        [System.Xml.Serialization.XmlElement("PrintCount")]
+        [Column] 
+		public int? PrintCount 
+		{ 
+			get
+			{
+				return _PrintCount;
+			}
+			set
+			{
+				_PrintCount = value;
+				MarkColumnModified("PrintCount");
+			}
+		}
+		int? _PrintCount;
+
+		public static string Meta_PrintSession{get{return "PrintSession";}}
+
+        [System.Xml.Serialization.XmlElement("PrintSession")]
+        [Column] 
+		public Guid? PrintSession 
+		{ 
+			get
+			{
+				return _PrintSession;
+			}
+			set
+			{
+				_PrintSession = value;
+				MarkColumnModified("PrintSession");
+			}
+		}
+		Guid? _PrintSession;
+
+		public static string Meta_PrintTradeNo{get{return "PrintTradeNo";}}
+
+        [System.Xml.Serialization.XmlElement("PrintTradeNo")]
+        [Column] 
+		public string PrintTradeNo 
+		{ 
+			get
+			{
+				return _PrintTradeNo;
+			}
+			set
+			{
+				_PrintTradeNo = value;
+				MarkColumnModified("PrintTradeNo");
+			}
+		}
+		string _PrintTradeNo;
+
+		public static string Meta_PrintViewer{get{return "PrintViewer";}}
+
+        [System.Xml.Serialization.XmlElement("PrintViewer")]
+        [Column] 
+		public string PrintViewer 
+		{ 
+			get
+			{
+				return _PrintViewer;
+			}
+			set
+			{
+				_PrintViewer = value;
+				MarkColumnModified("PrintViewer");
+			}
+		}
+		string _PrintViewer;
+
+		public static string Meta_PrintViewTime{get{return "PrintViewTime";}}
+
+        [System.Xml.Serialization.XmlElement("PrintViewTime")]
+        [Column] 
+		public DateTime? PrintViewTime 
+		{ 
+			get
+			{
+				return _PrintViewTime;
+			}
+			set
+			{
+				_PrintViewTime = value;
+				MarkColumnModified("PrintViewTime");
+			}
+		}
+		DateTime? _PrintViewTime;
+
+		public static string Meta_ProDelTime{get{return "ProDelTime";}}
+
+        [System.Xml.Serialization.XmlElement("ProDelTime")]
+        [Column] 
+		public DateTime? ProDelTime 
+		{ 
+			get
+			{
+				return _ProDelTime;
+			}
+			set
+			{
+				_ProDelTime = value;
+				MarkColumnModified("ProDelTime");
+			}
+		}
+		DateTime? _ProDelTime;
+
+		public static string Meta_PrtUnLockTagColor{get{return "PrtUnLockTagColor";}}
+
+        [System.Xml.Serialization.XmlElement("PrtUnLockTagColor")]
+        [Column] 
+		public string PrtUnLockTagColor 
+		{ 
+			get
+			{
+				return _PrtUnLockTagColor;
+			}
+			set
+			{
+				_PrtUnLockTagColor = value;
+				MarkColumnModified("PrtUnLockTagColor");
+			}
+		}
+		string _PrtUnLockTagColor;
+
+		public static string Meta_PrtUnLockTagName{get{return "PrtUnLockTagName";}}
+
+        [System.Xml.Serialization.XmlElement("PrtUnLockTagName")]
+        [Column] 
+		public string PrtUnLockTagName 
+		{ 
+			get
+			{
+				return _PrtUnLockTagName;
+			}
+			set
+			{
+				_PrtUnLockTagName = value;
+				MarkColumnModified("PrtUnLockTagName");
+			}
+		}
+		string _PrtUnLockTagName;
+
+		public static string Meta_PrtUnLockTagUser{get{return "PrtUnLockTagUser";}}
+
+        [System.Xml.Serialization.XmlElement("PrtUnLockTagUser")]
+        [Column] 
+		public string PrtUnLockTagUser 
+		{ 
+			get
+			{
+				return _PrtUnLockTagUser;
+			}
+			set
+			{
+				_PrtUnLockTagUser = value;
+				MarkColumnModified("PrtUnLockTagUser");
+			}
+		}
+		string _PrtUnLockTagUser;
+
+		public static string Meta_ReceiverAddress{get{return "ReceiverAddress";}}
+
+        [System.Xml.Serialization.XmlElement("ReceiverAddress")]
+        [Column] 
+		public string ReceiverAddress 
+		{ 
+			get
+			{
+				return _ReceiverAddress;
+			}
+			set
+			{
+				_ReceiverAddress = value;
+				MarkColumnModified("ReceiverAddress");
+			}
+		}
+		string _ReceiverAddress;
+
+		public static string Meta_ReceiverCity{get{return "ReceiverCity";}}
+
+        [System.Xml.Serialization.XmlElement("ReceiverCity")]
+        [Column] 
+		public string ReceiverCity 
+		{ 
+			get
+			{
+				return _ReceiverCity;
+			}
+			set
+			{
+				_ReceiverCity = value;
+				MarkColumnModified("ReceiverCity");
+			}
+		}
+		string _ReceiverCity;
+
+		public static string Meta_ReceiverDistrict{get{return "ReceiverDistrict";}}
+
+        [System.Xml.Serialization.XmlElement("ReceiverDistrict")]
+        [Column] 
+		public string ReceiverDistrict 
+		{ 
+			get
+			{
+				return _ReceiverDistrict;
+			}
+			set
+			{
+				_ReceiverDistrict = value;
+				MarkColumnModified("ReceiverDistrict");
+			}
+		}
+		string _ReceiverDistrict;
+
+		public static string Meta_ReceiverMobile{get{return "ReceiverMobile";}}
+
+        [System.Xml.Serialization.XmlElement("ReceiverMobile")]
+        [Column] 
+		public string ReceiverMobile 
+		{ 
+			get
+			{
+				return _ReceiverMobile;
+			}
+			set
+			{
+				_ReceiverMobile = value;
+				MarkColumnModified("ReceiverMobile");
+			}
+		}
+		string _ReceiverMobile;
+
+		public static string Meta_ReceiverName{get{return "ReceiverName";}}
+
+        [System.Xml.Serialization.XmlElement("ReceiverName")]
+        [Column] 
+		public string ReceiverName 
+		{ 
+			get
+			{
+				return _ReceiverName;
+			}
+			set
+			{
+				_ReceiverName = value;
+				MarkColumnModified("ReceiverName");
+			}
+		}
+		string _ReceiverName;
+
+		public static string Meta_ReceiverPhone{get{return "ReceiverPhone";}}
+
+        [System.Xml.Serialization.XmlElement("ReceiverPhone")]
+        [Column] 
+		public string ReceiverPhone 
+		{ 
+			get
+			{
+				return _ReceiverPhone;
+			}
+			set
+			{
+				_ReceiverPhone = value;
+				MarkColumnModified("ReceiverPhone");
+			}
+		}
+		string _ReceiverPhone;
+
+		public static string Meta_ReceiverState{get{return "ReceiverState";}}
+
+        [System.Xml.Serialization.XmlElement("ReceiverState")]
+        [Column] 
+		public string ReceiverState 
+		{ 
+			get
+			{
+				return _ReceiverState;
+			}
+			set
+			{
+				_ReceiverState = value;
+				MarkColumnModified("ReceiverState");
+			}
+		}
+		string _ReceiverState;
+
+		public static string Meta_ReceiverTim{get{return "ReceiverTim";}}
+
+        [System.Xml.Serialization.XmlElement("ReceiverTim")]
+        [Column] 
+		public string ReceiverTim 
+		{ 
+			get
+			{
+				return _ReceiverTim;
+			}
+			set
+			{
+				_ReceiverTim = value;
+				MarkColumnModified("ReceiverTim");
+			}
+		}
+		string _ReceiverTim;
+
+		public static string Meta_ReservationTime{get{return "ReservationTime";}}
+
+        [System.Xml.Serialization.XmlElement("ReservationTime")]
+        [Column] 
+		public DateTime? ReservationTime 
+		{ 
+			get
+			{
+				return _ReservationTime;
+			}
+			set
+			{
+				_ReservationTime = value;
+				MarkColumnModified("ReservationTime");
+			}
+		}
+		DateTime? _ReservationTime;
+
+		public static string Meta_SellerMemo{get{return "SellerMemo";}}
+
+        [System.Xml.Serialization.XmlElement("SellerMemo")]
+        [Column] 
+		public string SellerMemo 
+		{ 
+			get
+			{
+				return _SellerMemo;
+			}
+			set
+			{
+				_SellerMemo = value;
+				MarkColumnModified("SellerMemo");
+			}
+		}
+		string _SellerMemo;
+
+		public static string Meta_SellerNick{get{return "SellerNick";}}
+
+        [System.Xml.Serialization.XmlElement("SellerNick")]
+        [Column] 
+		public string SellerNick 
+		{ 
+			get
+			{
+				return _SellerNick;
+			}
+			set
+			{
+				_SellerNick = value;
+				MarkColumnModified("SellerNick");
+			}
+		}
+		string _SellerNick;
+
+		public static string Meta_SendGoodsTime{get{return "SendGoodsTime";}}
+
+        [System.Xml.Serialization.XmlElement("SendGoodsTime")]
+        [Column] 
+		public DateTime? SendGoodsTime 
+		{ 
+			get
+			{
+				return _SendGoodsTime;
+			}
+			set
+			{
+				_SendGoodsTime = value;
+				MarkColumnModified("SendGoodsTime");
+			}
+		}
+		DateTime? _SendGoodsTime;
+
+		public static string Meta_SendGoodsViewer{get{return "SendGoodsViewer";}}
+
+        [System.Xml.Serialization.XmlElement("SendGoodsViewer")]
+        [Column] 
+		public string SendGoodsViewer 
+		{ 
+			get
+			{
+				return _SendGoodsViewer;
+			}
+			set
+			{
+				_SendGoodsViewer = value;
+				MarkColumnModified("SendGoodsViewer");
+			}
+		}
+		string _SendGoodsViewer;
+
+		public static string Meta_SuppName{get{return "SuppName";}}
+
+        [System.Xml.Serialization.XmlElement("SuppName")]
+        [Column] 
+		public string SuppName 
+		{ 
+			get
+			{
+				return _SuppName;
+			}
+			set
+			{
+				_SuppName = value;
+				MarkColumnModified("SuppName");
+			}
+		}
+		string _SuppName;
+
+		public static string Meta_ThirdPackFee{get{return "ThirdPackFee";}}
+
+        [System.Xml.Serialization.XmlElement("ThirdPackFee")]
+        [Column] 
+		public decimal? ThirdPackFee 
+		{ 
+			get
+			{
+				return _ThirdPackFee;
+			}
+			set
+			{
+				_ThirdPackFee = value;
+				MarkColumnModified("ThirdPackFee");
+			}
+		}
+		decimal? _ThirdPackFee;
+
+		public static string Meta_ThirdPackGuid{get{return "ThirdPackGuid";}}
+
+        [System.Xml.Serialization.XmlElement("ThirdPackGuid")]
+        [Column] 
+		public Guid? ThirdPackGuid 
+		{ 
+			get
+			{
+				return _ThirdPackGuid;
+			}
+			set
+			{
+				_ThirdPackGuid = value;
+				MarkColumnModified("ThirdPackGuid");
+			}
+		}
+		Guid? _ThirdPackGuid;
+
+		public static string Meta_ThirdPackType{get{return "ThirdPackType";}}
+
+        [System.Xml.Serialization.XmlElement("ThirdPackType")]
+        [Column] 
+		public string ThirdPackType 
+		{ 
+			get
+			{
+				return _ThirdPackType;
+			}
+			set
+			{
+				_ThirdPackType = value;
+				MarkColumnModified("ThirdPackType");
+			}
+		}
+		string _ThirdPackType;
+
+		public static string Meta_Tid{get{return "Tid";}}
+
+        [System.Xml.Serialization.XmlElement("Tid")]
+        [Column] 
+		public string Tid 
+		{ 
+			get
+			{
+				return _Tid;
+			}
+			set
+			{
+				_Tid = value;
+				MarkColumnModified("Tid");
+			}
+		}
+		string _Tid;
+
+		public static string Meta_TotalPackageCount{get{return "TotalPackageCount";}}
+
+        [System.Xml.Serialization.XmlElement("TotalPackageCount")]
+        [Column] 
+		public long? TotalPackageCount 
+		{ 
+			get
+			{
+				return _TotalPackageCount;
+			}
+			set
+			{
+				_TotalPackageCount = value;
+				MarkColumnModified("TotalPackageCount");
+			}
+		}
+		long? _TotalPackageCount;
+
+		public static string Meta_TotalPostFee{get{return "TotalPostFee";}}
+
+        [System.Xml.Serialization.XmlElement("TotalPostFee")]
+        [Column] 
+		public decimal? TotalPostFee 
+		{ 
+			get
+			{
+				return _TotalPostFee;
+			}
+			set
+			{
+				_TotalPostFee = value;
+				MarkColumnModified("TotalPostFee");
+			}
+		}
+		decimal? _TotalPostFee;
+
+		public static string Meta_TotalSalePrice{get{return "TotalSalePrice";}}
+
+        [System.Xml.Serialization.XmlElement("TotalSalePrice")]
+        [Column] 
+		public decimal? TotalSalePrice 
+		{ 
+			get
+			{
+				return _TotalSalePrice;
+			}
+			set
+			{
+				_TotalSalePrice = value;
+				MarkColumnModified("TotalSalePrice");
+			}
+		}
+		decimal? _TotalSalePrice;
+
+		public static string Meta_TotalThirdPackFee{get{return "TotalThirdPackFee";}}
+
+        [System.Xml.Serialization.XmlElement("TotalThirdPackFee")]
+        [Column] 
+		public decimal? TotalThirdPackFee 
+		{ 
+			get
+			{
+				return _TotalThirdPackFee;
+			}
+			set
+			{
+				_TotalThirdPackFee = value;
+				MarkColumnModified("TotalThirdPackFee");
+			}
+		}
+		decimal? _TotalThirdPackFee;
+
+		public static string Meta_TotalTopSalePrice{get{return "TotalTopSalePrice";}}
+
+        [System.Xml.Serialization.XmlElement("TotalTopSalePrice")]
+        [Column] 
+		public decimal? TotalTopSalePrice 
+		{ 
+			get
+			{
+				return _TotalTopSalePrice;
+			}
+			set
+			{
+				_TotalTopSalePrice = value;
+				MarkColumnModified("TotalTopSalePrice");
+			}
+		}
+		decimal? _TotalTopSalePrice;
+
+		public static string Meta_UltraZonePay{get{return "UltraZonePay";}}
+
+        [System.Xml.Serialization.XmlElement("UltraZonePay")]
+        [Column] 
+		public decimal? UltraZonePay 
+		{ 
+			get
+			{
+				return _UltraZonePay;
+			}
+			set
+			{
+				_UltraZonePay = value;
+				MarkColumnModified("UltraZonePay");
+			}
+		}
+		decimal? _UltraZonePay;
+
+		public static string Meta_UnFinTagColor{get{return "UnFinTagColor";}}
+
+        [System.Xml.Serialization.XmlElement("UnFinTagColor")]
+        [Column] 
+		public string UnFinTagColor 
+		{ 
+			get
+			{
+				return _UnFinTagColor;
+			}
+			set
+			{
+				_UnFinTagColor = value;
+				MarkColumnModified("UnFinTagColor");
+			}
+		}
+		string _UnFinTagColor;
+
+		public static string Meta_UnFinTagName{get{return "UnFinTagName";}}
+
+        [System.Xml.Serialization.XmlElement("UnFinTagName")]
+        [Column] 
+		public string UnFinTagName 
+		{ 
+			get
+			{
+				return _UnFinTagName;
+			}
+			set
+			{
+				_UnFinTagName = value;
+				MarkColumnModified("UnFinTagName");
+			}
+		}
+		string _UnFinTagName;
+
+		public static string Meta_UnFinTagUser{get{return "UnFinTagUser";}}
+
+        [System.Xml.Serialization.XmlElement("UnFinTagUser")]
+        [Column] 
+		public string UnFinTagUser 
+		{ 
+			get
+			{
+				return _UnFinTagUser;
+			}
+			set
+			{
+				_UnFinTagUser = value;
+				MarkColumnModified("UnFinTagUser");
+			}
+		}
+		string _UnFinTagUser;
+
+		public static string Meta_UnGoodsTagColor{get{return "UnGoodsTagColor";}}
+
+        [System.Xml.Serialization.XmlElement("UnGoodsTagColor")]
+        [Column] 
+		public string UnGoodsTagColor 
+		{ 
+			get
+			{
+				return _UnGoodsTagColor;
+			}
+			set
+			{
+				_UnGoodsTagColor = value;
+				MarkColumnModified("UnGoodsTagColor");
+			}
+		}
+		string _UnGoodsTagColor;
+
+		public static string Meta_UnGoodsTagName{get{return "UnGoodsTagName";}}
+
+        [System.Xml.Serialization.XmlElement("UnGoodsTagName")]
+        [Column] 
+		public string UnGoodsTagName 
+		{ 
+			get
+			{
+				return _UnGoodsTagName;
+			}
+			set
+			{
+				_UnGoodsTagName = value;
+				MarkColumnModified("UnGoodsTagName");
+			}
+		}
+		string _UnGoodsTagName;
+
+		public static string Meta_UnGoodsTagUser{get{return "UnGoodsTagUser";}}
+
+        [System.Xml.Serialization.XmlElement("UnGoodsTagUser")]
+        [Column] 
+		public string UnGoodsTagUser 
+		{ 
+			get
+			{
+				return _UnGoodsTagUser;
+			}
+			set
+			{
+				_UnGoodsTagUser = value;
+				MarkColumnModified("UnGoodsTagUser");
+			}
+		}
+		string _UnGoodsTagUser;
+
+		public static string Meta_UserInputPostFee{get{return "UserInputPostFee";}}
+
+        [System.Xml.Serialization.XmlElement("UserInputPostFee")]
+        [Column] 
+		public decimal? UserInputPostFee 
+		{ 
+			get
+			{
+				return _UserInputPostFee;
+			}
+			set
+			{
+				_UserInputPostFee = value;
+				MarkColumnModified("UserInputPostFee");
+			}
+		}
+		decimal? _UserInputPostFee;
+
+		public static string Meta_UserInputThirdPackFee{get{return "UserInputThirdPackFee";}}
+
+        [System.Xml.Serialization.XmlElement("UserInputThirdPackFee")]
+        [Column] 
+		public decimal? UserInputThirdPackFee 
+		{ 
+			get
+			{
+				return _UserInputThirdPackFee;
+			}
+			set
+			{
+				_UserInputThirdPackFee = value;
+				MarkColumnModified("UserInputThirdPackFee");
+			}
+		}
+		decimal? _UserInputThirdPackFee;
 
 		public static string Meta_UserName{get{return "UserName";}}
 
@@ -13334,23 +19069,59 @@ namespace UltraDbEntity
 		}
 		string _UserName;
 
-		public static string Meta_IsManager{get{return "IsManager";}}
+		public static string Meta_WareCode{get{return "WareCode";}}
 
-        [System.Xml.Serialization.XmlElement("IsManager")]
+        [System.Xml.Serialization.XmlElement("WareCode")]
         [Column] 
-		public bool? IsManager 
+		public string WareCode 
 		{ 
 			get
 			{
-				return _IsManager;
+				return _WareCode;
 			}
 			set
 			{
-				_IsManager = value;
-				MarkColumnModified("IsManager");
+				_WareCode = value;
+				MarkColumnModified("WareCode");
 			}
 		}
-		bool? _IsManager;
+		string _WareCode;
+
+		public static string Meta_WareHouseGuid{get{return "WareHouseGuid";}}
+
+        [System.Xml.Serialization.XmlElement("WareHouseGuid")]
+        [Column] 
+		public Guid? WareHouseGuid 
+		{ 
+			get
+			{
+				return _WareHouseGuid;
+			}
+			set
+			{
+				_WareHouseGuid = value;
+				MarkColumnModified("WareHouseGuid");
+			}
+		}
+		Guid? _WareHouseGuid;
+
+		public static string Meta_WareName{get{return "WareName";}}
+
+        [System.Xml.Serialization.XmlElement("WareName")]
+        [Column] 
+		public string WareName 
+		{ 
+			get
+			{
+				return _WareName;
+			}
+			set
+			{
+				_WareName = value;
+				MarkColumnModified("WareName");
+			}
+		}
+		string _WareName;
 
 		[IgnoreAttribute]
 		[System.Xml.Serialization.XmlElement("UISelected")]
@@ -14579,7 +20350,7 @@ namespace UltraDbEntity
 
         [System.Xml.Serialization.XmlElement("LogisCost")]
         [Column] 
-		public string LogisCost 
+		public decimal? LogisCost 
 		{ 
 			get
 			{
@@ -14591,7 +20362,7 @@ namespace UltraDbEntity
 				MarkColumnModified("LogisCost");
 			}
 		}
-		string _LogisCost;
+		decimal? _LogisCost;
 
 		public static string Meta_LogisMobile{get{return "LogisMobile";}}
 
@@ -15726,6 +21497,1084 @@ namespace UltraDbEntity
 			}
 		}
 		string _CorpAddress;
+
+		[IgnoreAttribute]
+		[System.Xml.Serialization.XmlElement("UISelected")]
+		public bool UISelected{get{return _UISelected;}set{_UISelected=value;}}
+		bool _UISelected=false;
+		
+		[IgnoreAttribute]
+		[System.Xml.Serialization.XmlElement("IsDynamicAdd")]
+		public bool IsDynamicAdd{get{return _IsDynamicAdd;}set{_IsDynamicAdd=value;}}
+		bool _IsDynamicAdd=false;
+	}
+    
+	[TableName("T_ERP_User")]
+	[PrimaryKey("Id")]
+	[ExplicitColumns]
+	[Serializable]
+    public partial class T_ERP_User : UltraDbEntityDB.Record<T_ERP_User>  
+    {
+		public static string Meta_Id{get{return "Id";}}
+
+        [System.Xml.Serialization.XmlElement("Id")]
+        [Column] 
+		public long Id 
+		{ 
+			get
+			{
+				return _Id;
+			}
+			set
+			{
+				_Id = value;
+				MarkColumnModified("Id");
+			}
+		}
+		long _Id;
+
+		public static string Meta_Guid{get{return "Guid";}}
+
+        [System.Xml.Serialization.XmlElement("Guid")]
+        [Column] 
+		public Guid Guid 
+		{ 
+			get
+			{
+				return _Guid;
+			}
+			set
+			{
+				_Guid = value;
+				MarkColumnModified("Guid");
+			}
+		}
+		Guid _Guid;
+
+		public static string Meta_CreateDate{get{return "CreateDate";}}
+
+        [System.Xml.Serialization.XmlElement("CreateDate")]
+        [Column] 
+		public DateTime CreateDate 
+		{ 
+			get
+			{
+				return _CreateDate;
+			}
+			set
+			{
+				_CreateDate = value;
+				MarkColumnModified("CreateDate");
+			}
+		}
+		DateTime _CreateDate;
+
+		public static string Meta_Creator{get{return "Creator";}}
+
+        [System.Xml.Serialization.XmlElement("Creator")]
+        [Column] 
+		public string Creator 
+		{ 
+			get
+			{
+				return _Creator;
+			}
+			set
+			{
+				_Creator = value;
+				MarkColumnModified("Creator");
+			}
+		}
+		string _Creator;
+
+		public static string Meta_UpdateDate{get{return "UpdateDate";}}
+
+        [System.Xml.Serialization.XmlElement("UpdateDate")]
+        [Column] 
+		public DateTime UpdateDate 
+		{ 
+			get
+			{
+				return _UpdateDate;
+			}
+			set
+			{
+				_UpdateDate = value;
+				MarkColumnModified("UpdateDate");
+			}
+		}
+		DateTime _UpdateDate;
+
+		public static string Meta_Updator{get{return "Updator";}}
+
+        [System.Xml.Serialization.XmlElement("Updator")]
+        [Column] 
+		public string Updator 
+		{ 
+			get
+			{
+				return _Updator;
+			}
+			set
+			{
+				_Updator = value;
+				MarkColumnModified("Updator");
+			}
+		}
+		string _Updator;
+
+		public static string Meta_IsDel{get{return "IsDel";}}
+
+        [System.Xml.Serialization.XmlElement("IsDel")]
+        [Column] 
+		public bool IsDel 
+		{ 
+			get
+			{
+				return _IsDel;
+			}
+			set
+			{
+				_IsDel = value;
+				MarkColumnModified("IsDel");
+			}
+		}
+		bool _IsDel;
+
+		public static string Meta_Reserved1{get{return "Reserved1";}}
+
+        [System.Xml.Serialization.XmlElement("Reserved1")]
+        [Column] 
+		public int Reserved1 
+		{ 
+			get
+			{
+				return _Reserved1;
+			}
+			set
+			{
+				_Reserved1 = value;
+				MarkColumnModified("Reserved1");
+			}
+		}
+		int _Reserved1;
+
+		public static string Meta_Reserved2{get{return "Reserved2";}}
+
+        [System.Xml.Serialization.XmlElement("Reserved2")]
+        [Column] 
+		public string Reserved2 
+		{ 
+			get
+			{
+				return _Reserved2;
+			}
+			set
+			{
+				_Reserved2 = value;
+				MarkColumnModified("Reserved2");
+			}
+		}
+		string _Reserved2;
+
+		public static string Meta_Reserved3{get{return "Reserved3";}}
+
+        [System.Xml.Serialization.XmlElement("Reserved3")]
+        [Column] 
+		public bool Reserved3 
+		{ 
+			get
+			{
+				return _Reserved3;
+			}
+			set
+			{
+				_Reserved3 = value;
+				MarkColumnModified("Reserved3");
+			}
+		}
+		bool _Reserved3;
+
+		public static string Meta_Remark{get{return "Remark";}}
+
+        [System.Xml.Serialization.XmlElement("Remark")]
+        [Column] 
+		public string Remark 
+		{ 
+			get
+			{
+				return _Remark;
+			}
+			set
+			{
+				_Remark = value;
+				MarkColumnModified("Remark");
+			}
+		}
+		string _Remark;
+
+		public static string Meta_TimeStamp{get{return "TimeStamp";}}
+
+        [System.Xml.Serialization.XmlElement("TimeStamp")]
+        [Column] 
+		public byte[] TimeStamp 
+		{ 
+			get
+			{
+				return _TimeStamp;
+			}
+			set
+			{
+				_TimeStamp = value;
+				MarkColumnModified("TimeStamp");
+			}
+		}
+		byte[] _TimeStamp;
+
+		public static string Meta_Address{get{return "Address";}}
+
+        [System.Xml.Serialization.XmlElement("Address")]
+        [Column] 
+		public string Address 
+		{ 
+			get
+			{
+				return _Address;
+			}
+			set
+			{
+				_Address = value;
+				MarkColumnModified("Address");
+			}
+		}
+		string _Address;
+
+		public static string Meta_CompanyName{get{return "CompanyName";}}
+
+        [System.Xml.Serialization.XmlElement("CompanyName")]
+        [Column] 
+		public string CompanyName 
+		{ 
+			get
+			{
+				return _CompanyName;
+			}
+			set
+			{
+				_CompanyName = value;
+				MarkColumnModified("CompanyName");
+			}
+		}
+		string _CompanyName;
+
+		public static string Meta_Contacts{get{return "Contacts";}}
+
+        [System.Xml.Serialization.XmlElement("Contacts")]
+        [Column] 
+		public string Contacts 
+		{ 
+			get
+			{
+				return _Contacts;
+			}
+			set
+			{
+				_Contacts = value;
+				MarkColumnModified("Contacts");
+			}
+		}
+		string _Contacts;
+
+		public static string Meta_IsValid{get{return "IsValid";}}
+
+        [System.Xml.Serialization.XmlElement("IsValid")]
+        [Column] 
+		public bool IsValid 
+		{ 
+			get
+			{
+				return _IsValid;
+			}
+			set
+			{
+				_IsValid = value;
+				MarkColumnModified("IsValid");
+			}
+		}
+		bool _IsValid;
+
+		public static string Meta_LoginPassword{get{return "LoginPassword";}}
+
+        [System.Xml.Serialization.XmlElement("LoginPassword")]
+        [Column] 
+		public string LoginPassword 
+		{ 
+			get
+			{
+				return _LoginPassword;
+			}
+			set
+			{
+				_LoginPassword = value;
+				MarkColumnModified("LoginPassword");
+			}
+		}
+		string _LoginPassword;
+
+		public static string Meta_Tel{get{return "Tel";}}
+
+        [System.Xml.Serialization.XmlElement("Tel")]
+        [Column] 
+		public string Tel 
+		{ 
+			get
+			{
+				return _Tel;
+			}
+			set
+			{
+				_Tel = value;
+				MarkColumnModified("Tel");
+			}
+		}
+		string _Tel;
+
+		public static string Meta_UserName{get{return "UserName";}}
+
+        [System.Xml.Serialization.XmlElement("UserName")]
+        [Column] 
+		public string UserName 
+		{ 
+			get
+			{
+				return _UserName;
+			}
+			set
+			{
+				_UserName = value;
+				MarkColumnModified("UserName");
+			}
+		}
+		string _UserName;
+
+		public static string Meta_IsManager{get{return "IsManager";}}
+
+        [System.Xml.Serialization.XmlElement("IsManager")]
+        [Column] 
+		public bool? IsManager 
+		{ 
+			get
+			{
+				return _IsManager;
+			}
+			set
+			{
+				_IsManager = value;
+				MarkColumnModified("IsManager");
+			}
+		}
+		bool? _IsManager;
+
+		[IgnoreAttribute]
+		[System.Xml.Serialization.XmlElement("UISelected")]
+		public bool UISelected{get{return _UISelected;}set{_UISelected=value;}}
+		bool _UISelected=false;
+		
+		[IgnoreAttribute]
+		[System.Xml.Serialization.XmlElement("IsDynamicAdd")]
+		public bool IsDynamicAdd{get{return _IsDynamicAdd;}set{_IsDynamicAdd=value;}}
+		bool _IsDynamicAdd=false;
+	}
+    
+	[TableName("T_ERP_SuppPurch")]
+	[PrimaryKey("Id")]
+	[ExplicitColumns]
+	[Serializable]
+    public partial class T_ERP_SuppPurch : UltraDbEntityDB.Record<T_ERP_SuppPurch>  
+    {
+		public static string Meta_Id{get{return "Id";}}
+
+        [System.Xml.Serialization.XmlElement("Id")]
+        [Column] 
+		public long Id 
+		{ 
+			get
+			{
+				return _Id;
+			}
+			set
+			{
+				_Id = value;
+				MarkColumnModified("Id");
+			}
+		}
+		long _Id;
+
+		public static string Meta_Guid{get{return "Guid";}}
+
+        [System.Xml.Serialization.XmlElement("Guid")]
+        [Column] 
+		public Guid Guid 
+		{ 
+			get
+			{
+				return _Guid;
+			}
+			set
+			{
+				_Guid = value;
+				MarkColumnModified("Guid");
+			}
+		}
+		Guid _Guid;
+
+		public static string Meta_CreateDate{get{return "CreateDate";}}
+
+        [System.Xml.Serialization.XmlElement("CreateDate")]
+        [Column] 
+		public DateTime CreateDate 
+		{ 
+			get
+			{
+				return _CreateDate;
+			}
+			set
+			{
+				_CreateDate = value;
+				MarkColumnModified("CreateDate");
+			}
+		}
+		DateTime _CreateDate;
+
+		public static string Meta_Creator{get{return "Creator";}}
+
+        [System.Xml.Serialization.XmlElement("Creator")]
+        [Column] 
+		public string Creator 
+		{ 
+			get
+			{
+				return _Creator;
+			}
+			set
+			{
+				_Creator = value;
+				MarkColumnModified("Creator");
+			}
+		}
+		string _Creator;
+
+		public static string Meta_UpdateDate{get{return "UpdateDate";}}
+
+        [System.Xml.Serialization.XmlElement("UpdateDate")]
+        [Column] 
+		public DateTime UpdateDate 
+		{ 
+			get
+			{
+				return _UpdateDate;
+			}
+			set
+			{
+				_UpdateDate = value;
+				MarkColumnModified("UpdateDate");
+			}
+		}
+		DateTime _UpdateDate;
+
+		public static string Meta_Updator{get{return "Updator";}}
+
+        [System.Xml.Serialization.XmlElement("Updator")]
+        [Column] 
+		public string Updator 
+		{ 
+			get
+			{
+				return _Updator;
+			}
+			set
+			{
+				_Updator = value;
+				MarkColumnModified("Updator");
+			}
+		}
+		string _Updator;
+
+		public static string Meta_IsDel{get{return "IsDel";}}
+
+        [System.Xml.Serialization.XmlElement("IsDel")]
+        [Column] 
+		public bool IsDel 
+		{ 
+			get
+			{
+				return _IsDel;
+			}
+			set
+			{
+				_IsDel = value;
+				MarkColumnModified("IsDel");
+			}
+		}
+		bool _IsDel;
+
+		public static string Meta_Reserved1{get{return "Reserved1";}}
+
+        [System.Xml.Serialization.XmlElement("Reserved1")]
+        [Column] 
+		public int Reserved1 
+		{ 
+			get
+			{
+				return _Reserved1;
+			}
+			set
+			{
+				_Reserved1 = value;
+				MarkColumnModified("Reserved1");
+			}
+		}
+		int _Reserved1;
+
+		public static string Meta_Reserved2{get{return "Reserved2";}}
+
+        [System.Xml.Serialization.XmlElement("Reserved2")]
+        [Column] 
+		public string Reserved2 
+		{ 
+			get
+			{
+				return _Reserved2;
+			}
+			set
+			{
+				_Reserved2 = value;
+				MarkColumnModified("Reserved2");
+			}
+		}
+		string _Reserved2;
+
+		public static string Meta_Reserved3{get{return "Reserved3";}}
+
+        [System.Xml.Serialization.XmlElement("Reserved3")]
+        [Column] 
+		public bool Reserved3 
+		{ 
+			get
+			{
+				return _Reserved3;
+			}
+			set
+			{
+				_Reserved3 = value;
+				MarkColumnModified("Reserved3");
+			}
+		}
+		bool _Reserved3;
+
+		public static string Meta_Remark{get{return "Remark";}}
+
+        [System.Xml.Serialization.XmlElement("Remark")]
+        [Column] 
+		public string Remark 
+		{ 
+			get
+			{
+				return _Remark;
+			}
+			set
+			{
+				_Remark = value;
+				MarkColumnModified("Remark");
+			}
+		}
+		string _Remark;
+
+		public static string Meta_TimeStamp{get{return "TimeStamp";}}
+
+        [System.Xml.Serialization.XmlElement("TimeStamp")]
+        [Column] 
+		public byte[] TimeStamp 
+		{ 
+			get
+			{
+				return _TimeStamp;
+			}
+			set
+			{
+				_TimeStamp = value;
+				MarkColumnModified("TimeStamp");
+			}
+		}
+		byte[] _TimeStamp;
+
+		public static string Meta_Auditor{get{return "Auditor";}}
+
+        [System.Xml.Serialization.XmlElement("Auditor")]
+        [Column] 
+		public string Auditor 
+		{ 
+			get
+			{
+				return _Auditor;
+			}
+			set
+			{
+				_Auditor = value;
+				MarkColumnModified("Auditor");
+			}
+		}
+		string _Auditor;
+
+		public static string Meta_AuditRemark{get{return "AuditRemark";}}
+
+        [System.Xml.Serialization.XmlElement("AuditRemark")]
+        [Column] 
+		public string AuditRemark 
+		{ 
+			get
+			{
+				return _AuditRemark;
+			}
+			set
+			{
+				_AuditRemark = value;
+				MarkColumnModified("AuditRemark");
+			}
+		}
+		string _AuditRemark;
+
+		public static string Meta_AuditTime{get{return "AuditTime";}}
+
+        [System.Xml.Serialization.XmlElement("AuditTime")]
+        [Column] 
+		public DateTime? AuditTime 
+		{ 
+			get
+			{
+				return _AuditTime;
+			}
+			set
+			{
+				_AuditTime = value;
+				MarkColumnModified("AuditTime");
+			}
+		}
+		DateTime? _AuditTime;
+
+		public static string Meta_Canceler{get{return "Canceler";}}
+
+        [System.Xml.Serialization.XmlElement("Canceler")]
+        [Column] 
+		public string Canceler 
+		{ 
+			get
+			{
+				return _Canceler;
+			}
+			set
+			{
+				_Canceler = value;
+				MarkColumnModified("Canceler");
+			}
+		}
+		string _Canceler;
+
+		public static string Meta_CancelRemark{get{return "CancelRemark";}}
+
+        [System.Xml.Serialization.XmlElement("CancelRemark")]
+        [Column] 
+		public string CancelRemark 
+		{ 
+			get
+			{
+				return _CancelRemark;
+			}
+			set
+			{
+				_CancelRemark = value;
+				MarkColumnModified("CancelRemark");
+			}
+		}
+		string _CancelRemark;
+
+		public static string Meta_CancelTime{get{return "CancelTime";}}
+
+        [System.Xml.Serialization.XmlElement("CancelTime")]
+        [Column] 
+		public DateTime? CancelTime 
+		{ 
+			get
+			{
+				return _CancelTime;
+			}
+			set
+			{
+				_CancelTime = value;
+				MarkColumnModified("CancelTime");
+			}
+		}
+		DateTime? _CancelTime;
+
+		public static string Meta_CostPrice{get{return "CostPrice";}}
+
+        [System.Xml.Serialization.XmlElement("CostPrice")]
+        [Column] 
+		public decimal? CostPrice 
+		{ 
+			get
+			{
+				return _CostPrice;
+			}
+			set
+			{
+				_CostPrice = value;
+				MarkColumnModified("CostPrice");
+			}
+		}
+		decimal? _CostPrice;
+
+		public static string Meta_GroupSession{get{return "GroupSession";}}
+
+        [System.Xml.Serialization.XmlElement("GroupSession")]
+        [Column] 
+		public Guid? GroupSession 
+		{ 
+			get
+			{
+				return _GroupSession;
+			}
+			set
+			{
+				_GroupSession = value;
+				MarkColumnModified("GroupSession");
+			}
+		}
+		Guid? _GroupSession;
+
+		public static string Meta_Invalider{get{return "Invalider";}}
+
+        [System.Xml.Serialization.XmlElement("Invalider")]
+        [Column] 
+		public string Invalider 
+		{ 
+			get
+			{
+				return _Invalider;
+			}
+			set
+			{
+				_Invalider = value;
+				MarkColumnModified("Invalider");
+			}
+		}
+		string _Invalider;
+
+		public static string Meta_InvalidRemark{get{return "InvalidRemark";}}
+
+        [System.Xml.Serialization.XmlElement("InvalidRemark")]
+        [Column] 
+		public string InvalidRemark 
+		{ 
+			get
+			{
+				return _InvalidRemark;
+			}
+			set
+			{
+				_InvalidRemark = value;
+				MarkColumnModified("InvalidRemark");
+			}
+		}
+		string _InvalidRemark;
+
+		public static string Meta_InvalidTime{get{return "InvalidTime";}}
+
+        [System.Xml.Serialization.XmlElement("InvalidTime")]
+        [Column] 
+		public DateTime? InvalidTime 
+		{ 
+			get
+			{
+				return _InvalidTime;
+			}
+			set
+			{
+				_InvalidTime = value;
+				MarkColumnModified("InvalidTime");
+			}
+		}
+		DateTime? _InvalidTime;
+
+		public static string Meta_IsAssign{get{return "IsAssign";}}
+
+        [System.Xml.Serialization.XmlElement("IsAssign")]
+        [Column] 
+		public bool IsAssign 
+		{ 
+			get
+			{
+				return _IsAssign;
+			}
+			set
+			{
+				_IsAssign = value;
+				MarkColumnModified("IsAssign");
+			}
+		}
+		bool _IsAssign;
+
+		public static string Meta_IsAudit{get{return "IsAudit";}}
+
+        [System.Xml.Serialization.XmlElement("IsAudit")]
+        [Column] 
+		public bool IsAudit 
+		{ 
+			get
+			{
+				return _IsAudit;
+			}
+			set
+			{
+				_IsAudit = value;
+				MarkColumnModified("IsAudit");
+			}
+		}
+		bool _IsAudit;
+
+		public static string Meta_IsCancel{get{return "IsCancel";}}
+
+        [System.Xml.Serialization.XmlElement("IsCancel")]
+        [Column] 
+		public bool IsCancel 
+		{ 
+			get
+			{
+				return _IsCancel;
+			}
+			set
+			{
+				_IsCancel = value;
+				MarkColumnModified("IsCancel");
+			}
+		}
+		bool _IsCancel;
+
+		public static string Meta_IsInvalid{get{return "IsInvalid";}}
+
+        [System.Xml.Serialization.XmlElement("IsInvalid")]
+        [Column] 
+		public bool IsInvalid 
+		{ 
+			get
+			{
+				return _IsInvalid;
+			}
+			set
+			{
+				_IsInvalid = value;
+				MarkColumnModified("IsInvalid");
+			}
+		}
+		bool _IsInvalid;
+
+		public static string Meta_IsPrint{get{return "IsPrint";}}
+
+        [System.Xml.Serialization.XmlElement("IsPrint")]
+        [Column] 
+		public bool IsPrint 
+		{ 
+			get
+			{
+				return _IsPrint;
+			}
+			set
+			{
+				_IsPrint = value;
+				MarkColumnModified("IsPrint");
+			}
+		}
+		bool _IsPrint;
+
+		public static string Meta_ItemSession{get{return "ItemSession";}}
+
+        [System.Xml.Serialization.XmlElement("ItemSession")]
+        [Column] 
+		public Guid? ItemSession 
+		{ 
+			get
+			{
+				return _ItemSession;
+			}
+			set
+			{
+				_ItemSession = value;
+				MarkColumnModified("ItemSession");
+			}
+		}
+		Guid? _ItemSession;
+
+		public static string Meta_Num{get{return "Num";}}
+
+        [System.Xml.Serialization.XmlElement("Num")]
+        [Column] 
+		public long? Num 
+		{ 
+			get
+			{
+				return _Num;
+			}
+			set
+			{
+				_Num = value;
+				MarkColumnModified("Num");
+			}
+		}
+		long? _Num;
+
+		public static string Meta_PlanArriveTime{get{return "PlanArriveTime";}}
+
+        [System.Xml.Serialization.XmlElement("PlanArriveTime")]
+        [Column] 
+		public DateTime? PlanArriveTime 
+		{ 
+			get
+			{
+				return _PlanArriveTime;
+			}
+			set
+			{
+				_PlanArriveTime = value;
+				MarkColumnModified("PlanArriveTime");
+			}
+		}
+		DateTime? _PlanArriveTime;
+
+		public static string Meta_Promot{get{return "Promot";}}
+
+        [System.Xml.Serialization.XmlElement("Promot")]
+        [Column] 
+		public Guid? Promot 
+		{ 
+			get
+			{
+				return _Promot;
+			}
+			set
+			{
+				_Promot = value;
+				MarkColumnModified("Promot");
+			}
+		}
+		Guid? _Promot;
+
+		public static string Meta_PurchNo{get{return "PurchNo";}}
+
+        [System.Xml.Serialization.XmlElement("PurchNo")]
+        [Column] 
+		public string PurchNo 
+		{ 
+			get
+			{
+				return _PurchNo;
+			}
+			set
+			{
+				_PurchNo = value;
+				MarkColumnModified("PurchNo");
+			}
+		}
+		string _PurchNo;
+
+		public static string Meta_SuppName{get{return "SuppName";}}
+
+        [System.Xml.Serialization.XmlElement("SuppName")]
+        [Column] 
+		public string SuppName 
+		{ 
+			get
+			{
+				return _SuppName;
+			}
+			set
+			{
+				_SuppName = value;
+				MarkColumnModified("SuppName");
+			}
+		}
+		string _SuppName;
+
+		public static string Meta_TotalItemCount{get{return "TotalItemCount";}}
+
+        [System.Xml.Serialization.XmlElement("TotalItemCount")]
+        [Column] 
+		public long? TotalItemCount 
+		{ 
+			get
+			{
+				return _TotalItemCount;
+			}
+			set
+			{
+				_TotalItemCount = value;
+				MarkColumnModified("TotalItemCount");
+			}
+		}
+		long? _TotalItemCount;
+
+		public static string Meta_TotalItemPackage{get{return "TotalItemPackage";}}
+
+        [System.Xml.Serialization.XmlElement("TotalItemPackage")]
+        [Column] 
+		public long? TotalItemPackage 
+		{ 
+			get
+			{
+				return _TotalItemPackage;
+			}
+			set
+			{
+				_TotalItemPackage = value;
+				MarkColumnModified("TotalItemPackage");
+			}
+		}
+		long? _TotalItemPackage;
+
+		public static string Meta_TotalItemVolume{get{return "TotalItemVolume";}}
+
+        [System.Xml.Serialization.XmlElement("TotalItemVolume")]
+        [Column] 
+		public decimal? TotalItemVolume 
+		{ 
+			get
+			{
+				return _TotalItemVolume;
+			}
+			set
+			{
+				_TotalItemVolume = value;
+				MarkColumnModified("TotalItemVolume");
+			}
+		}
+		decimal? _TotalItemVolume;
+
+		public static string Meta_UserName{get{return "UserName";}}
+
+        [System.Xml.Serialization.XmlElement("UserName")]
+        [Column] 
+		public string UserName 
+		{ 
+			get
+			{
+				return _UserName;
+			}
+			set
+			{
+				_UserName = value;
+				MarkColumnModified("UserName");
+			}
+		}
+		string _UserName;
 
 		[IgnoreAttribute]
 		[System.Xml.Serialization.XmlElement("UISelected")]

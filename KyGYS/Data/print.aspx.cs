@@ -11,6 +11,7 @@ using MoreLinq;
 using KyGYS.Controls;
 using System.Data;
 using Ultra.Web.Core.Common;
+using System.IO;
 namespace KyGYS.Data
 {
     public partial class print : BasicSecurity
@@ -22,92 +23,142 @@ namespace KyGYS.Data
         [System.Web.Services.WebMethod]
         public static string Print(string guid)
         {
-            if (HttpContext.Current.Session["UserName"] == null)
+            if (HttpContext.Current.Request.Cookies["Login"] == null)
             {
                 return "操作失败";
             }
-            string userName = HttpContext.Current.Session["UserName"].ToString();
+            string userName = HttpUtility.UrlDecode(HttpContext.Current.Request.Cookies["Login"]["UserName"].ToString());
             if (string.IsNullOrEmpty(userName))
             {
                 return "操作失败";
             }
             string msg = string.Empty;
             if (string.IsNullOrEmpty(guid)) return msg = "操作失败,请联系客易技术";
-
-            SerNoCaller.Calr_SuppBatch.ExecSql("Update T_ERP_SuppBatch set Reserved1 = 1 where guid =@0 and SuppName = @1", guid, userName);
             var bch = SerNoCaller.Calr_SuppBatch.Get("Where Guid = @0", guid).FirstOrDefault();
-            List<T_ERP_SuppOrder> ords = null;
+
+
+            var batchlist = SerNoCaller.Calr_V_ERP_NPrintBatch.GetByProc("exec P_ERP_GetNPrintBatch @0,@1", bch.MergerSysNo, bch.BatchGuid).FirstOrDefault();
+            var nitemlist = SerNoCaller.Calr_V_ERP_NPrintItem.GetByProc("exec P_ERP_NPrintItem @0,@1", bch.MergerSysNo, bch.BatchGuid);
+            if (batchlist == null || nitemlist == null) return msg = "未财审";
+            List<V_ERP_NPrintItem> itemlist = null;
             if (userName != "admin")
             {
-                 ords = SerNoCaller.Calr_SuppOrder.Get("select * from V_ERP_SuppOrder Where SuppBatchGuid = @0 and SuppName =@1", guid, userName);
+                itemlist = nitemlist.Where(j => j.SuppName == userName).ToList();
             }
             else
             {
-                 ords = SerNoCaller.Calr_SuppOrder.Get("select * from V_ERP_SuppOrder Where SuppBatchGuid = @0", guid);
+                itemlist = nitemlist;
             }
-            #region 凯森
-            List<UltraDbEntity.T_ERP_SuppOrder> lstSum = new List<T_ERP_SuppOrder>();
-            ords.ForEach(j =>
-            {
-                j.Num = j.Num * (j.PackageCount == null ? 1 : j.PackageCount.Value == 0 ? 1 : j.PackageCount.Value);
-                while (j.Num > 0)
-                {
-                    var net = j.Copy(); net.Num = 1;
-                    lstSum.Add(net);
-                    j.Num = j.Num - 1;
-                }
-            });
-            #endregion
-
+            if (batchlist == null || itemlist == null || itemlist.Count < 1) return "";
+            int count = itemlist.Count;
+            count = count + 1;
             StringBuilder sb = new StringBuilder();
-            //sb.Append("<div id=\"printdiv\" style=\"width: 720px; height: 500px;\">\n");
-            //sb.Append("<span style=\"float: right;\">\n");
-            //sb.Append("No:" + "12111");
-            //sb.Append("</span >\n");
+            sb.Append("<div id=\"printdiv\" style=\"width: 740px; \">\n");
 
-       
-            #region 凯森
-            sb.Append("<div id=\"printdiv\" style=\"width: 720px; \">\n");
-            for (int i = 0; i < lstSum.Count; i++)
+            sb.Append("<div style=\"margin-top: 0px; margin-left: 180px; width: 767px;\"><span style=\"font-family: '新宋体'; font-size: 23px; font-weight: bold;\">佛 山 市 美 森 家 具 有 限 公 司</span></div>");
+            sb.Append("<div style=\"margin-top: 8px; margin-left: 320px; width: 767px;\"><span style=\"font-family: '新宋体'; font-size: 22px; font-weight: bold;\">发 货 单</span></div>");
+            sb.Append(@"<style type='text/css'>.itemlist td {border: solid #000 1px;} .itemlist {width: 767px; margin-left: 2px; margin-top: 5px; font-size: 12px; border-collapse: collapse; border: none;}  
+                    .list {width: 767px; margin-left: 2px; margin-top: 5px; font-size: 12px; border-collapse: collapse; border: none;} .tdFirst {width: 65px; height: 17px; line-height: 17px; text-align: left; font-family: '微软雅黑'; font-size: 13px;} 
+                    .tdSecond {width: 400px; height: 17px; line-height: 17px; text-align: left; vertical-align: middle; padding-left: 1px; font-family: '微软雅黑'; font-size: 13px;} 
+                    .tdThree {width: 65px; height: 17px; line-height: 17px; text-align: left; vertical-align: middle; padding-left: 1px; font-family: '微软雅黑'; font-size: 13px;} 
+                    .tdFour {height: 17px; line-height: 17px; text-align: left; vertical-align: middle; padding-left: 1px; font-family: '微软雅黑'; font-size: 13px;} 
+                    .tdFive {height: 15px; line-height: 15px; text-align: left; vertical-align: middle;  font-family: '微软雅黑'; font-size: 13px;} 
+                    .tdSix {height: 32px; line-height: 32px; text-align: center; vertical-align: middle; padding-left: 1px; font-family: '微软雅黑'; font-size: 14px;}</style>");
+            sb.Append("<table class=\"list\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\">");
+            sb.Append("<tr><td class=\"tdFirst\">客户名称 </td><td class=\"tdSecond\" colspan=\"3\">" + batchlist.ReceiverName + "</td><td class=\"tdThree\">公司地址</td><td class=\"tdFour\">广东省佛山市顺德区龙江镇高窖工业区</td></tr>");
+            sb.Append("<tr><td class=\"tdFirst\">客户电话 </td><td class=\"tdSecond\" colspan=\"3\">" + batchlist.ReceiverMobile + "</td><td class=\"tdThree\">联系电话</td><td class=\"tdFour\">0757-268856523</td></tr>");
+            sb.Append("<tr><td class=\"tdFirst\">地址 </td><td class=\"tdSecond\" colspan=\"3\">" + batchlist.ReceiverAddress + "</td><td class=\"tdThree\">业务员</td><td class=\"tdFour\">" + batchlist.UserName + "</td></tr>");
+            sb.Append("<tr><td class=\"tdFirst\">订单编号 </td><td class=\"tdSecond\" colspan=\"3\">" + batchlist.Tids + "</td><td class=\"tdThree\">物流公司</td><td class=\"tdFour\">" + batchlist.LogisName + "</td></tr>");
+            sb.Append("<tr><td class=\"tdFirst\">运费类型 </td><td class=\"tdSecond\" style=\"font-size: 17px;\" colspan=\"3\"><b>" + batchlist.PostFeeType + "</b></td><td class=\"tdThree\">三包方式</td><td  class=\"tdFour\" style=\"font-size: 17px;\"><b>" + batchlist.ThirdPackType + "</b></td></tr>");
+            sb.Append("<tr><td class=\"tdFive\" style=\"width: 65px;\">订单日期 </td><td class=\"tdFive\" style=\"width: 155px; padding-left: 1px;\">" + batchlist.PayTime + "</td><td class=\"tdFive\" style=\"width: 65px; padding-left: 1px; \">出货日期</td><td class=\"tdFive\" style=\"width: 155px; padding-left: 1px; \"><b>" + batchlist.ProDelTime.Value.ToString("yyyy-MM-dd") + "</b></td><td class=\"tdFive\" style=\"width: 65px; height: 15px;  padding-left: 1px;\">包件总数</td><td class=\"tdFour\">" + batchlist.PackageCount + "</td></tr>");
+            sb.Append("</table>");
+            sb.Append("<table class=\"itemlist\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\">");
+            sb.Append("<tr><td class=\"tdSix\" style=\"width: 65px; text-align: left;\">产品型号</td><td class=\"tdSix\">产品图片</td><td class=\"tdSix\" style=\"width:305px;\" colspan=\"2\">规格</td><td class=\"tdSix\"  style=\"width: 50px;\">数量</td><td class=\"tdSix\" style=\"width: 80px;\">包装件数</td><td class=\"tdSix\" style=\"width: 60px;\" >包装体积</td><td class=\"tdSix\" style=\"width: 170px;\">备注</td></tr>");
+            //<td class=\"tdSix\" style=\"width: 100px;\">定制规格颜色</td>
+            foreach (var item in itemlist)
             {
-                sb.Append("<div style='width: 747px; height: 522px; page-break-after:always'>\n");
-                sb.Append("<table style='width: 747px; margin-left: 50px; font-size: 22px; font-family:'微软雅黑';border='0' ;cellspacing='0'; cellpadding='0'>\n");
-                sb.Append(" <tr style='height: 800px;'></tr>\n");
-                sb.Append(" <tr style='height: 110px;'></tr>\n");
-                sb.Append(" <tr style='height: 65px;'></tr>\n");
-                sb.Append("<tr style='height: 105px;'><td>" + bch.ReceiverState + bch.ReceiverCity + bch.ReceiverDistrict + "</td></tr>\n");
-                sb.Append(" <tr style='height: 70px;'></tr>\n");
-                sb.Append("<tr style='height: 80px;'><td style='width: 270px;'>" + bch.ReceiverName + "</td> <td style='width: 330px;'>" + lstSum[i].OuterSkuId + "</td></tr>\n");
-                sb.Append("<tr style='height: 120px;'><td>" + lstSum[i].OuterIid + "</td> <td>" + lstSum[i].Color + "</td></tr>\n");
-                sb.Append("</table>\n");
-                sb.Append("</div>\n");
+                sb.Append("<tr><td class=\"tdSix\" style=\"width: 65px; text-align: left;\">" + item.OuterIid + "</td><td class=\"tdSix\"><img src='" + CommonUtil.GetItemImgFileName("http://msgys.keyierp.com:30000/Item_Images/" + "MSTest/" + item.OuterIid + item.OuterSkuId + ".jpg") + "' width='80' height='100' onerror=\"this.style.display='none'\" /></td><td class=\"tdSix\" style=\"width: 305px; text-align: left;\" colspan=\"2\">" + item.OuterSkuId + "</td><td class=\"tdSix\"  style=\"width: 50px;\">" + item.Num + "</td><td class=\"tdSix\"  style=\"width: 80px;\">" + item.PackageCount + "</td><td class=\"tdSix\"  style=\"width: 60px;\">" + item.Volume + "</td><td class=\"tdSix\" style=\"width: 170px;\">" + item.Remark + "</td></tr>");
             }
-            #endregion
+            sb.Append("<tr><td class=\"tdSix\" style=\"width: 65px; text-align: left;\">发票</td><td class=\"tdSix\" style=\"text-align: left;\" colspan=\"7\">" + batchlist.Title + "</td></tr>");
+            sb.Append("<tr><td class=\"tdSix\" style=\"width: 65px; text-align: left;\">客户留言</td><td class=\"tdSix\" style=\"text-align: left;\" colspan=\"7\">" + batchlist.BuyerMemo + "</td></tr>");
+            sb.Append("<tr></tr>");
+            sb.Append("<tr><td style=\"border-color: white; padding: 2px;\" colspan=\"8\">备注：所有产品都是经过仔细检查后才发货,为了保障您得利益,请签收前务必核对产品包装数量,外包装破损需拆开检查.签收时如发现件数不对或运输损坏请不要签收,立即联系我们,我们会迅速协助解答和处理.运输过程中造成的货物丢失或损坏,如未仔细检查直接签收,导致的经济损失由客户单方承担.此出货单代表产品质量保修卡,请妥善保管!</td></tr>");
+            sb.Append("</table><div style=\"width: 767px; margin-left: 8px; margin-top: 5px; font-size: 16px; font-family: '宋体';\">");
+            sb.Append("<span>跟单：</span><span>" + batchlist.UserName + "</span><span style=\"margin-left: 185px;\">财务：</span><span>" + batchlist.FinViewer + "</span><span style=\"margin-left: 180px;\">仓库：</span><span></span><span style=\"display: block\"></span><span style=\"margin-left:115px;font-size:13px;\">白色联：存根&nbsp;&nbsp;红色联：业务员&nbsp;&nbsp;蓝色联：仓库&nbsp;&nbsp;绿色联：司机&nbsp;&nbsp;黄色联：财务</span></div>");
 
-            #region 原先标准
-            //sb.Append("<table style=\"width: 720px; font-size:12px; font-weight:bold;  padding: 4px;\"  border=\"2\" cellspacing=\"0\" cellpadding=\"0\">\n");
-            //sb.Append("<tr><td style=\"width: 90px;\">客户名称</td><td>" + bch.ReceiverName.ToString() + "</td><td>客户ID</td><td colspan=\"2\">" + bch.BuyerNick + "</td><td style=\"width: 70px;\">出货时间</td><td colspan=\"3\">" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "</td></tr>\n");
-            //sb.Append("<tr><td style=\"width: 90px;\">订单编号</td><td colspan=\"4\">" + bch.Tid + "</td><td>店铺</td><td colspan=\"3\">" + bch.SellerNick + "</td></tr>\n");
-            //sb.Append("<tr><td style=\"width: 90px;\">联系电话</td><td colspan=\"4\">" + bch.ReceiverMobile + "</td><td style=\"width: 90px;\">公司名称</td><td colspan=\"3\">" + bch.CorpName + "</td></tr>\n");
-            //sb.Append("<tr><td style=\"width: 90px;\">收货地址</td><td colspan=\"4\">" + bch.ReceiverAddress + "</td><td style=\"width: 90px;\">公司地址</td><td colspan=\"3\">" + bch.CorpAddress + "</td></tr>\n");
-            //sb.Append("<tr><td style=\"width: 90px;\">物流信息</td><td colspan=\"4\">" + bch.LogisName +" "+bch.ThirdPackType+ " "+bch.LogisMobile+"</td><td style=\"width: 90px;\">公司电话</td><td colspan=\"3\">" + bch.CorpMobile + "</td></tr>\n");
-            //sb.Append("<tr><td style=\"width: 90px;\">序号</td><td style=\"width: 100px;\">产品型号</td><td style=\"width: 100px;\">产品名称</td><td style=\"width: 100px;\">产品规格</td><td style=\"width: 100px;\">家具结构</td><td style=\"width: 70px;\">皮布号</td><td style=\"width: 100px;\">数量</td><td style=\"width: 100px;\">包件数</td><td style=\"width: 100px;\">备注</td></tr>\n");
-            //int j = 1;
-            //string batchcount = ords.Count.ToString();
-            //int packcount = 0;
-            //for (int i = 0; i < ords.Count; i++)
-            //{
-            //    sb.Append("<tr><td style=\"width: 90px;\">" + j.ToString() + "</td><td style=\"width: 100px;\">" + ords[i].OuterIid + "</td><td style=\"width: 100px;\">" + ords[i].ItemName + "</td><td style=\"width: 100px;\">" + ords[i].OuterSkuId + "</td><td style=\"width: 100px;\">" + ords[i].Func + "</td><td style=\"width: 70px;\">" + ords[i].ClothNums + "</td><td style=\"width: 100px;\">" + ords[i].Num.ToString() + "</td><td style=\"width: 100px;\">" + ords[i].PackageCount.ToString() + "</td><td style=\"width: 100px;\">" + ords[i].Remark + "</td></tr>\n");
-            //    j++;
-            //    packcount += ords[i].PackageCount == null ? 0 : int.Parse(ords[i].PackageCount.ToString());
-            //}
-            //sb.Append("<tr><td style=\"width: 90px;\"></td><td style=\"width: 100px;\"></td><td style=\"width: 100px;\"></td><td style=\"width: 100px;\"></td><td style=\"width: 100px;\"></td><td style=\"width: 70px;\">合计</td><td style=\"width: 100px;\">" + batchcount + "</td><td style=\"width: 100px;\">" + packcount + "</td><td style=\"width: 100px;\"></td></tr>\n");
-            //sb.Append("<tr><td style=\"width: 90px;\">客服</td><td style=\"width: 100px;\" colspan=\"2\">" + bch.UserName + "</td><td style=\"width: 100px;\">经办人</td><td style=\"width: 100px;\" colspan=\"3\">" + userName + "</td><td style=\"width: 100px;\">收货人</td><td style=\"width: 100px;\">" + bch.ReceiverName + "</td></tr>\n");
-            //sb.Append("<tr><td style=\"width: 90px;\">备注</td><td  colspan=\"8\">" + "1、货物签收时请仔细核对件数、外包装有无明显的破损，若有问题，请及时联系！<br/> 2、收货后，请尽快拆封检查并通风透气，若有问题，请及时拍照并与我们及时联系！" + "</td></tr>\n");
-            //sb.Append("</table></div>\n");
-            #endregion
+
             sb.Append("</div>\n");
+            //SerNoCaller.Calr_SuppBatch.ExecSql("Update T_ERP_SuppBatch set Reserved1 = 1 where guid =@0 and SuppName = @1", guid, userName);
             return sb.ToString();
+        }
+
+
+        [System.Web.Services.WebMethod]
+        public static string PrintPurch(string guid)
+        {
+            if (HttpContext.Current.Request.Cookies["Login"] == null)
+            {
+                return "操作失败";
+            }
+            string userName = HttpUtility.UrlDecode(HttpContext.Current.Request.Cookies["Login"]["UserName"].ToString());
+            if (string.IsNullOrEmpty(userName))
+            {
+                return "操作失败";
+            }
+            string msg = string.Empty;
+            if (string.IsNullOrEmpty(guid)) return msg = "操作失败,请联系客易技术";
+            var bch = SerNoCaller.Calr_SuppPurch.Get("Where Guid = @0", guid).FirstOrDefault();
+            if (bch == null) return msg = "操作失败,请联系客易技术";
+            var batchlist = SerNoCaller.Calr_V_ERP_NprintPurch.GetByProc("exec P_ERP_GetNprintPurch @0", bch.ItemSession).FirstOrDefault();
+            var nitemlist = SerNoCaller.Calr_V_ERP_PurchItemGet.GetByProc("exec P_ERP_NPurchItemGet @0", bch.ItemSession);
+            if (batchlist == null || nitemlist == null) return msg = "操作失败,请联系客易技术";
+            List<V_ERP_PurchItemGet> itemlist = null;
+            if (userName != "admin")
+            {
+                itemlist = nitemlist.Where(j => j.SuppName == userName).ToList();
+            }
+            else
+            {
+                itemlist = nitemlist;
+            }
+            if (batchlist == null || itemlist == null || itemlist.Count < 1) return "";
+            StringBuilder html = new StringBuilder();
+            html.Append("<div id=\"printdiv\" style=\"width: 740px; \">\n");
+            var pth = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "order.html");
+            var txtorder = File.ReadAllText(pth, Encoding.UTF8);
+            StringBuilder sbsub = new StringBuilder(100);
+            foreach (var item in itemlist)
+            {
+                string isCardImg = string.Empty;
+                if (item.IsCard)
+                {
+                    if (!string.IsNullOrEmpty(item.SKImageUrl))
+                    {
+                        isCardImg = string.Format("<img src='{0}' border='0' onerror=\"this.style.display='none'\" style=\"width:94px;height:79px\"  />", "http://101.251.96.120:30000/Images/" + item.SKImageUrl.Remove(0, 6));
+                    }
+                }
+                else
+                {
+                    isCardImg = "";
+                }
+                sbsub.AppendLine(string.Format(txtorder, item.OuterIid, string.Format("<img src='{0}' border='0' onerror=\"this.style.display='none'\" style=\"width:94px;height:79px\"  />", "http://101.251.96.120:30000/Item_Images/MSTest/" + CommonUtil.GetItemImgFileName(item.OuterIid + item.OuterSkuId + ".jpg"))
+                    , item.OuterSkuId, item.IsCard == false ? string.Empty : isCardImg, item.RealNum, item.AssignItemNum, item.RealPrice, item.SumCostPrice, item.ReceiverName, item.Remark));
+            }
+            pth = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "head.html");
+            var txtmst = File.ReadAllText(pth, Encoding.UTF8);
+            try
+            {
+                html.AppendLine(string.Format(txtmst, batchlist.SuppName, batchlist.PurchNo, batchlist.Phone, batchlist.SuppQQ, batchlist.PurchTime, batchlist.PlanArriveTime, sbsub.ToString(), batchlist.PurchNum, batchlist.SumAllPrice, batchlist.UserName, batchlist.Auditor, batchlist.PrintTime));
+                html.Append("</div>\n");
+            }
+            catch (Exception ex)
+            {
+
+
+            }
+            html.Append("</div>\n");
+
+            return html.ToString();
         }
     }
 }

@@ -29,9 +29,11 @@ namespace KyGYS.Data
             }
             string queryStr = string.Empty;
             if (UserName != "admin")
-                queryStr = string.Format("  and  a.SuppName in (select UserName from T_ERP_MapUser where SuppName ='{0}')  and a.IsSendGoods = {1}", UserName, int.Parse(send));
+                queryStr = string.Format(@"   join (select  ItemName,SkuProperties,OuterIid,OuterSkuId,num,BusVolume,Size,Color,SuppBatchGuid from T_ERP_SuppOrder 
+                                                         where SuppName in (select UserName from T_ERP_MapUser where SuppName = '{0}') ) b on a.Guid = b.SuppBatchGuid where  a.IsSendGoods = {1}
+                                                         and  a.SuppName in (select UserName from T_ERP_MapUser where SuppName ='{0}')  and a.IsSendGoods = {1}", UserName,int.Parse(send));
             else
-                queryStr = string.Format(" and a.IsSendGoods = {0}", int.Parse(send));
+                queryStr = string.Format(" join (select  ItemName,SkuProperties,OuterIid,OuterSkuId,num,BusVolume,Size,Color,SuppBatchGuid from T_ERP_SuppOrder) b on a.Guid = b.SuppBatchGuid where a.IsSendGoods = {0}", int.Parse(send));
             DataTable dt = null;
             using (var db = new Database(SQLCONN.Conn))
             {

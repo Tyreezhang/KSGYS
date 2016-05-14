@@ -65,6 +65,10 @@
       <HintPath>..\KyGYS.Controls\Ref\Ultra.Common.dll</HintPath>
     </Reference>
     <Reference Include="Ultra.CoreCaller, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="Ultra.DbEntity, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Ultra.DbEntity.dll</HintPath>
+    </Reference>
     <Reference Include="Ultra.Logic, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\KyGYS.Controls\Ref\Ultra.Logic.dll</HintPath>
@@ -80,14 +84,18 @@
   <ItemGroup>
     <Content Include="Data\editPwd.aspx" />
     <Content Include="Data\export.aspx" />
+    <Content Include="Data\getAuditPurch.aspx" />
+    <Content Include="Data\getInvalid.aspx" />
     <Content Include="Data\getItemList.aspx" />
     <Content Include="Data\getMapUserList.aspx" />
+    <Content Include="Data\getUnauditPurch.aspx" />
     <Content Include="Data\getUnSendList.aspx" />
     <Content Include="Data\getSendList.aspx" />
     <Content Include="Data\getUserList.aspx" />
     <Content Include="Data\operateMapUser.aspx" />
     <Content Include="Data\operateUser.aspx" />
     <Content Include="Data\print.aspx" />
+    <Content Include="Data\getPurchItemList.aspx" />
     <Content Include="images\blocks.gif" />
     <Content Include="images\CategorizeMenu.png" />
     <Content Include="images\directory.png" />
@@ -786,12 +794,16 @@
     <Content Include="install_lodop32.exe" />
     <Content Include="js\jquery-1.7.min.js" />
     <Content Include="js\LodopFuncs.js" />
+    <Content Include="js\LodopFuncs1.js" />
     <Content Include="js\tip.js" />
     <Content Include="Login.aspx" />
     <Content Include="LoginOut.aspx" />
+    <Content Include="one.html" />
+    <Content Include="order.html" />
     <Content Include="OtherNameList.aspx" />
     <Content Include="ref\MoreLinq.dll" />
     <Content Include="Register.aspx" />
+    <Content Include="showImg2.aspx" />
     <Content Include="style\Login.css" />
     <Content Include="style\one.css" />
     <Content Include="style\two.css" />
@@ -802,6 +814,8 @@
     <Content Include="UserList.aspx" />
     <Content Include="Web.config" />
     <Content Include="SendGoodsList.aspx" />
+    <Content Include="head.html" />
+    <Content Include="PurchOrderlist.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BasicSecurity.cs">
@@ -821,6 +835,20 @@
     <Compile Include="Data\export.aspx.designer.cs">
       <DependentUpon>export.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Data\getAuditPurch.aspx.cs">
+      <DependentUpon>getAuditPurch.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Data\getAuditPurch.aspx.designer.cs">
+      <DependentUpon>getAuditPurch.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Data\getInvalid.aspx.cs">
+      <DependentUpon>getInvalid.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Data\getInvalid.aspx.designer.cs">
+      <DependentUpon>getInvalid.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Data\getItemList.aspx.cs">
       <DependentUpon>getItemList.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -834,6 +862,13 @@
     </Compile>
     <Compile Include="Data\getMapUserList.aspx.designer.cs">
       <DependentUpon>getMapUserList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Data\getUnauditPurch.aspx.cs">
+      <DependentUpon>getUnauditPurch.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Data\getUnauditPurch.aspx.designer.cs">
+      <DependentUpon>getUnauditPurch.aspx</DependentUpon>
     </Compile>
     <Compile Include="Data\getUnSendList.aspx.cs">
       <DependentUpon>getUnSendList.aspx</DependentUpon>
@@ -876,6 +911,13 @@
     </Compile>
     <Compile Include="Data\print.aspx.designer.cs">
       <DependentUpon>print.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Data\getPurchItemList.aspx.cs">
+      <DependentUpon>getPurchItemList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Data\getPurchItemList.aspx.designer.cs">
+      <DependentUpon>getPurchItemList.aspx</DependentUpon>
     </Compile>
     <Compile Include="Index.aspx.cs">
       <DependentUpon>Index.aspx</DependentUpon>
@@ -934,6 +976,13 @@
     <Compile Include="UserList.aspx.designer.cs">
       <DependentUpon>UserList.aspx</DependentUpon>
     </Compile>
+    <Compile Include="PurchOrderlist.aspx.cs">
+      <DependentUpon>PurchOrderlist.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PurchOrderlist.aspx.designer.cs">
+      <DependentUpon>PurchOrderlist.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="jquery-easyui-1.4.2\demo\accordion\datagrid_data1.json" />
@@ -959,6 +1008,8 @@
     <Content Include="images\login\Thumbs.db" />
     <Content Include="jquery-easyui-1.4.2\themes\default\images\Thumbs.db" />
     <None Include="Properties\PublishProfiles\kygys.pubxml" />
+    <None Include="Properties\PublishProfiles\msgys.pubxml" />
+    <None Include="Properties\PublishProfiles\yjgys.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -974,10 +1025,6 @@
     <ProjectReference Include="..\KyGYS.Controls\KyGYS.Controls.csproj">
       <Project>{5b3f883a-f833-41e9-bb4a-e782e2e41061}</Project>
       <Name>KyGYS.Controls</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Ultra.DbEntity\Ultra.DbEntity.csproj">
-      <Project>{ce990d0b-e38a-4552-a8b3-69daded69e7b}</Project>
-      <Name>Ultra.DbEntity</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
@@ -995,7 +1042,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>13426</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:51818/</IISUrl>
+          <IISUrl>http://localhost:51820/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

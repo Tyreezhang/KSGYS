@@ -12,11 +12,11 @@ namespace KyGYS
         protected void Page_Load(object sender, EventArgs e)
         {
             base.Page_Load(sender, e);
-            if (Session["UserName"] != null)
+            if (!string.IsNullOrEmpty(UserName))
             {
-                string username = Session["UserName"].ToString();
+                string username = UserName.ToString();
                 this.lblusername.Text = username;
-                this.ismanager.Value = Session["IsManager"].ToString();
+                this.ismanager.Value = IsManager;
             }
 
         }

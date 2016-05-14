@@ -6,7 +6,7 @@
 <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="renderer" content="webkit|ie-comp|ie-stand" />
-    <title></title>
+    <title>供应商系统</title>
     <link href="style/default.css" rel="stylesheet" />
     <link href="jquery-easyui-1.4.2/themes/default/easyui2.css" rel="stylesheet" />
     <link href="jquery-easyui-1.4.2/themes/icon.css" rel="stylesheet" />
@@ -28,9 +28,16 @@
                              ]
                          },
                          {
-                             "menuid": "2", "icon": "icon-sys", "menuname": "系统管理",
+                             "menuid": "2", "icon": "icon-sys", "menuname": "采购管理",
                              "menus": [
-                                     { "menuname": "用户管理", "icon": "icon-users", "url": "./Userlist.aspx" }
+                                     { "menuname": "采购订单", "icon": "icon-nav", "url": "./PurchOrderlist.aspx" }
+                             ]
+                         },
+                         {
+                             "menuid": "3", "icon": "icon-sys", "menuname": "系统管理",
+                             "menus": [
+                                     { "menuname": "用户管理", "icon": "icon-users", "url": "./Userlist.aspx" },
+                                     { "menuname": "别名设置", "icon": "icon-users", "url": "./OtherNamelist.aspx" }
                              ]
                          }
                     ]
@@ -43,6 +50,12 @@
                              "menuid": "1", "icon": "icon-sys", "menuname": "订单管理",
                              "menus": [{ "menuname": "未发货订单", "icon": "icon-nav", "url": "./UnSendGoodsList.aspx" },
                                  { "menuname": "已发货订单", "icon": "icon-nav", "url": "./SendGoodsList.aspx" }
+                             ]
+                         },
+                         {
+                             "menuid": "2", "icon": "icon-sys", "menuname": "采购管理",
+                             "menus": [
+                                     { "menuname": "采购订单", "icon": "icon-nav", "url": "./PurchOrderlist.aspx" }
                              ]
                          }
                     ]
