@@ -21,6 +21,14 @@ namespace KyGYS.Data
             string rows = Request.QueryString["rows"];
             if (!string.IsNullOrEmpty(page) && !string.IsNullOrEmpty(rows))
             {
+                try
+                {
+                    int rs = int.Parse(rows);
+                }
+                catch (Exception ex)
+                {
+                    rows = "10";
+                }
                 Refreash(int.Parse(page), int.Parse(rows));
                 Response.End();
             }
@@ -36,20 +44,21 @@ namespace KyGYS.Data
             if (Session["queryStr"] != null)
             {
                 string queryStr = Session["queryStr"].ToString();
-                list= queryStr.Split(',');
+                list = queryStr.Split(',');
             }
-            if (Session["IsManager"] != null && UserName != "")
+            if (IsManager != null && UserName != "")
             {
-                if (Session["IsManager"].ToString() != "True" && UserName != "admin")
+                if (IsManager != "True" && UserName != "admin")
                 {
                     whr += "  and SuppName in (select UserName from T_ERP_MapUser where SuppName = @" + (idx++).ToString() + ")";
                     objs.Add(UserName);
-                    prefixWhr = "select * from V_ERP_SuppNBatch ";
+                    prefixWhr = "select * from V_ERP_SuppXBatch ";
                 }
                 else
                 {
-                    prefixWhr = "select * from V_ERP_SuppNBatch ";
+                    prefixWhr = "select * from V_ERP_SuppXBatch ";
                 }
+
                 if (list != null && list.Count() > 0)
                 {
                     if (!string.IsNullOrEmpty(list[0]))
@@ -85,8 +94,9 @@ namespace KyGYS.Data
                 }
                 using (var db = new Database(SQLCONN.Conn))
                 {
-                    var pages = db.Page<V_ERP_SuppNBatch>(page, rows, prefixWhr + whr + " order by OrderTime desc", objs.ToArray());
-                    var grd = new EasyGridData<V_ERP_SuppNBatch>();
+                    whr += " order by OrderTime desc";
+                    var pages = db.Page<V_ERP_SuppXBatch>(page, rows, prefixWhr + whr, objs.ToArray());
+                    var grd = new EasyGridData<V_ERP_SuppXBatch>();
                     grd.Init(pages);
                     string data = Newtonsoft.Json.JsonConvert.SerializeObject(grd);
                     Response.Write(data);
@@ -94,20 +104,20 @@ namespace KyGYS.Data
             }
             else
             {
-                string data = "{\"IsError\":\"true\",\"ErrMsg\":\"登录超时,请刷新页面重新登录\"}";
+                string data = "{\"IsError\":\"true\",\"ErrMsg\":\"登录失效,请刷新页面重新登录\"}";
                 Response.Write(data);
             }
-         
         }
 
         [System.Web.Services.WebMethod]
         public static string UpdateLogis(string guid, string logisNo, string logisName, string logisCost, string logisMobile)
         {
-            BasicSecurity basic = new BasicSecurity();
+            //BasicSecurity basic = new BasicSecurity();
+            string userName =  HttpUtility.UrlDecode(HttpContext.Current.Request.Cookies["Login"]["UserName"].ToString());
             string msg = string.Empty;
             if (string.IsNullOrEmpty(guid) || string.IsNullOrEmpty(logisNo) || string.IsNullOrEmpty(logisName) || string.IsNullOrEmpty(logisCost)) return "操作失败,请刷新页面重新操作!";
-            if (basic.UserName == "") return "登陆超时";
-            Ultra.Logic.ResultData rd = SerNoCaller.Calr_SuppBatch.ExecSql("Update T_ERP_SuppBatch Set LogisNo = @0, LogisName =@1,LogisCost =@2,LogisMobile=@3 Where Guid = @4",logisNo,logisName,logisCost,logisMobile,guid);
+            if (HttpContext.Current.Request.Cookies["Login"]["UserName"] == "") return "登陆超时";
+            Ultra.Logic.ResultData rd = SerNoCaller.Calr_SuppBatch.ExecSql("Update T_ERP_SuppBatch Set LogisNo = @0, LogisName =@1,LogisCost =@2,LogisMobile=@3 Where Guid = @4", logisNo, logisName, logisCost, logisMobile, guid);
             if (rd.QueryCount > 0)
             {
                 msg = "修改成功";

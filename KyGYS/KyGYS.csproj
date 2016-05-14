@@ -78,6 +78,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="3.html" />
     <Content Include="Data\editPwd.aspx" />
     <Content Include="Data\export.aspx" />
     <Content Include="Data\getItemList.aspx" />
@@ -121,11 +122,16 @@
     <Content Include="images\TableDrawTable.png" />
     <Content Include="images\tools-sprites-trans.gif" />
     <Content Include="images\专注家装ERP.png" />
+    <Content Include="images\4.png" />
     <Content Include="images\供应商系统.png" />
     <Content Include="images\客易供应商系统.png" />
+    <Content Include="images\1.png" />
+    <Content Include="images\2.png" />
+    <Content Include="images\3.png" />
     <Content Include="images\电脑.png" />
     <Content Include="images\登录.png" />
     <Content Include="images\登录界面.jpg" />
+    <Content Include="images\皇客.png" />
     <Content Include="Index.aspx" />
     <Content Include="jquery-easyui-1.4.2\changelog.txt" />
     <Content Include="jquery-easyui-1.4.2\datagrid-filter.js" />
@@ -789,9 +795,11 @@
     <Content Include="js\tip.js" />
     <Content Include="Login.aspx" />
     <Content Include="LoginOut.aspx" />
+    <Content Include="one.html" />
     <Content Include="OtherNameList.aspx" />
     <Content Include="ref\MoreLinq.dll" />
     <Content Include="Register.aspx" />
+    <Content Include="showImg2.aspx" />
     <Content Include="style\Login.css" />
     <Content Include="style\one.css" />
     <Content Include="style\two.css" />
@@ -802,6 +810,9 @@
     <Content Include="UserList.aspx" />
     <Content Include="Web.config" />
     <Content Include="SendGoodsList.aspx" />
+    <Content Include="bx.html" />
+    <Content Include="zx.html" />
+    <Content Include="zxorder.html" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BasicSecurity.cs">
@@ -958,7 +969,7 @@
     <Content Include="jquery-easyui-1.4.2\demo\tree\tree_data2.json" />
     <Content Include="images\login\Thumbs.db" />
     <Content Include="jquery-easyui-1.4.2\themes\default\images\Thumbs.db" />
-    <None Include="Properties\PublishProfiles\kygys.pubxml" />
+    <None Include="Properties\PublishProfiles\zxgys.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -995,7 +1006,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>13426</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:51818/</IISUrl>
+          <IISUrl>http://localhost:51822/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

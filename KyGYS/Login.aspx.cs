@@ -17,9 +17,16 @@ namespace KyGYS
         {
             if (!Page.IsPostBack)
             {
-
-                this.txtusername.Text = string.Empty;
-                this.txtpwd.Text = string.Empty;
+                HttpCookie user = Request.Cookies["Login"];
+                if (user != null)
+                {
+                    Response.Redirect("~/Index.aspx");
+                }
+                else
+                {
+                    this.txtusername.Text = string.Empty;
+                    this.txtpwd.Text = string.Empty;
+                }
             }
         }
 
@@ -50,10 +57,18 @@ namespace KyGYS
             }
             else
             {
+                //T_ERP_User user = users.FirstOrDefault();
+                //Session["IsManager"] = user.IsManager;
+                //Session["UserId"] = user.Guid;
+                //Session["UserName"] = user.UserName;
                 T_ERP_User user = users.FirstOrDefault();
-                Session["IsManager"] = user.IsManager;
-                Session["UserId"] = user.Guid;
-                Session["UserName"] = user.UserName;
+                HttpCookie keepCookie = new HttpCookie("Login");
+                keepCookie.Values.Add("UserName", HttpUtility.UrlEncode(user.UserName));
+                keepCookie.Values.Add("isManager", user.IsManager.ToString());
+                keepCookie.Values.Add("UserId", user.Guid.ToString());
+                //keepCookie["userName"] = user.UserName;//向Login中添加一个userName属性，并赋值  
+                keepCookie.Expires = DateTime.Now.AddDays(1); 
+                Response.Cookies.Add(keepCookie); //把Cookies对象返回给客户端  
                 Response.Redirect("~/Index.aspx");
             }
         }

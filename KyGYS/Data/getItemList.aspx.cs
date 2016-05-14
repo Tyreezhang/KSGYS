@@ -34,14 +34,18 @@ namespace KyGYS.Data
                 else
                 {
                     items = db.Fetch<V_ERP_SuppOrder>("select * from V_ERP_SuppOrder where SuppBatchGuid=@0", SuppBatchGuid);
-                }
+                }  
+                items.ForEach(j =>
+                {
+                    j.Reserved2 = "http://zxgys.keyierp.com:30000/Item_Images/Ultra_ZX/" + KyGYS.Controls.CommonUtil.GetItemImgFileName(j.Reserved2);
+                });
                 var grd = new EasyGridData<V_ERP_SuppOrder>();
                 grd.total = items.Count().ToString();
                 grd.rows = items;
                 string data = Newtonsoft.Json.JsonConvert.SerializeObject(grd);
                 Response.Write(data);
                 Response.End();
-            }
+            }  
         }
     }
 }

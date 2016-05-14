@@ -38,7 +38,7 @@
         function operateUser(act) {
             var username = $('#txtUserName');
             var pwd = $('#txtNPwd');
-            var txtTel = $('#txtTel');
+            var txtTel  = $('#txtTel');
             var guid = $('#txtGuid');
             if (username.val() == '') {
                 msgShow('系统提示', '请输入帐号！', 'warning');
@@ -48,7 +48,7 @@
                 msgShow('系统提示', '请输入密码！', 'warning');
                 return false;
             }
-            $.post('/data/operateUser.aspx?action=' + act + '&username=' + username.val() + '&pwd=' + pwd.val() + '&Tel=' + txtTel.val() + '&guid=' + guid.val(), function (msg) {
+            $.post('/data/operateUser.aspx?action='+act+'&username=' + username.val() + '&pwd=' + pwd.val() + '&Tel=' + txtTel.val()+'&guid='+guid.val(), function (msg) {
                 msgShow('系统提示', msg, 'info');
                 username.val('');
                 pwd.val('');
@@ -144,7 +144,6 @@
                 }
                 )
             }
-
         }];
     </script>
 </head>
@@ -164,22 +163,22 @@
             maximizable="false" icon="icon-save" style="width: 300px; height: 150px; padding: 5px; background: #fafafa;">
             <div class="easyui-layout" fit="true">
                 <div region="center" border="false" style="padding: 10px; background: #fff; border: 1px solid #ccc;">
-                    <input id="txtGuid" type="hidden" />
+                        <input id="txtGuid" type="hidden" />
                     <table cellpadding="3">
                         <tr>
                             <td>帐号：</td>
                             <td>
-                                <input id="txtUserName" type="text" class="txt01" /></td>
+                                <input id="txtUserName"  type="text" class="txt01" /></td>
                         </tr>
                         <tr>
                             <td>密码：</td>
                             <td>
-                                <input id="txtNPwd" type="password" class="txt01" /></td>
+                                <input id="txtNPwd"  type="password" class="txt01" /></td>
                         </tr>
                         <tr>
                             <td>手机：</td>
                             <td>
-                                <input id="txtTel" type="text" class="txt01" /></td>
+                                <input id="txtTel"  type="text" class="txt01" /></td>
                         </tr>
                     </table>
                 </div>

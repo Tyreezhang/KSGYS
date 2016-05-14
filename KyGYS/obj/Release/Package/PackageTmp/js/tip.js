@@ -10,7 +10,7 @@ $.extend($.fn.datagrid.methods, {
      */
     doCellTip: function (jq, params) {
         function showTip(data, td, e) {
-            if ($(td).text() == "")
+            if ($(td).text() == " ")
                 return;
             data.tooltip.text($(td).text()).css({
                 top: (e.pageY + 10) + 'px',

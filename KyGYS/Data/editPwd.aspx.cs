@@ -14,7 +14,7 @@ namespace KyGYS.Data
         {
             base.Page_Load(sender, e);
             string pwd = Request.QueryString["newpass"];
-            string userid = Session["UserId"].ToString();
+            string userid = UserId;
             EditPwd(pwd, userid);
         }
 

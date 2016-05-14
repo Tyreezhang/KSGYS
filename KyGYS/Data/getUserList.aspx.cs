@@ -22,7 +22,7 @@ namespace KyGYS.Data
         {
             using (var db = new Database(SQLCONN.Conn))
             {
-                var items = db.Fetch<V_ERP_User>("select * from V_ERP_User  where UserName <> 'admin' and IsDel = 0");
+                var items = db.Fetch<V_ERP_User>("select * from V_ERP_User");
                 var grd = new EasyGridData<V_ERP_User>();
                 grd.total = items.Count().ToString();
                 grd.rows = items;
