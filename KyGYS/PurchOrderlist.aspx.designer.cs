@@ -8,10 +8,9 @@
 //------------------------------------------------------------------------------
 
 namespace KyGYS {
-
-
-    public partial class UnSendGoodsList
-    {
+    
+    
+    public partial class PurchOrderlist {
         
         /// <summary>
         /// btnRef 控件。
@@ -23,30 +22,21 @@ namespace KyGYS {
         protected global::System.Web.UI.WebControls.Button btnRef;
         
         /// <summary>
-        /// txtReceiverName 控件。
+        /// txtPurchNo 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtReceiverName;
+        protected global::System.Web.UI.WebControls.TextBox txtPurchNo;
         
         /// <summary>
-        /// txtReceiverMobile 控件。
+        /// tabindex 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtReceiverMobile;
-        
-        /// <summary>
-        /// txtReceiverAddress 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtReceiverAddress;
+        protected global::System.Web.UI.HtmlControls.HtmlInputHidden tabindex;
     }
 }

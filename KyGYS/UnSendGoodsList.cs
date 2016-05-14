@@ -10,7 +10,7 @@
 namespace KyGYS {
 
 
-    public partial class UnSendGoodsList
+    public partial class PurchOrder
     {
         
         /// <summary>
